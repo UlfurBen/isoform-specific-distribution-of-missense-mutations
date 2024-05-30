@@ -1,7 +1,7 @@
 import requests
 import json
 
-uniprot_id = "O43918"
+uniprot_id = "O14686"
 
 # URL of the UniProt entry in JSON format
 url = f"https://www.uniprot.org/uniprot/{uniprot_id}.json"
