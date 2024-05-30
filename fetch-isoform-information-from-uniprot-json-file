@@ -1,0 +1,47 @@
+import requests
+import json
+
+# Define the UniProt ID for the gene
+uniprot_id = "O43918"
+
+# Define the URL for the UniProt API
+url = f"https://www.uniprot.org/uniprot/{uniprot_id}.json"
+
+# Send a GET request to the UniProt API
+response = requests.get(url)
+
+# Check if the response was successful
+if response.status_code == 200:
+    # Load the JSON response
+    data = response.json()
+
+    # Extract isoform information
+    isoforms = data.get("isoforms")
+
+    if isoforms:
+        # Create a list to store isoform data
+        isoform_data = []
+
+        # Iterate over the isoforms
+        for isoform in isoforms:
+            isoform_name = isoform.get("name")
+            isoform_sequence = isoform.get("sequence")
+
+            # Create a dictionary for the isoform data
+            isoform_dict = {
+                "name": isoform_name,
+                "sequence": isoform_sequence
+            }
+
+            # Add the isoform data to the list
+            isoform_data.append(isoform_dict)
+
+        # Save isoform data to a JSON file
+        with open("isoforms.json", "w") as json_file:
+            json.dump(isoform_data, json_file, indent=4)
+
+        print("Isoform data saved to isoforms.json")
+    else:
+        print("No isoform data found for this gene.")
+else:
+    print("Failed to retrieve data from UniProt API")
