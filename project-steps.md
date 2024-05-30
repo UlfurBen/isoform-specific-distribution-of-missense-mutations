@@ -1,6 +1,6 @@
-28.05.24
+# 28.05.24
 
-Proposed methods for finding missense mutation enriched areas across epigenetic isoforms.
+Proposed methods for finding missense mutation enriched areas across epigenetic isoforms:
 Integrative genome viewer
 Flibase
 
@@ -25,7 +25,7 @@ Fasta data cleaning:
 	fasta_cleaner() under the package compbio4all from https://brouwern.github.io/lbrb/worked-example-building-a-phylogeny-in-r.html#download-necessary-packages 
 
 
-29.05.24
+# 29.05.24
 
 Use ClinVar api to fetch and download gene variant data of epigenetic gene hosted by epigeneticmachinery.org
 
@@ -38,7 +38,7 @@ Ensembl vep
 Command to get the variant ids:
 esearch -db clinvar -query "missense_variant AND KMT2D["Gene"]" | efetch -format xml > GENE_NAME_missense_variants.xml
 
-30.05.24
+# 30.05.24
 
 Fetch out all isoform sequences for kmt2d + computational ones as json format
 Check for pairwise alignment between api and manual lookup on uniprot
