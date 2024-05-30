@@ -35,10 +35,8 @@ Use web scraping to find the variant information from clinvar.
 
 Ensembl vep
 
-
 Command to get the variant ids:
 esearch -db clinvar -query "missense_variant AND KMT2D["Gene"]" | efetch -format xml > GENE_NAME_missense_variants.xml
-
 
 30.05.24
 
