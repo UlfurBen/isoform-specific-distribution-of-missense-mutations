@@ -41,7 +41,11 @@ esearch -db clinvar -query "missense_variant AND KMT2D["Gene"]" | efetch -format
 # 30.05.24
 
 Fetch out all isoform sequences for kmt2d + computational ones as json format
+
 Check for pairwise alignment between api and manual lookup on uniprot
+
 What is downstream process of json file format
+
 Use perl: perl executable.pl File.json > File.txt
+
 Mark down file format (learn) hosted on github with all steps and intermediary results documented
