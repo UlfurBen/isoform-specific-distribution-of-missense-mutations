@@ -49,3 +49,7 @@ What is downstream process of json file format
 Use perl: perl executable.pl File.json > File.txt
 
 Mark down file format (learn) hosted on github with all steps and intermediary results documented
+
+used this link:
+https://www.uniprot.org/help/api_queries 
+in order to get an idea about structuring uniprot api_queries to get isoform sequences
