@@ -53,3 +53,11 @@ Mark down file format (learn) hosted on github with all steps and intermediary r
 used this link:
 https://www.uniprot.org/help/api_queries 
 in order to get an idea about structuring uniprot api_queries to get isoform sequences
+
+# 31.05.24
+
+The AI generated code doesn't seem to work as intended, never adjusting itself to produce code that finds the isoform sequence information.
+My idea is to use python web scraping using the BeautifulSoup library to find the element on the uniprot entry site that contains information about the total amound of isoforms.
+Then I will use the total number of isoforms n and loop over n each time loading the https://rest.uniprot.org/uniprotkb/O43918-3.fasta website link with the O43918-n different each time. Then downloading this fasta file and manipulating it will be easier considering I have the available data.
+My only worry is that I will only have sequence information and no pathogenicity information for further analysis.
+With good documentation I will be able to review the available code and add to it to find more information.
