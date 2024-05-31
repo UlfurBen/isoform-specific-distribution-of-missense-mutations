@@ -61,3 +61,5 @@ My idea is to use python web scraping using the BeautifulSoup library to find th
 Then I will use the total number of isoforms n and loop over n each time loading the https://rest.uniprot.org/uniprotkb/O43918-3.fasta website link with the O43918-i for i = 0; i < n; i++. Then downloading this fasta file and manipulating it will be easier considering I have the available data.
 My only worry is that I will only have sequence information and no pathogenicity information for further analysis.
 With good documentation I will be able to review the available code and edit it to find further information.
+Automating this process is difficult because of my unfamiliarity with python web scraping. Therefore I will try to manually download the missense mutation and isoform data for the aire gene and analyze that using R.
+Hopefully with this knowledge and understanding I will be able to make a program in python that accesses this data simultaneously for all known genes.
