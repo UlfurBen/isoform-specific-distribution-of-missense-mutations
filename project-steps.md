@@ -63,3 +63,7 @@ My only worry is that I will only have sequence information and no pathogenicity
 With good documentation I will be able to review the available code and edit it to find further information.
 Automating this process is difficult because of my unfamiliarity with python web scraping. Therefore I will try to manually download the missense mutation and isoform data for the aire gene and analyze that using R.
 Hopefully with this knowledge and understanding I will be able to make a program in python that accesses this data simultaneously for all known genes.
+
+# 01.06.24
+
+I learned how to edit a data frame in rstudio. The problem I got when reading the data from the mutation data frame rose because of N/A error.
