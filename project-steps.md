@@ -66,4 +66,18 @@ Hopefully with this knowledge and understanding I will be able to make a program
 
 # 01.06.24
 
-I learned how to edit a data frame in rstudio. The problem I got when reading the data from the mutation data frame rose because of N/A error.
+I learned how to edit a data frame in rstudio. The problem I got when reading the data from the mutation data frame arose because of N/A error.
+
+# 03.06.24
+
+I sent a message to uniprotkb staff with a question regarding the use of their api.
+
+ISOformSwitchAnalyzeR package could be useful for visualizing the distribution of missense mutations across isoforms.
+
+Hans proposed the idea to only plot the enrichment of mutations and confine ourselves with the areas with the highest enrichment.
+
+Another idea is to programmatically erase all isoform areas from the data that overlaps with all other isoforms and confine ourselves with the areas that are present only in few isoforms.
+
+With the enrichment information we can limit our results to only areas with a mutation density above a certain value.
+
+I wrote made ChatGPT write R code to save first column information from ClinVar mutations data frame.
