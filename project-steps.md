@@ -81,3 +81,7 @@ Another idea is to programmatically erase all isoform areas from the data that o
 With the enrichment information we can limit our results to only areas with a mutation density above a certain value.
 
 I wrote made ChatGPT write R code to save first column information from ClinVar mutations data frame.
+
+# 04.06.24
+
+I add .py files to github. One file contains code to get accession ids for gene of interest. Another file uses accession ids to get start, end and length information. Other files are in R also. They do simple tasks like manipulate mutation data from ClinVar by saving first and third column to new data file.
