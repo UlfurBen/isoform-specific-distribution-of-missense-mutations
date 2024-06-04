@@ -10,6 +10,7 @@ mutations <- read.table("kmt2d-pathogenic-mutations.txt", header = TRUE, sep = "
 # Convert the data to a data frame
 mutations_df <- data.frame(mutations)
 
+# Function to extract amino acid change information and save to a list
 extract_mutations <- function(df) {
   # Regular expression to match the "c.16442G>A" part
   pattern <- "c\\.[0-9]+[A-Z]>[A-Z]"
