@@ -85,3 +85,7 @@ I wrote made ChatGPT write R code to save first column information from ClinVar 
 # 04.06.24
 
 I add .py files to github. One file contains code to get accession ids for gene of interest. Another file uses accession ids to get start, end and length information. Other files are in R also. They do simple tasks like manipulate mutation data from ClinVar by saving first and third column to new data file.
+
+# 05.06.24
+
+Reverse engineering this project is easier to understand. Final step consists of plotting in R using ggplot2 the distribution of mutation on isoforms. Data is structured with column 1 containing isoform ID (x axis) and column 2 containing mutation enrichment (y axis).
