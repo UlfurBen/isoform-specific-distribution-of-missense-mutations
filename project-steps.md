@@ -89,3 +89,10 @@ I add .py files to github. One file contains code to get accession ids for gene 
 # 05.06.24
 
 Reverse engineering this project is easier to understand. Final step consists of plotting in R using ggplot2 the distribution of mutation on isoforms. Data is structured with column 1 containing isoform ID (x axis) and column 2 containing mutation enrichment (y axis).
+
+# 06.06.24
+
+I downloaded .csv file from https://www.epigeneticmachinery.org/ site and loaded UniProt IDs as a list. I iterated over the UniProt IDs and found isoform accession IDs for their isoforms. I got and downloaded isoform .json files using the isoform accession IDs. Code for this is in this repository on Github. I now have the code to fetch variant and isoform information from UniProt.
+Next step is to learn GREP to get the part of the data I am interested in using.
+I also have to know which information will be of use for the enrichment analysis.
+I must add that this part felt hardest considering I was using novel and not documented ways at first but ended up using well documented ways with the api.
