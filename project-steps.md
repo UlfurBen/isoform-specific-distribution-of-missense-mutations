@@ -96,3 +96,16 @@ I downloaded .csv file from https://www.epigeneticmachinery.org/ site and loaded
 Next step is to learn GREP to get the part of the data I am interested in using.
 I also have to know which information will be of use for the enrichment analysis.
 I must add that this part felt hardest considering I was using novel and not documented ways at first but ended up using well documented ways with the api.
+
+# 07.06.24
+
+I now have the c ode required to download variation information from list of gene UniProt IDs and save the result to files.
+I also have corresponding file structures that downloads isoform information from the accession IDs of the isoforms which are fetched in the same script from the UniProt gene names.
+I tried using grep on .json file but realized I need jq tool to separate json file data from one line to many lines so grep can accurately analyze it.
+I wanted to incorporate ensembl information about the isoforms of the genes into my dataset.
+I now have a script in this repo that gets ensembl information with the api from ensembl IDs which I got from the gene names from the epigenetic-machinery.org site. I had to write a script to find all the ensemble ids from the gene names which I then added to the .csv file I downloaded from the epigenetic-maginery.org site.
+
+This weekend and next week will focus on getting mutation info from clinvar which has proven difficult because of their hard to use api (I have to use biopython to use entrez to get the information and the bugs are many as of now).
+I will mostly focus next week on fetching the information in the files to make clean files for enrichment analysis.
+
+I am pretty ahead of schedule and maybe I will use novel ways later to answer the research question: "are there isoforms/isoform-areas with unusually high pathogenic mutations.
