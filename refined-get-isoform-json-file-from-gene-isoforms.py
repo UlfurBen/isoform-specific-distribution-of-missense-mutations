@@ -76,9 +76,3 @@ search_string = 'specific_string'
 output_file = 'new_file.txt'
 
 grep_and_copy_with_subprocess(search_string, input_file, output_file)
-
-
-# # Create a new directory named after gene name if it doesn't exist
-# folder_name = 'kmt2d'
-# if not os.path.exists(folder_name):
-#     os.makedirs(folder_name)
