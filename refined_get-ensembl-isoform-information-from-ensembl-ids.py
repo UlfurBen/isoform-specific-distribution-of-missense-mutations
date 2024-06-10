@@ -41,11 +41,11 @@ for ensembl_id, gene_name in zip(ensembl_ids, gene_names):
     
     if isoform_info:
         # Create output file path
-        output_file_path = os.path.join(output_dir, f"{gene_name}.json")
+        output_file_path = os.path.join(output_dir, f"{gene_name}_ensembl.json")
         
         # Write isoform information to the file
-        with open(output_file_path, 'w') as f:
-            json.dump(isoform_info, f, indent=4)
+        with open(output_file_path, 'w') as file:
+            json.dump(isoform_info, file, indent=4)
         
         print(f"Saved isoform information for {gene_name} to {output_file_path}")
 
