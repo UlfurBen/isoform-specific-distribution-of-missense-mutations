@@ -24,7 +24,7 @@ for UniProt_id in UniProt_ids:
     data = response.json()
     print(data)
     
-    file_name = f"{UniProt_id}.json"
+    file_name = f"{UniProt_id}_variation.json"
     # Save the data to a file named after UniProt ID
     with open(file_name, 'w') as file:
         json.dump(data, file, indent = 4)
