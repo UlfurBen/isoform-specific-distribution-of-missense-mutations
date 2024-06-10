@@ -61,18 +61,18 @@ for UniProt_id in UniProt_ids:
             json.dump(data, f)
 
 # find desired string in .json file and save to new file
-import subprocess
+# import subprocess
 
-def grep_and_copy_with_subprocess(search_string, input_file, output_file):
-    # Construct the grep command
-    command = f'grep "{search_string}" {input_file} > {output_file}'
+# def grep_and_copy_with_subprocess(search_string, input_file, output_file):
+#     # Construct the grep command
+#     command = f'grep "{search_string}" {input_file} > {output_file}'
     
-    # Execute the grep command
-    subprocess.run(command, shell=True, check=True)
+#     # Execute the grep command
+#     subprocess.run(command, shell=True, check=True)
 
-# Usage
-input_file = 'example.txt'
-search_string = 'specific_string'
-output_file = 'new_file.txt'
+# # Usage
+# input_file = 'example.txt'
+# search_string = 'specific_string'
+# output_file = 'new_file.txt'
 
-grep_and_copy_with_subprocess(search_string, input_file, output_file)
+# grep_and_copy_with_subprocess(search_string, input_file, output_file)
