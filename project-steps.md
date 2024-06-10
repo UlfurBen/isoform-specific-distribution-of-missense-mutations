@@ -99,7 +99,7 @@ I must add that this part felt hardest considering I was using novel and not doc
 
 # 07.06.24
 
-I now have the c ode required to download variation information from list of gene UniProt IDs and save the result to files.
+I now have the code required to download variation information from list of gene UniProt IDs and save the result to files.
 I also have corresponding file structures that downloads isoform information from the accession IDs of the isoforms which are fetched in the same script from the UniProt gene names.
 I tried using grep on .json file but realized I need jq tool to separate json file data from one line to many lines so grep can accurately analyze it.
 I wanted to incorporate ensembl information about the isoforms of the genes into my dataset.
@@ -109,3 +109,9 @@ This weekend and next week will focus on getting mutation info from clinvar whic
 I will mostly focus next week on fetching the information in the files to make clean files for enrichment analysis.
 
 I am pretty ahead of schedule and maybe I will use novel ways later to answer the research question: "are there isoforms/isoform-areas with unusually high pathogenic mutations.
+
+# 10.06.24
+
+Steps:
+1. Get data , uniprot contains mutation data, as well as isoform data but not the start and end data of the isoforms only the length of the isoforms. I have ensembl data which contains exon info for a given gene with chromosome, length, start and end data. I have working code to retrieve this data given a list of gene names and database IDs.
+2. Next I'll need to filter the relevant components of the data for plotting. The idea is to show on the Y-axis the number of pathogenic or highly-pathogenic missense mutations and on the x-axis show the isoform and/or the exon where the enrichment is located.
