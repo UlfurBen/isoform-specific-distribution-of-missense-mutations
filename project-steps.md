@@ -115,3 +115,9 @@ I am pretty ahead of schedule and maybe I will use novel ways later to answer th
 Steps:
 1. Get data , uniprot contains mutation data, as well as isoform data but not the start and end data of the isoforms only the length of the isoforms. I have ensembl data which contains exon info for a given gene with chromosome, length, start and end data. I have working code to retrieve this data given a list of gene names and database IDs.
 2. Next I'll need to filter the relevant components of the data for plotting. The idea is to show on the Y-axis the number of pathogenic or highly-pathogenic missense mutations and on the x-axis show the isoform and/or the exon where the enrichment is located.
+
+# 11.06.24
+
+Now I have the data I want to filter: isoforms ids and sequence data from isoform files. Exon data from ensembl files.
+I also want to filter mutation type, genomic location and frequency (population frequency) from variation data.
+In both of these filters I want to save the resulting data to .csv files.
