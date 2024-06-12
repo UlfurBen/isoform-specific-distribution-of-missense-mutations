@@ -3,8 +3,8 @@ import requests
 import os
 import json
 
-# Path to your CSV file
-csv_file_path = "/Users/ulfurfjolnisson/Downloads/The Epigenetic Machinery.csv"
+# Path to your CSV file (get it from website)
+csv_file_path = "/Users/ulfurfjolnisson/Documents/The Epigenetic Machinery.csv"
 
 # Read the CSV file into a pandas DataFrame
 df = pd.read_csv(csv_file_path)
