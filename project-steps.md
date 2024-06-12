@@ -124,3 +124,12 @@ In both of these filters I want to save the resulting data to .csv files.
 I should propably have gene names and/or isoform accession ids present in all files so that I can align the data correctly.
 It is proving to be a headache to fetch the data from clinvar since the ftp site is not useful/accessible/thorough enough and the entrez direct cannot fetch the correct data for a given gene, not to mention the waiting time needed when quering for data which causes you to make many batches or requests instead of one long one.
 I therefore decided to use myvariant.info instead and at first glance th data is thorough and accurate and easy to get.
+
+# 12.06.24
+
+Kaan explains lof intolerance (pli).
+Manually check exon info (get the info manually to compare to automatic retrieval results)
+# Understand json file structure
+# isoform specific variant info
+Understand pli score
+Vus (variant uncertain signifance)
