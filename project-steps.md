@@ -127,9 +127,9 @@ I therefore decided to use myvariant.info instead and at first glance th data is
 
 # 12.06.24
 
-Kaan explains lof intolerance (pli).
+Kaan explains lof intolerance (pli)
 Manually check exon info (get the info manually to compare to automatic retrieval results)
-# Understand json file structure
-# isoform specific variant info
+*Understand json file structure*
+Isoform specific variant info
 Understand pli score
-Vus (variant uncertain signifance)
+Vus (variant of uncertain signifance)
