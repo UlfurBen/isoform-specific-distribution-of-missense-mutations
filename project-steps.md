@@ -129,7 +129,10 @@ I therefore decided to use myvariant.info instead and at first glance th data is
 
 Kaan explains lof intolerance (pli)
 Manually check exon info (get the info manually to compare to automatic retrieval results)
+
 *Understand json file structure*
-Isoform specific variant info
+
+*Isoform specific variant info*
+
 Understand pli score
 Vus (variant of uncertain signifance)
