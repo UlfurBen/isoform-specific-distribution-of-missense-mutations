@@ -4,7 +4,7 @@ import json
 import pandas as pd
 
 # Path to your CSV file (downloaded from the epigenetic machinery .org website
-csv_file_path = "/Users/ulfurfjolnisson/Downloads/The Epigenetic Machinery.csv"
+csv_file_path = "/Users/ulfurfjolnisson/work/The Epigenetic Machinery.csv"
 
 # Read the CSV file into a pandas DataFrame
 df = pd.read_csv(csv_file_path)
