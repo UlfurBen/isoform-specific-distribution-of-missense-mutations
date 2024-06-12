@@ -3,7 +3,7 @@ import requests
 import json
 import pandas as pd
 
-csv_file_path = "/Users/ulfurfjolnisson/Downloads/The Epigenetic Machinery.csv"
+csv_file_path = "/Users/ulfurfjolnisson/Documents/The Epigenetic Machinery.csv"
 
 # Read the CSV file into a pandas DataFrame
 df = pd.read_csv(csv_file_path)
