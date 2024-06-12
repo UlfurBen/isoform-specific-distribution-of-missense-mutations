@@ -32,11 +32,15 @@ if __name__ == "__main__":
     gene_ids = get_ensembl_id(gene_names)
     
     # Create a DataFrame from the gene_ids dictionary
-    result_df = pd.DataFrame(list(gene_ids.items()), columns=['Gene Name', 'Ensembl ID'])
+    ensembl_ids_df = pd.DataFrame(list(gene_ids.items()), columns=['Gene Name', 'Ensembl ID'])
     
-    # Save the DataFrame to a CSV file
-    result_df.to_csv('ensembl_gene_ids.csv', index=False)
+    # Merge the original DataFrame with the new DataFrame containing Ensembl IDs
+    result_df = df.merge(ensembl_ids_df, on='Gene Name', how='left')
     
+    # Save the DataFrame to the original CSV file (or you can save to a new file if preferred)
+    result_df.to_csv(csv_file_path, index=False)
+    
+    # Print the Ensembl IDs
     for gene, ensembl_id in gene_ids.items():
         if ensembl_id:
             print(f"The Ensembl ID for {gene} is {ensembl_id}")
