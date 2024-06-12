@@ -3,7 +3,7 @@ import requests
 import json
 import pandas as pd
 
-# Path to your CSV file
+# Path to your CSV file (downloaded from the epigenetic machinery .org website
 csv_file_path = "/Users/ulfurfjolnisson/Downloads/The Epigenetic Machinery.csv"
 
 # Read the CSV file into a pandas DataFrame
@@ -23,7 +23,7 @@ for UniProt_id in UniProt_ids:
   data = response.json()
   print(data)
 
-  file_name = f"{UniProt_id}_refined.json"
+  file_name = f"{UniProt_id}_isoform_refined.json"
   # Save the data to a file named after UniProt ID
   with open(file_name, 'w') as file:
         json.dump(data, file, indent = 4)
