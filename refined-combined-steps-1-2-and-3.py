@@ -3,7 +3,7 @@ import requests
 import json
 import pandas as pd
 
-csv_file_path = "/Users/ulfurfjolnisson/Documents/The Epigenetic Machinery.csv"
+csv_file_path = "/Users/ulfurfjolnisson/Work/The Epigenetic Machinery.csv"
 
 # Read the CSV file into a pandas DataFrame
 df = pd.read_csv(csv_file_path)
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     ensembl_ids_df = pd.DataFrame(list(gene_ids.items()), columns=['Gene Name', 'Ensembl ID'])
     
     # Merge the original DataFrame with the new DataFrame containing Ensembl IDs
-    result_df = df.merge(ensembl_ids_df, on='Gene Name', how='left')
+    result_df = df.merge(ensembl_ids_df, on='Gene Name', how='left', suffixes=('', '_new'))
     
     # Save the DataFrame to the original CSV file (or you can save to a new file if preferred)
     result_df.to_csv(csv_file_path, index=False)
@@ -116,6 +116,7 @@ for filename in os.listdir(directory):
             transcript_id = transcript.get('id', 'N/A')
             if 'Exon' in transcript:
                 for exon in transcript['Exon']:
+                    chr = exon.get('seq_region_name', 'N/A')
                     exon_id = exon.get('id', 'N/A')
                     start = exon.get('start', 'N/A')
                     end = exon.get('end', 'N/A')
