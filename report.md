@@ -1,5 +1,5 @@
 # week 1
-I learned ways to gather data and databases that would be useful. I tried using entrez-direct for gathering mutation data from clinvar with little progress.
+I learned ways to gather data and discovered databases that could be useful such as UniProt, ensembl and ClinVar. I tried using entrez-direct for gathering mutation data from clinvar with little progress.
 I then tried using ucsc genome browser online where I uploaded some tracks of mutations and visualised them but realised that the work need to download data individually
 and then to uploaded to the browser would prove inefficient and cumbersome. I therefore learned to use APIs instead and started using the REST API which is well compatable
 with UniProt databases.
