@@ -50,8 +50,6 @@ print("Data retrieval and saving complete.")
 
 
 
-
-
 # Directory containing the JSON files
 directory = 'Variants'
 
@@ -74,6 +72,11 @@ with open('mutation_data.csv', 'w', newline='') as csvfile:
             # Iterate through the JSON data to extract and print the required information
             for feature in data.get('features', []):
                 consequence_type = feature.get('consequenceType', 'N/A')
+                
+                # Exclude rows that don't have the consequence type of "missense"
+                if consequence_type != "missense":
+                    continue
+                
                 genomic_location = ', '.join(feature.get('genomicLocation', []))
                 
                 population_frequencies = feature.get('populationFrequencies', [])
