@@ -136,3 +136,15 @@ Manually check exon info (get the info manually to compare to automatic retrieva
 
 Understand pli score
 Vus (variant of uncertain signifance)
+
+# 14.06
+
+Use ENST, ENSG abd ENSP for cross referencing variations and isoforms.
+Make bar plot using ftp file to show the enrichment of mutations across isoforms but also show the db source for percentage of mutations.
+Separate plot using only clinvar and showing percentage of benign to pathogenic (lb, b, lp, p and vus).
+Use rgraphgallery for bar plot.
+Bar plot showing on x axis the db source and on y axis the total variant number.
+
+We use
+https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/variants/
+for downloading variants and use unix commands on the terminal to look for data we want.
