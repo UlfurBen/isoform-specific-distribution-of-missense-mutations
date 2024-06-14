@@ -148,3 +148,8 @@ Bar plot showing on x axis the db source and on y axis the total variant number.
 We use
 https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/variants/
 for downloading variants and use unix commands on the terminal to look for data we want.
+
+I can use isoform fasta file of all isoforms and search for isoforms of a gene by gene name. Then I can find isoform id which is present in variant header in variant file. I can search for variant with header including isoform id and count number of lines since each line contains new variant. Number of lines returned for isoform id equals number of variants per that isoform.
+I can then do this for all gene names, search for their name in isoform fasta file and find their isoform id. Then search in variant txt file for variant entries with their isoform id in header.
+
+Only problem I realise with this approach is if isoform fasta file includes amino acid sequence with subsequence matching gene name, for example AIRE which after grep-ing I found to be included in several amino acid sequences of isoforms.
