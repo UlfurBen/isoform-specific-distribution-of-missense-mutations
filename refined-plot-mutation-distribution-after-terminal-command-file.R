@@ -2,10 +2,10 @@
 library(ggplot2)
 
 # Define the path to your .txt file
-file_path <- "/Users/ulfurfjolnisson/Downloads/output-3.txt"
-
+file_path_original <- "/Users/ulfurfjolnisson/Downloads/output-3.txt"
+file_path_new <- "/Users/ulfurfjolnisson/Downloads/output-4.txt"
 # Read the data from the text file
-data <- read.table(file_path, sep=",", header=FALSE)
+data <- read.table(file_path_original, sep=",", header=FALSE)
 
 # Extract the values from the second column
 first_value <- data[1, 2]
@@ -18,12 +18,12 @@ modified_value <- first_value - second_value - third_value
 # Save the modified value back to the data frame
 data[1, 2] <- modified_value
 
-# Optional: Write the modified data back to the text file
-write.table(data, file_path, sep=",", row.names=FALSE, col.names=FALSE, quote=FALSE)
+# Optional: Write the modified data to another text file
+write.table(data, file_path_new, sep=",", row.names=FALSE, col.names=FALSE, quote=FALSE)
 
 
 # Read the data
-data <- read.csv(file_path, header=FALSE)
+data <- read.csv(file_path_new, header=FALSE)
 new_column_headers <- c("Name", "Count")
 colnames(data) <- new_column_headers
 
