@@ -13,3 +13,8 @@ I downloaded the variant information of the genes, the isoforms of the genes and
 I managed to get some code working in python that takes exon and variant csv files for some genes (only used 4 in this analysis for quickness but it's easy to scale) and plotted the enrichment of missense
 mutations across the exons.
 Kaan wrote a question I sent to UniProt staff about getting isoform specific variants for isoforms of genes that aren't computational isoforms since this is the wall I'm facing in finalising this project.
+# week 4
+It is better to work without api and to download the files containing all information on uniprot.
+I have created a command pipeline that can search in an isoform fasta file from uniprot for the human isoforms given a gene name.
+These I can then use to search in variant .txt file (containing all variants stored on uniprot from many different databases) and can count the number of mutations of a given isoform id from each db individually or from all dbs.
+I just need to finalise the pipeline and then I can try running it with the 300 genes on https://www.epigeneticmachinery.org/ website and visualize the results and analyze them further.
