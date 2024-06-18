@@ -153,3 +153,40 @@ I can use isoform fasta file of all isoforms and search for isoforms of a gene b
 I can then do this for all gene names, search for their name in isoform fasta file and find their isoform id. Then search in variant txt file for variant entries with their isoform id in header.
 
 Only problem I realise with this approach is if isoform fasta file includes amino acid sequence with subsequence matching gene name, for example AIRE which after grep-ing I found to be included in several amino acid sequences of isoforms.
+
+# 18. june
+
+I solved my proposed "problem", in the fasta zip file I always search for {gene_name}_HUMAN so the suffix would always be _HUMAN.
+
+I visited 
+https://www.uniprot.org/help/downloads
+and downloaded Isoforms sequences as fasta file.
+I then ran 
+
+gunzip -c uniprot_sprot.fasta.gz | grep KMT2A_HUMAN
+
+which returned
+>sp|Q03164|KMT2A_HUMAN Histone-lysine N-methyltransferase 2A OS=Homo sapiens OX=9606 GN=KMT2A PE=1 SV=5
+of which Q03164 is the input for the next command.
+
+From the link I provided above I ran
+
+gunzip -c homo_sapiens_variation.txt.gz | grep O43918 | wc -l
+
+which returns the mutations associated with the O43918 gene and the number of mutations (which equals then number of lines of output.
+
+The file "humsavar.txt" contains the variations for the first isoform of each gene.
+The file "uniprot_sprot_varsplic.fasta.gz" contains isoform ids of each gene except for the first one.
+The file "homo_sapiens_variation.txt.gz" contains the variations for the rest of the isoforms (all but the first one).
+
+Workflow example for KMT2A:
+touch output.txt
+echo -e "\nQ03164-2: variation number:" >> output.txt
+grep -c 'Q03164' humsavar.txt >> output.txt
+gunzip -c uniprot_sprot_varsplic.fasta.gz | grep KMT2A_HUMAN
+# gives me "Q03164-2" and "Q03164-3"
+echo -e "\nQ03164-2: variation number:" >> output.txt
+gunzip -c homo_sapiens_variation.txt.gz | grep Q03164-2 | wc -l >> output.txt
+echo -e "\nQ03164-3: variation number:" >> output.txt
+gunzip -c homo_sapiens_variation.txt.gz | grep Q03164-3 | wc -l >> output.txt
+cat output.txt
