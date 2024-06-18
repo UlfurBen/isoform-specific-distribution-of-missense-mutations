@@ -183,49 +183,48 @@ Workflow example for KMT2A:
 touch output.txt
 echo -e "\nQ03164-2: variation number:" >> output.txt
 gunzip -c uniprot_sprot_varsplic.fasta.gz | grep KMT2A_HUMAN
-# gives me "Q03164-2" and "Q03164-3"
+gives me "Q03164-2" and "Q03164-3"
 echo -e "\nQ03164-2: variation number:" >> output.txt
 gunzip -c homo_sapiens_variation.txt.gz | grep Q03164-2 | wc -l >> output.txt
 echo -e "\nQ03164-3: variation number:" >> output.txt
 gunzip -c homo_sapiens_variation.txt.gz | grep Q03164-3 | wc -l >> output.txt
 cat output.txt
-# To get the canonical isoform I run:
+To get the canonical isoform I run:
 gunzip -c homo_sapiens_variation.txt.gz | grep 'Q03164' | grep -v 'Q03164-' | wc -l
-# For KMT2A_HUMAN isoforms the output file I would graph with is:
+For KMT2A_HUMAN isoforms the output file I would graph with is:
 Name,Count
 Q03164-1,6259
 Q03164-2,5939
 Q03164-3,6864
-# To get the gene id for running in variation file I run:
+To get the gene id for running in variation file I run:
+
 gunzip -c uniprot_sprot_varsplic.fasta.gz | grep KMT2A_HUMAN
-# and I get
+
+
+and I get
+
 >sp|Q03164-2|KMT2A_HUMAN Isoform 2 of Histone-lysine N-methyltransferase 2A OS=Homo sapiens OX=9606 GN=KMT2A
 >sp|Q03164-3|KMT2A_HUMAN Isoform 3 of Histone-lysine N-methyltransferase 2A OS=Homo sapiens OX=9606 GN=KMT2A
 
 
 
-# Full guide:
+_Full guide_:
 
-# Step 1: Extract lines containing KMT2A_HUMAN and save to temp file
+
 gunzip -c uniprot_sprot_varsplic.fasta.gz | grep 'KMT2A_HUMAN' > temp.txt
 
-# Step 2: Extract the part between the first '|' and '-' and save to temp_identifiers.txt
 awk -F '[|-]' '{print $2}' temp.txt | sort -u > temp_identifiers.txt
 
-# Append counts to output-3.txt for identifiers between the first '|' and '-'
 while read -r identifier; do
   count=$(gunzip -c homo_sapiens_variation.txt.gz | grep -w "$identifier" | wc -l)
   echo "${identifier},${count}" >> output-3.txt
 done < temp_identifiers.txt
 
-# Step 3: Extract the part between the first '|' and the second '|' and save to temp_identifiers_2.txt
 awk -F '|' '{print $2}' temp.txt | sort -u > temp_identifiers_2.txt
 
-# Append counts to output-3.txt for identifiers between the first '|' and the second '|'
 while read -r identifier; do
   count=$(gunzip -c homo_sapiens_variation.txt.gz | grep -w "$identifier" | wc -l)
   echo "${identifier},${count}" >> output-3.txt
 done < temp_identifiers_2.txt
 
-# Clean up temp files
 rm temp.txt temp_identifiers.txt temp_identifiers_2.txt
