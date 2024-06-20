@@ -17,4 +17,4 @@ Kaan wrote a question I sent to UniProt staff about getting isoform specific var
 It is better to work without api and to download the files containing all information on uniprot.
 I have created a command pipeline that can search in an isoform fasta file from uniprot for the human isoforms given a gene name.
 These I can then use to search in variant .txt file (containing all variants stored on uniprot from many different databases) and can count the number of mutations of a given isoform id from each db individually or from all dbs.
-I just need to finalise the pipeline and then I can try running it with the 300 genes on https://www.epigeneticmachinery.org/ website and visualize the results and analyze them further.
+I just need to finalise the pipeline and then I can try running it with the 300 genes on https://www.epigeneticmachinery.org/ website and visualize the results and analyze the post translational modification.
