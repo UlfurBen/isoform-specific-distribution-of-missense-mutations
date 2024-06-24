@@ -228,3 +228,40 @@ while read -r identifier; do
 done < temp_identifiers_2.txt
 
 rm temp.txt temp_identifiers.txt temp_identifiers_2.txt
+
+# 19. june
+
+I can create the pipeline entirely in R packaging the shell commands inside the system() function.
+I intend to use gene names and append _HUMAN to them and then to use those edited names to grep the isoform fasta file for isoform ids and to use those as identifiers to grep the variant .txt file and count the mutation number per isoform.
+I used elja for the first time and submitted an sbatch job that calculates the number of mutations for the isoforms of 6 genes (just used 2 cpu node, 4 gb of ram and 1 hour max run time.
+
+# 20. june
+
+The results from the sbatch job were as expected.
+I decided to create another R file. That file filters the data from the first R file so that it subtracts from isoform one count the count of the other isoforms of the same gene. This was necessary because I double counted in the first R script.
+I decided to edit the first R script (iterative-loop.R) to calculate accurately the counts of the first isoform.
+If this works then I can scale it to also calculate the counts for pathogenicity and percentage from each of the 10 database sources.
+I managed to fix the script and now I can add more logic to add more information to the output file that I can use to plot graphs.
+
+# 21. june
+For next week I will present the source file contents for Kaan at 10 am Monday.
+I want to:
+	count the total amount of variants in homo_sapiens_variation.txt.gz
+ 	count the number of unique isoforms in homo_sapiens_variation.txt.gz
+ 	count the number of variants per database (10 databases in total)
+  	calculate the percentage of variants per database per isoform from the total isoform variant number
+   	count the number of amino acid changes that have polarity (after mutation) and also have high pathogenicity, do this per isoform specific variants 
+
+
+Results:
+	There are 52 985 969 total variants in homo_sapiens_variation.txt.gz
+ 
+ 	There are 95 368 unique splice isoforms in homo_sapiens_variation.txt.gz
+  
+  	The number of missense variants per database:
+   	ClinVar,   dbSNP,     ESP,        ExAC,      TOPMed,     gnomAD,  NCI-TCGA Cosmic,cosmic curated, 1000Genomes
+   	8 395 578, 4 181 656, 3 914 220, 17 890 491, 23 432 606, 32 588 009, 1 576 481, 1 225 408, 3 653 273
+
+    	gunzip -c homo_sapiens_variation.txt.gz ; to show the column headers
+     	gunzip -c uniprot_sprot_varsplic.fasta.gz to show the column headers
+  	
