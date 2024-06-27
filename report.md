@@ -18,3 +18,8 @@ It is better to work without api and to download the files containing all inform
 I have created a command pipeline that can search in an isoform fasta file from uniprot for the human isoforms given a gene name.
 These I can then use to search in variant .txt file (containing all variants stored on uniprot from many different databases) and can count the number of mutations of a given isoform id from each db individually or from all dbs.
 I just need to finalise the pipeline and then I can try running it with the 300 genes on https://www.epigeneticmachinery.org/ website and visualize the results and analyze the post translational modification.
+# week 5
+I filtered the variant database to only include missense variants from ClinVar and with an rs identifier and not RCV to avoid duplicates.
+I calculated the number of isoform specific variants in the database after filtering to only include ClinVar and missense variants and I that the number is around 500,000.
+I counted the number of isoforms that don't have missense variant entries in the ClinVar database and the number is:
+I counted and labeled the variants which have an variant associated amino acid categorical change.
