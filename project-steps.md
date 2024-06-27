@@ -250,7 +250,7 @@ I want to:
  	count the number of unique isoforms in homo_sapiens_variation.txt.gz
  	count the number of variants per database (10 databases in total)
   	calculate the percentage of variants per database per isoform from the total isoform variant number
-   	count the number of amino acid changes that have polarity (after mutation) and also have high pathogenicity, do this per isoform specific variants 
+   	count the number of amino acid changes that have polarity (after mutation) and also have high pathogenicity, 		do this per isoform specific variant
 
 
 Results:
@@ -259,9 +259,47 @@ Results:
  	There are 95 368 unique splice isoforms in homo_sapiens_variation.txt.gz
   
   	The number of missense variants per database:
-   	ClinVar,   dbSNP,     ESP,        ExAC,      TOPMed,     gnomAD,  NCI-TCGA Cosmic,cosmic curated, 1000Genomes
-   	8 395 578, 4 181 656, 3 914 220, 17 890 491, 23 432 606, 32 588 009, 1 576 481, 1 225 408, 3 653 273
+   	ClinVar,   dbSNP,     ESP,        ExAC,      TOPMed,     gnomAD,    NCI-TCGA Cosmic,cosmic curated, 1000Genomes
+   	8 395 578, 4 181 656, 3 914 220, 17 890 491, 23 432 606, 32 588 009, 1 576 481,      1 225 408,     3 653 273
 
-    	gunzip -c homo_sapiens_variation.txt.gz ; to show the column headers
-     	gunzip -c uniprot_sprot_varsplic.fasta.gz to show the column headers
-  	
+# 24. june
+In the meeting with Kaan we talked about looking at GTEX database for tissue specific expression information. Is this splice isoform only expressed in the brain? Is it only expressed in the liver? For instance.
+
+✅ We talked about saving to a new file (called homo_sapiens_variation_missense_ClinVar.txt) only the entries containing only missense variants that are from the ClinVar database from the original variant file from downloaded from uniprot.
+
+✅ We talked about taking homo_sapiens_variation_missense_ClinVar.txt and counting the number of isoform specific variants using the source DB ID (which starts with rs).
+
+We talked about counting in homo_sapiens_variation_missense_ClinVar.txt the number of isoforms with no variants associated with them but to find all documented isoforms we use uniprot_sprot_varsplic.fasta.gz.
+
+We talked about how showing numbers in a plot is more insightful and expressive. I will do that from now on as well as create a google slides presentation for clarity.
+
+
+- I created numerous files that contain filtered the variant data according to database, variant type, RCV vs rs id etc.
+- I created on elja the file "trial_count_polarity_or_charged_change.R" that correctly checks whether a variant results in a polar amino acid.
+
+# 25. june
+I have some results in the following files stored on elja:
+	count_of_isoforms_without_variant_entry.txt
+ 	trial_count_polarity_or_charged_change.txt
+
+# 26. june
+I'm still working on the missense variant amino acid property change R script that checks the property change of the original a.a. vs the new a.a. in a missense variant.
+I got the property change script to work.
+
+✅ trial_count_polarity_or_charged_change_property_change_only.R
+✅ Amino_acid_change_with_property_change_updated.txt
+   use uniprot_sprot_varsplic.fasta.gz to search calculate_missense_variant_enrichment_within_isoforms.txt for 
+   isoform ids and calculate and save the isoform sequence length
+
+   In calculate_missense_variant_enrichment_within_isoforms_with_lengths.txt I have isoform 1 of each gene sequence length.
+   In calculate_missense_variant_enrichment_within_isoforms_with_lengths.txt I have the sequence length of the rest of the isoforms.
+✅ In "merged_calculate_missense_variant_enrichment_within_isoforms_with_lengths.txt" I have all isoforms with their length and ClinVar missense variation count.
+✅ In ~/Downloads/mutation_sequence_length_fraction.R on my computer I have plot to show the mutation_count to sequence_length ratio for each isoform
+I have to change the ratio to mutation_count/(sequence_length x gene_isoform_number)
+
+For tomorrow:
+1. change ratio to include the total gene isoform number
+2. Count the average isoform number for EM genes (all and only EM genes are in "homo_sapiens_variation_missense_ClinVar_Reference_SNP_EM_genes.txt"
+3. Do all calculations across all 300 EM genes (I only did the analysis across 6 EM genes)
+4. Count number of phenotype information (pathogenic, vus etc.) in EM variant file.
+5. Count number of isoforms which have variant count in a certain range (like 5 to 10, 10 to 20 etc.).
