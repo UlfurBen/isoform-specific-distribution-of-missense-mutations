@@ -303,3 +303,15 @@ For tomorrow:
 3. Do all calculations across all 300 EM genes (I only did the analysis across 6 EM genes)
 4. Count number of phenotype information (pathogenic, vus etc.) in EM variant file.
 5. Count number of isoforms which have variant count in a certain range (like 5 to 10, 10 to 20 etc.).
+
+✅ 1. Modify original file that counts the mutations per isoform given a list of genes so that it uses "The-Epigenetic-Machinery.csv" instead of "The_Epigenetic_Machinery.csv".
+2. Run calculate_isoform_sequence_length.sh to get calculate_missense_variant_enrichment_within_isoforms_with_lengths.txt. Use bash to clean calculate_missense_variant_enrichment_within_isoforms_with_lengths.txt of lines containing NA. Cleaned file is "cleaned_all_300_calculate_missense_variant_enrichment_within_isoforms_with_lengths_for_rest_of_isoforms_of_genes.txt"
+3. Run calculate_isoform_sequence_length_use_REST_API.sh to get the lengths of the first isoform of each gene. Use bash to clean the resulting file whose name is: calculate_missense_variant_enrichment_within_isoforms_with_lengths_for_first_isoform_of_genes.txt. Run sbatch remove_na_first_isoform_all_300.sh. Cleaned file is "cleaned_all_300_calculate_missense_variant_enrichment_within_isoforms_with_lengths_for_first_isoform_of_genes.txt"
+4. Merge calculate_missense_variant_enrichment_within_isoforms_with_lengths_for_first_isoform_of_genes.txt and calculate_missense_variant_enrichment_within_isoforms_with_lengths.txt to a new file called merged_calculate_missense_variant_enrichment_within_isoforms_with_lengths_all_300.txt. Run sbatch merge_files.sh.
+5. Calculate ratio of mutations/length by running sbatch calculate_ratio.sh.
+
+# 28. june
+
+Count the number isoforms with mutation counts in intervals from EM variant file
+Average isoform number for EM genes, count unique isoform id values in variant file containing EM variants divide by 	295
+Number of benign/likely benign; pathogenic/likely pathogenic, vus, empty in EM variants
