@@ -1,5 +1,6 @@
 # Define file paths
 input_file <- "merged_calculate_missense_variant_enrichment_within_isoforms_with_lengths_all_300.txt"
+# On elja -> ~/uniprot_sprot_varsplic.fasta.gz
 fasta_file <- "uniprot_sprot_varsplic.fasta.gz"
 output_file <- "appended_with_isoform_counts.txt"
 
