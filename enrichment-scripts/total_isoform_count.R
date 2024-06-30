@@ -1,4 +1,4 @@
-# Read the data from the file
+# Read the data from the file which can be found on elja ~/homo_sapiens_variation_missense_ClinVar_Reference_SNP_EM_genes.txt
 data <- read.table("homo_sapiens_variation_missense_ClinVar_Reference_SNP_EM_genes.txt", header = FALSE, sep = "\t", stringsAsFactors = FALSE)
 
 # Extract the second column
