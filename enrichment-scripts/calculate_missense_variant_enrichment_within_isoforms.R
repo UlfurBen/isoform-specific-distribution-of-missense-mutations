@@ -1,6 +1,9 @@
 # Load gene names from a CSV file
 gene_data <- read.csv("The-Epigenetic-Machinery.csv", header = TRUE)
 
+# Output file
+output_file <- "calculate_missense_variant_enrichment_within_isoforms.txt"
+
 # Assuming the gene names are in a column named 'Gene_Name'
 gene_names <- gene_data$Gene_Name
 
@@ -12,7 +15,6 @@ writeLines(gene_names_human, "temp_gene_names.txt")
 
 # Read the modified gene names from the temporary file
 temp_gene_names <- readLines("temp_gene_names.txt")
-output_file <- "calculate_missense_variant_enrichment_within_isoforms.txt"
 
 # Process each modified gene name
 for (gene_name_human in temp_gene_names) {
