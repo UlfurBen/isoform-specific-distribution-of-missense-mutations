@@ -51,9 +51,11 @@ variant_data$Length <- sapply(variant_data$Isoform, function(isoform) {
   }
 })
 
+# Filter out rows with NA values in the Length column
+variant_data <- na.omit(variant_data)
+
 # Write the results to the output file
 write.table(variant_data, file = output_file, sep = ",", row.names = FALSE, col.names = TRUE, quote = FALSE)
 
 # Print message indicating completion
 cat("Isoform lengths have been appended to", output_file, "\n")
-
