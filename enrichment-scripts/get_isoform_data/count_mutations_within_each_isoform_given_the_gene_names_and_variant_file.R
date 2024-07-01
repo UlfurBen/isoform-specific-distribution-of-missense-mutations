@@ -1,5 +1,5 @@
 # Load gene names from a CSV file
-gene_data <- read.csv("The-Epigenetic-Machinery.csv", header = TRUE)
+gene_data <- read.csv("The_epigenetic_machinery.csv", header = TRUE)
 
 # Assuming the gene names are in a column named 'Gene_Name'
 gene_names <- gene_data$Gene_Name
