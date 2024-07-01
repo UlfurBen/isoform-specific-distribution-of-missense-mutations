@@ -1,9 +1,15 @@
 # Define file paths
-input_file <- "filter_database_by_EM_genes_missense_variants_ClinVar_with_RCV.txt"
-output_file <- "filter_input_to_only_contain_categorical_change_for_each_variant.txt"
+input_file <- "homo_sapiens_variation_missense_ClinVar.txt"
+property_file <- "Amino_acid_change_with_property_change.txt"
+output_file <- "amino_acid_change_with_property_change.txt"
 
-# Read the input file
+# Read the input files
 data <- read.table(input_file, header = FALSE, sep = "\t", stringsAsFactors = FALSE, quote = "")
+properties <- read.table(property_file, header = FALSE, sep = " ", stringsAsFactors = FALSE, quote = "")
+
+# Rename columns for better understanding
+colnames(data) <- c("Column1", "Column2", "AminoAcidChange", "Column4", "Column5", "Column6", "Column7", "Column8", "Column9", "Column10", "Column11", "Column12", "Column13")
+colnames(properties) <- c("AminoAcidChange", "PropertyChange")
 
 # Function to remove numeric characters between amino acid names
 filter_amino_acids <- function(variant) {
@@ -11,10 +17,16 @@ filter_amino_acids <- function(variant) {
 }
 
 # Apply the function to the relevant column (assuming the third column contains the amino acid changes)
-data[, 3] <- sapply(data[, 3], filter_amino_acids)
+data$AminoAcidChange <- sapply(data$AminoAcidChange, filter_amino_acids)
+
+# Merge the data with properties based on the amino acid change
+merged_data <- merge(data, properties, by = "AminoAcidChange")
+
+# Select only the AminoAcidChange and PropertyChange columns for output
+output_data <- merged_data[, c("AminoAcidChange", "PropertyChange")]
 
 # Write the modified data to the output file
-write.table(data, file = output_file, sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
+write.table(output_data, file = output_file, sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
 
 # Print a message indicating completion
-cat("Filtered data has been saved to", output_file, "\n")
+cat("Filtered data with property changes has been saved to", output_file, "\n")
