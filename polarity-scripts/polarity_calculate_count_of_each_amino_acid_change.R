@@ -1,7 +1,7 @@
 # Read the filtered variant file
 filtered_variants <- readLines("homo_sapiens_variation_missense_ClinVar_Reference_SNP_EM_genes_filtered.txt")
 
-# Read the list of amino acid changes with property changes
+# Read in the list of all possible amino acid changes with their correspongding property changes
 aa_change_properties <- readLines("Amino_acid_change_with_property_change.txt")
 
 # Create a map for property changes with counts initialized to 0
