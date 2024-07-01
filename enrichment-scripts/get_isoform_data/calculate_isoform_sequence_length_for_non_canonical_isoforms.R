@@ -1,7 +1,7 @@
 # Define the file paths
 fasta_file <- "uniprot_sprot_varsplic.fasta.gz"
 variant_file <- "calculate_missense_variant_enrichment_within_isoforms.txt"
-output_file <- "calculate_missense_variant_enrichment_within_isoforms_with_lengths.txt"
+output_file <- "non_canonical_isoform_length_with_mutation_count.txt"
 
 # Read the entire fasta file into memory
 fasta_lines <- readLines(gzfile(fasta_file))
