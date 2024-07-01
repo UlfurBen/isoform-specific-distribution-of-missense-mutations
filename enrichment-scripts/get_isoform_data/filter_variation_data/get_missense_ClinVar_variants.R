@@ -2,6 +2,7 @@
 library(utils)
 
 # Define file paths
+# Homo_sapiens_variation.txt.gz is on elja (too big for github)
 input_file <- "homo_sapiens_variation.txt.gz"
 output_file <- "homo_sapiens_variation_missense_ClinVar.txt"
 
