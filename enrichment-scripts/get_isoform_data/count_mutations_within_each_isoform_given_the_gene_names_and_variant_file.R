@@ -1,7 +1,10 @@
 # Load gene names from a CSV file
 gene_data <- read.csv("The_epigenetic_machinery.csv", header = TRUE)
 
-# Assuming the gene names are in a column named 'Gene_Name'
+# Output file
+output_file <- "calculate_missense_variant_enrichment_within_isoforms.txt"
+
+# Access the Gene_name column values and save to variable
 gene_names <- gene_data$Gene_Name
 
 # Append '_HUMAN' to each gene name
@@ -12,14 +15,13 @@ writeLines(gene_names_human, "temp_gene_names.txt")
 
 # Read the modified gene names from the temporary file
 temp_gene_names <- readLines("temp_gene_names.txt")
-output_file <- "calculate_missense_variant_enrichment_within_isoforms.txt"
 
 # Process each modified gene name
 for (gene_name_human in temp_gene_names) {
-  # Extract identifiers from the FASTA file
+  # Extract gene uniprot identifiers from the FASTA file
   system(paste0("gunzip -c uniprot_sprot_varsplic.fasta.gz | grep '", gene_name_human, "' > temp.txt"))
   
-  # Process identifiers and count occurrences
+  # Process identifiers
   system("awk -F '[|-]' '{print $2}' temp.txt | sort -u > temp_identifiers.txt")
   temp_identifiers <- readLines("temp_identifiers.txt")
   
