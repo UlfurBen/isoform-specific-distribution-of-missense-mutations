@@ -1,7 +1,7 @@
 # Define file paths
 variants_file <- "calculate_missense_variant_enrichment_within_isoforms.txt"
 fasta_file <- "uniprot_sprot_varsplic.fasta.gz"
-output_file <- "calculate_missense_variant_enrichment_within_isoforms_with_lengths_for_first_isoform_of_genes.txt"
+output_file <- "canonical_isoform_length_with_mutation_count.txt"
 
 # Read the variants file
 variants_data <- read.csv(variants_file, header = FALSE, stringsAsFactors = FALSE)
@@ -30,7 +30,7 @@ read_fasta_gz <- function(gz_file) {
   return(fasta_sequences)
 }
 
-# Function to get sequence length from UniProt REST API
+# Function to get sequence length from UniProt REST API since fasta file doesn't contain info for canonical isoform
 get_sequence_length_from_uniprot <- function(isoform_id) {
   url <- paste0("https://rest.uniprot.org/uniprotkb/", isoform_id, ".fasta")
   fasta_data <- readLines(url)
