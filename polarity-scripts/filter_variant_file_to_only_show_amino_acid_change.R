@@ -8,7 +8,7 @@ data <- read.table(input_file, header = FALSE, sep = "\t", stringsAsFactors = FA
 properties <- read.table(property_file, header = FALSE, sep = " ", stringsAsFactors = FALSE, quote = "")
 
 # Rename columns for better understanding
-colnames(data) <- c("Column1", "Column2", "AminoAcidChange", "Column4", "Column5", "Column6", "Column7", "Column8", "Column9", "Column10", "Column11", "Column12", "Column13")
+colnames(data) <- c("Column1", "Isoform", "AminoAcidChange", "Column4", "Column5", "Column6", "Column7", "Column8", "Column9", "Column10", "Column11", "Column12", "Column13")
 colnames(properties) <- c("AminoAcidChange", "PropertyChange")
 
 # Function to remove numeric characters between amino acid names
@@ -22,8 +22,8 @@ data$AminoAcidChange <- sapply(data$AminoAcidChange, filter_amino_acids)
 # Merge the data with properties based on the amino acid change
 merged_data <- merge(data, properties, by = "AminoAcidChange")
 
-# Select only the AminoAcidChange and PropertyChange columns for output
-output_data <- merged_data[, c("AminoAcidChange", "PropertyChange")]
+# Select only the Isoform, AminoAcidChange, and PropertyChange columns for output
+output_data <- merged_data[, c("Isoform", "AminoAcidChange", "PropertyChange")]
 
 # Write the modified data to the output file
 write.table(output_data, file = output_file, sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
