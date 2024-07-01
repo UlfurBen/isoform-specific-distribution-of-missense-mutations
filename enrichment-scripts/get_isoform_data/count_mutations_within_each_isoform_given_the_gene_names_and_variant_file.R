@@ -27,7 +27,7 @@ for (gene_name_human in temp_gene_names) {
   
   # Loop over each identifier to count mutations, only taking the first isoform which specifically is not followed by a hyphen
   for (identifier in temp_identifiers) {
-    count_mutation <- as.numeric(system(paste0("awk '$0 ~ /", identifier, "/ && $0 !~ /", identifier, "-/ && $0 ~ /missense variant/ {c++} END {print c+0}' homo_sapiens_variation_missense_ClinVar_Reference_SNP.txt"), intern = TRUE))
+    count_mutation <- as.numeric(system(paste0("awk '$0 ~ /", identifier, "/ && $0 !~ /", identifier, "-/ && $0 ~ /missense variant/ {c++} END {print c+0}' filter_database_by_EM_genes_missense_variants_ClinVar_with_RCV.txt"), intern = TRUE))
     if (count_mutation > 0) {
       write(paste0(identifier, ",", count_mutation), file = output_file, append = TRUE)
     }
@@ -39,7 +39,7 @@ for (gene_name_human in temp_gene_names) {
   
   # Loop over each identifier to count mutations, specifically taking only the second to last isoform, i.e. isoforms with a hyphen
   for (identifier in temp_identifiers_2) {
-    count_mutation <- as.numeric(system(paste0("grep -w '", identifier, "' homo_sapiens_variation_missense_ClinVar_Reference_SNP.txt | grep 'missense variant' | wc -l"), intern = TRUE))
+    count_mutation <- as.numeric(system(paste0("grep -w '", identifier, "' filter_database_by_EM_genes_missense_variants_ClinVar_with_RCV.txt | grep 'missense variant' | wc -l"), intern = TRUE))
     if (count_mutation > 0) {
       write(paste0(identifier, ",", count_mutation), file = output_file, append = TRUE)
     }
