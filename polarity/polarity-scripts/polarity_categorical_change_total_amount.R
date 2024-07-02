@@ -1,5 +1,11 @@
+# Input
+input <- Amino_acid_change_with_property_change_updated.txt
+
+# Output
+output <- count_of_variants_per_categorical_change.txt
+
 # Read the updated amino acid change with property change file
-aa_change_data <- readLines("Amino_acid_change_with_property_change_updated.txt")
+aa_change_data <- readLines(input)
 
 # Initialize a list to hold the summed counts of property changes
 property_change_totals <- list(
@@ -38,5 +44,5 @@ for (change in names(property_change_totals)) {
 }
 
 # Write the summed counts to a new file
-writeLines(output_lines, "trial_count_polarity_or_charged_change_property_change_only.txt")
+writeLines(output_lines, output)
 
