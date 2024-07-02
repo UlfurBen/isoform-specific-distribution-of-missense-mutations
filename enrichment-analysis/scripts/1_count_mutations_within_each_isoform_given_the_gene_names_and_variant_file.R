@@ -16,6 +16,9 @@ writeLines(gene_names_human, "temp_gene_names.txt")
 # Read the modified gene names from the temporary file
 temp_gene_names <- readLines("temp_gene_names.txt")
 
+# Open the output file for writing
+output_conn <- file(output_file, open = "wt")
+
 # Process each modified gene name
 for (gene_name_human in temp_gene_names) {
   # Extract gene uniprot identifiers from the FASTA file
@@ -29,7 +32,7 @@ for (gene_name_human in temp_gene_names) {
   for (identifier in temp_identifiers) {
     count_mutation <- as.numeric(system(paste0("awk '$0 ~ /", identifier, "/ && $0 !~ /", identifier, "-/ && $0 ~ /missense variant/ {c++} END {print c+0}' filter_database_by_EM_genes_missense_variants_ClinVar_with_RCV.txt"), intern = TRUE))
     if (count_mutation > 0) {
-      write(paste0(identifier, ",", count_mutation), file = output_file, append = TRUE)
+      write(paste0(identifier, ",", count_mutation, "\n"), file = output_conn, append = TRUE)
     }
   }
   
@@ -41,7 +44,7 @@ for (gene_name_human in temp_gene_names) {
   for (identifier in temp_identifiers_2) {
     count_mutation <- as.numeric(system(paste0("grep -w '", identifier, "' filter_database_by_EM_genes_missense_variants_ClinVar_with_RCV.txt | grep 'missense variant' | wc -l"), intern = TRUE))
     if (count_mutation > 0) {
-      write(paste0(identifier, ",", count_mutation), file = output_file, append = TRUE)
+      write(paste0(identifier, ",", count_mutation, "\n"), file = output_conn, append = TRUE)
     }
   }
   
@@ -49,5 +52,11 @@ for (gene_name_human in temp_gene_names) {
   system("rm temp.txt temp_identifiers.txt temp_identifiers_2.txt")
 }
 
+# Close the output connection
+close(output_conn)
+
 # Remove the temporary gene names file
 system("rm temp_gene_names.txt")
+
+# Print completion message
+cat("Script execution completed. Results saved to", output_file, "\n")
