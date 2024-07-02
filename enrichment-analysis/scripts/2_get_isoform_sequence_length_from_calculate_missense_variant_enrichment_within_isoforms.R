@@ -1,7 +1,7 @@
 # Define file paths
 variants_file <- "calculate_missense_variant_enrichment_within_isoforms.txt"
 fasta_file <- "uniprot_sprot_varsplic.fasta.gz"
-final_output_file <- "merged_isoform_lengths_with_mutation_count.txt"
+final_output_file <- "merged_calculate_missense_variant_enrichment_within_isoforms_with_lengths_all_300.txt"
 
 # Read the variants file
 variants_data <- read.csv(variants_file, header = FALSE, stringsAsFactors = FALSE)
