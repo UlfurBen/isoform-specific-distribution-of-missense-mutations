@@ -23,3 +23,17 @@ I filtered the variant database to only include missense variants from ClinVar a
 I calculated the number of isoform specific variants in the database after filtering to only include ClinVar and missense variants and I that the number is around 500,000.
 I counted the number of isoforms that don't have missense variant entries in the ClinVar database and the number is:
 I counted and labeled the variants which have an variant associated amino acid categorical change.
+
+# week 6
+I met with Kaan to discuss the project. I added and organised files on Github and made the workflow required to get the desired results more understandable.
+I see that the awk statement causes some errors in the enrichment calculations as the end file contains fewer lines (isoforms of genes) than there are genes I looked up (I also looked up isoforms but the canonical is always present, I checked).
+
+Enrichment ratio recalculate. Count of missense variants from ClinVar for isoform of interest / (total number of missense variants in gene of interest for all isoforms of gene of interest) and multiply this number/fraction by isoform amino acid seq length. Make the graph a dot plot and order in descending order. Make dot plot for each gene showing calculation for each isoform and highlighting the canonical isoform in each dot plot for each gene. Automate this graphing process and save as pdf or svg (both can be modified in inkscape). Do calculation only for EM genes, separate dot plot as pdf or svg.
+2. Count ClinVar missense mutation ranges for isoforms, adjust to show as dot plot and start with 0 and then start ranges (1-10 or 1-20 or 1-50 adjust at will). Y axis should be number of isoforms and x axis should number of missense variants (ranges start with 0) for EM genes.
+3. Recalculate property change for all missense variants from ClinVar and show the same calculation as a stack bar plot displaying EM and non EM genes percentage on y axis. Show percentage on y axis (percentage is derived from number of variants of a specified categorical change of the total amount of variants).
+EMs = (number of missense variants of a certain categorical change / total amount of missense variants) x 100 %.
+Same for non EMs.
+4. Refilter variant file to only contain missense variants from ClinVar (don’t filter the RCV away), also filter to only EM genes in appropriative calculations.
+Calculate pathogenicity percentage/count of the total for EM genes.
+5. On github be specific in naming for folders and files and show clearer the input and output and show workflow. Add plots to github as a pdf file. Organize github properly.
+6. Check ClinVar missense variants for only EM genes (295 genes in total), number of pathogenic, benign etc. Check all missense variants in all databases (not only ClinVar but also others) for all EM genes (295 genes in total), in terms of number of pathogenic variants, benign variants etc.
