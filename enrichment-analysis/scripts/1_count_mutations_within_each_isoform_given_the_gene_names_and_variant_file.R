@@ -2,7 +2,7 @@
 gene_csv_file <- "The_epigenetic_machinery.csv"
 fasta_file <- "uniprot_sprot_varsplic.fasta.gz"
 variation_file <- "homo_sapiens_variation_missense_ClinVar.txt"
-output_file <- "calculate_missense_variant_enrichment_within_isoforms.txt"
+output_file <- "calculate_pathogenic_or_likely_pathogenic_variants_per_isoform.txt"
 
 # Load gene names from a CSV file
 gene_data <- read.csv(gene_csv_file, header = TRUE)
@@ -22,6 +22,11 @@ temp_gene_names <- readLines("temp_gene_names.txt")
 # Open the output file for writing
 output_conn <- file(output_file, open = "wt")
 
+# Function to safely write lines to the output file
+safe_write <- function(line) {
+  writeLines(line, output_conn)
+}
+
 # Process each modified gene name
 for (gene_name_human in temp_gene_names) {
   # Extract gene uniprot identifiers from the FASTA file
@@ -33,9 +38,9 @@ for (gene_name_human in temp_gene_names) {
   
   # Loop over each identifier to count mutations, only taking the first isoform which specifically is not followed by a hyphen
   for (identifier in temp_identifiers) {
-    count_mutation <- as.numeric(system(paste0("awk '$0 ~ /", identifier, "/ && $0 !~ /", identifier, "-/ && $0 ~ /missense variant/ {c++} END {print c+0}' ", variation_file), intern = TRUE))
+    count_mutation <- as.numeric(system(paste0("awk '$0 ~ /", identifier, "/ && $0 !~ /", identifier, "-/ && $0 ~ /missense variant/ && ($0 ~ /Pathogenic/ || $0 ~ /Likely pathogenic/) && $0 !~ /pathogenicity/ && $0 !~ /uncertain/ && $0 !~ /benign/ {c++} END {print c+0}' ", variation_file), intern = TRUE))
     if (count_mutation > 0) {
-      write(paste0(identifier, ",", count_mutation, "\n"), file = output_conn, append = TRUE)
+      safe_write(paste0(identifier, ",", count_mutation))
     }
   }
   
@@ -45,9 +50,9 @@ for (gene_name_human in temp_gene_names) {
   
   # Loop over each identifier to count mutations, specifically taking only the second to last isoform, i.e. isoforms with a hyphen
   for (identifier in temp_identifiers_2) {
-    count_mutation <- as.numeric(system(paste0("grep -w '", identifier, "' ", variation_file, " | grep 'missense variant' | wc -l"), intern = TRUE))
+    count_mutation <- as.numeric(system(paste0("grep -w '", identifier, "' ", variation_file, " | grep 'missense variant' | grep -E 'Pathogenic|Likely pathogenic' | grep -v 'pathogenicity' | grep -v 'uncertain' | grep -v 'benign' | wc -l"), intern = TRUE))
     if (count_mutation > 0) {
-      write(paste0(identifier, ",", count_mutation, "\n"), file = output_conn, append = TRUE)
+      safe_write(paste0(identifier, ",", count_mutation))
     }
   }
   
