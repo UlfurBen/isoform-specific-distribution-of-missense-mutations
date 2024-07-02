@@ -1,11 +1,11 @@
 # Define file paths
 input_file <- "homo_sapiens_variation_missense_ClinVar.txt"
-property_file <- "Amino_acid_change_with_property_change.txt"
-output_file <- "amino_acid_change_with_property_change.txt"
+property_lookup_file <- "all_possible_permutations_of_two_amino_acids_with_their_categorical_change.txt"
+output_file <- "variation_amino_acid_change_with_property_change.txt"
 
 # Read the input files
 data <- read.table(input_file, header = FALSE, sep = "\t", stringsAsFactors = FALSE, quote = "")
-properties <- read.table(property_file, header = FALSE, sep = " ", stringsAsFactors = FALSE, quote = "")
+properties <- read.table(property_lookup_file, header = FALSE, sep = " ", stringsAsFactors = FALSE, quote = "")
 
 # Rename columns for better understanding
 colnames(data) <- c("Column1", "Isoform", "AminoAcidChange", "Column4", "Column5", "Column6", "Column7", "Column8", "Column9", "Column10", "Column11", "Column12", "Column13")
