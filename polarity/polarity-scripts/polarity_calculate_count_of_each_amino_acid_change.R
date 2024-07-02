@@ -1,5 +1,8 @@
-# Read the filtered variant file
-filtered_variants <- readLines("homo_sapiens_variation_missense_ClinVar_Reference_SNP_EM_genes_filtered.txt")
+# Input Read the filtered variant file
+filtered_variants <- readLines("variation_amino_acid_change_with_property_change.txt")
+
+# Output
+Output <- Amino_acid_change_with_property_change_updated.txt
 
 # Read in the list of all possible amino acid changes with their correspongding property changes
 aa_change_properties <- readLines("Amino_acid_change_with_property_change.txt")
@@ -34,5 +37,5 @@ for (line in aa_change_properties) {
 }
 
 # Write the updated counts to a new file
-writeLines(output_lines, "Amino_acid_change_with_property_change_updated.txt")
+writeLines(output_lines, Output)
 
