@@ -19,8 +19,9 @@ writeLines(gene_names_human, "temp_gene_names.txt")
 # Read the modified gene names from the temporary file
 temp_gene_names <- readLines("temp_gene_names.txt")
 
-# Open the output file for writing
+# Open the output file for writing and write the header line
 output_conn <- file(output_file, open = "wt")
+writeLines("Identifier,Likely benign,uncertain,Benign,Pathogenic,Likely pathogenic", output_conn)
 
 # Function to safely write lines to the output file
 safe_write <- function(line) {
@@ -44,11 +45,11 @@ count_variants <- function(identifier, variant_type, exclusion_patterns) {
 
 # Define exclusion patterns for each variant type
 exclusion_patterns <- list(
-  "Likely benign" = " | grep -vi 'uncertain' | grep -vi 'benign' | grep -vi 'pathogenic' | grep -vi 'likely pathogenic'",
+  "Likely benign" = " | grep -vi 'uncertain' | grep -vi 'pathogenic' | grep -vi 'likely pathogenic'",
   "uncertain" = " | grep -vi 'likely benign' | grep -vi 'benign' | grep -vi 'pathogenic' | grep -vi 'likely pathogenic'",
   "Benign" = " | grep -vi 'likely benign' | grep -vi 'uncertain' | grep -vi 'pathogenic' | grep -vi 'likely pathogenic'",
   "Pathogenic" = " | grep -vi 'likely benign' | grep -vi 'uncertain' | grep -vi 'benign' | grep -vi 'likely pathogenic'",
-  "Likely pathogenic" = " | grep -vi 'likely benign' | grep -vi 'uncertain' | grep -vi 'benign' | grep -vi 'pathogenic'"
+  "Likely pathogenic" = " | grep -vi 'likely benign' | grep -vi 'uncertain' | grep -vi 'benign'"
 )
 
 # Process each modified gene name
@@ -62,12 +63,12 @@ for (gene_name_human in temp_gene_names) {
   
   # Loop over each identifier to count mutations for each variant type
   for (identifier in temp_identifiers) {
+    variant_counts <- c()
     for (variant_type in names(exclusion_patterns)) {
       count_mutation <- count_variants(identifier, variant_type, exclusion_patterns[[variant_type]])
-      if (count_mutation > 0) {
-        safe_write(paste0(identifier, ",", variant_type, ",", count_mutation))
-      }
+      variant_counts <- c(variant_counts, count_mutation)
     }
+    safe_write(paste0(identifier, ",", paste(variant_counts, collapse = ",")))
   }
   
   # Extract a different set of identifiers from the same file
@@ -76,12 +77,12 @@ for (gene_name_human in temp_gene_names) {
   
   # Loop over each identifier to count mutations for each variant type
   for (identifier in temp_identifiers_2) {
+    variant_counts <- c()
     for (variant_type in names(exclusion_patterns)) {
       count_mutation <- count_variants(identifier, variant_type, exclusion_patterns[[variant_type]])
-      if (count_mutation > 0) {
-        safe_write(paste0(identifier, ",", variant_type, ",", count_mutation))
-      }
+      variant_counts <- c(variant_counts, count_mutation)
     }
+    safe_write(paste0(identifier, ",", paste(variant_counts, collapse = ",")))
   }
   
   # Clean up temporary files
