@@ -27,32 +27,60 @@ safe_write <- function(line) {
   writeLines(line, output_conn)
 }
 
+# Function to count occurrences of a specific variant type, excluding others
+count_variants <- function(identifier, variant_type, exclusion_patterns) {
+  command <- paste0(
+    "grep -i -w '", identifier, "' ", variation_file,
+    " | grep -i 'missense variant'",
+    " | grep -i '", variant_type, "'",
+    " | grep -vi 'somatic'",
+    " | grep -vi 'pathogenicity'",
+    exclusion_patterns,
+    " | wc -l"
+  )
+  count <- as.numeric(system(command, intern = TRUE))
+  return(count)
+}
+
+# Define exclusion patterns for each variant type
+exclusion_patterns <- list(
+  "Likely benign" = " | grep -vi 'uncertain' | grep -vi 'benign' | grep -vi 'pathogenic' | grep -vi 'likely pathogenic'",
+  "uncertain" = " | grep -vi 'likely benign' | grep -vi 'benign' | grep -vi 'pathogenic' | grep -vi 'likely pathogenic'",
+  "Benign" = " | grep -vi 'likely benign' | grep -vi 'uncertain' | grep -vi 'pathogenic' | grep -vi 'likely pathogenic'",
+  "Pathogenic" = " | grep -vi 'likely benign' | grep -vi 'uncertain' | grep -vi 'benign' | grep -vi 'likely pathogenic'",
+  "Likely pathogenic" = " | grep -vi 'likely benign' | grep -vi 'uncertain' | grep -vi 'benign' | grep -vi 'pathogenic'"
+)
+
 # Process each modified gene name
 for (gene_name_human in temp_gene_names) {
   # Extract gene uniprot identifiers from the FASTA file
   system(paste0("gunzip -c ", fasta_file, " | grep '", gene_name_human, "' > temp.txt"))
   
-  # Process identifiers
-  system("awk -F '[|-]' '{print $2}' temp.txt | sort -u > temp_identifiers.txt")
+  # Process identifiers and filter out those followed by a hyphen
+  system("awk -F '[|]' '{print $2}' temp.txt | awk '!/-/' | sort -u > temp_identifiers.txt")
   temp_identifiers <- readLines("temp_identifiers.txt")
   
-  # Loop over each identifier to count mutations, only taking the first isoform which specifically is not followed by a hyphen
+  # Loop over each identifier to count mutations for each variant type
   for (identifier in temp_identifiers) {
-    count_mutation <- as.numeric(system(paste0("awk '$0 ~ /", identifier, "/ && $0 !~ /", identifier, "-/ && $0 ~ /missense variant/ && ($0 ~ /Pathogenic/ || $0 ~ /Likely pathogenic/) && $0 !~ /pathogenicity/ && $0 !~ /uncertain/ && $0 !~ /benign/ {c++} END {print c+0}' ", variation_file), intern = TRUE))
-    if (count_mutation > 0) {
-      safe_write(paste0(identifier, ",", count_mutation))
+    for (variant_type in names(exclusion_patterns)) {
+      count_mutation <- count_variants(identifier, variant_type, exclusion_patterns[[variant_type]])
+      if (count_mutation > 0) {
+        safe_write(paste0(identifier, ",", variant_type, ",", count_mutation))
+      }
     }
   }
   
   # Extract a different set of identifiers from the same file
-  system("awk -F '|' '{print $2}' temp.txt | sort -u > temp_identifiers_2.txt")
+  system("awk -F '[|]' '{print $2}' temp.txt | sort -u > temp_identifiers_2.txt")
   temp_identifiers_2 <- readLines("temp_identifiers_2.txt")
   
-  # Loop over each identifier to count mutations, specifically taking only the second to last isoform, i.e. isoforms with a hyphen
+  # Loop over each identifier to count mutations for each variant type
   for (identifier in temp_identifiers_2) {
-    count_mutation <- as.numeric(system(paste0("grep -w '", identifier, "' ", variation_file, " | grep 'missense variant' | grep -E 'Pathogenic|Likely pathogenic' | grep -v 'pathogenicity' | grep -v 'uncertain' | grep -v 'benign' | wc -l"), intern = TRUE))
-    if (count_mutation > 0) {
-      safe_write(paste0(identifier, ",", count_mutation))
+    for (variant_type in names(exclusion_patterns)) {
+      count_mutation <- count_variants(identifier, variant_type, exclusion_patterns[[variant_type]])
+      if (count_mutation > 0) {
+        safe_write(paste0(identifier, ",", variant_type, ",", count_mutation))
+      }
     }
   }
   
