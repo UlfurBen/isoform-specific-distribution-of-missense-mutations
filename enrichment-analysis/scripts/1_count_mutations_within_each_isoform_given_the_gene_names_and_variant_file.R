@@ -1,8 +1,8 @@
 # Define the file paths as variables
-gene_csv_file <- "The_epigenetic_machinery.csv"
+gene_csv_file <- "The_Epigenetic_Machinery.csv"
 fasta_file <- "uniprot_sprot_varsplic.fasta.gz"
 variation_file <- "homo_sapiens_variation_missense_ClinVar.txt"
-output_file <- "calculate_missense_variant_enrichment_within_isoforms_by_pathogenicity_type.txt"
+output_file <- "enrichment.txt"
 
 # Load gene names from a CSV file
 gene_data <- read.csv(gene_csv_file, header = TRUE)
