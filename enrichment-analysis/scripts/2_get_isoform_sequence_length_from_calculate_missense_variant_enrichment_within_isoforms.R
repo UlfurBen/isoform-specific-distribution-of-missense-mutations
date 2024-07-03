@@ -1,5 +1,5 @@
 # Define file paths
-variants_file <- "calculate_missense_variant_enrichment_within_isoforms.txt"
+variants_file <- "calculate_missense_variant_enrichment_within_isoforms_by_pathogenicity_type.txt"
 fasta_file <- "uniprot_sprot_varsplic.fasta.gz"
 final_output_file <- "merged_calculate_missense_variant_enrichment_within_isoforms_with_lengths_all_300.txt"
 
