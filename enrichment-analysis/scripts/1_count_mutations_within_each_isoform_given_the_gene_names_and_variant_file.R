@@ -57,12 +57,11 @@ for (gene_name_human in temp_gene_names) {
   # Extract gene uniprot identifiers from the FASTA file
   system(paste0("gunzip -c ", fasta_file, " | grep '", gene_name_human, "' > temp.txt"))
   
-  # Process identifiers and filter out those followed by a hyphen
-  system("awk -F '[|]' '{print $2}' temp.txt | awk '!/-/' | sort -u > temp_identifiers.txt")
-  temp_identifiers <- readLines("temp_identifiers.txt")
+  # Process identifiers without hyphens (canonical isoforms)
+  system("awk -F '[|]' '{print $2}' temp.txt | grep -v '-' | sort -u > temp_identifiers_no_hyphen.txt")
+  temp_identifiers_no_hyphen <- readLines("temp_identifiers_no_hyphen.txt")
   
-  # Loop over each identifier to count mutations for each variant type
-  for (identifier in temp_identifiers) {
+  for (identifier in temp_identifiers_no_hyphen) {
     variant_counts <- c()
     for (variant_type in names(exclusion_patterns)) {
       count_mutation <- count_variants(identifier, variant_type, exclusion_patterns[[variant_type]])
@@ -70,13 +69,12 @@ for (gene_name_human in temp_gene_names) {
     }
     safe_write(paste0(identifier, ",", paste(variant_counts, collapse = ",")))
   }
+
+  # Process identifiers with hyphens
+  system("awk -F '[|]' '{print $2}' temp.txt | grep '-' | sort -u > temp_identifiers_with_hyphen.txt")
+  temp_identifiers_with_hyphen <- readLines("temp_identifiers_with_hyphen.txt")
   
-  # Extract a different set of identifiers from the same file
-  system("awk -F '[|]' '{print $2}' temp.txt | sort -u > temp_identifiers_2.txt")
-  temp_identifiers_2 <- readLines("temp_identifiers_2.txt")
-  
-  # Loop over each identifier to count mutations for each variant type
-  for (identifier in temp_identifiers_2) {
+  for (identifier in temp_identifiers_with_hyphen) {
     variant_counts <- c()
     for (variant_type in names(exclusion_patterns)) {
       count_mutation <- count_variants(identifier, variant_type, exclusion_patterns[[variant_type]])
@@ -86,7 +84,7 @@ for (gene_name_human in temp_gene_names) {
   }
   
   # Clean up temporary files
-  system("rm temp.txt temp_identifiers.txt temp_identifiers_2.txt")
+  system("rm temp.txt temp_identifiers_no_hyphen.txt temp_identifiers_with_hyphen.txt")
 }
 
 # Close the output connection
