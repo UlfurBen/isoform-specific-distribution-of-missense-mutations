@@ -1,11 +1,10 @@
 # Define file paths
-variants_file <- "calculate_missense_variant_enrichment_within_isoforms_by_pathogenicity_type.txt"
+input_file <- "enrichment_filtered.txt"
 fasta_file <- "uniprot_sprot_varsplic.fasta.gz"
-final_output_file <- "merged_calculate_missense_variant_enrichment_within_isoforms_with_lengths_all_300.txt"
+final_output_file <- "enrichment_filtered_with_seq_len.txt"
 
-# Read the variants file
-variants_data <- read.csv(variants_file, header = FALSE, stringsAsFactors = FALSE)
-colnames(variants_data) <- c("Isoform", "Count")
+# Read the input file
+input_data <- read.csv(input_file, header = TRUE, stringsAsFactors = FALSE)
 
 # Function to read gzipped FASTA file manually
 read_fasta_gz <- function(gz_file) {
@@ -33,9 +32,21 @@ read_fasta_gz <- function(gz_file) {
 # Function to get sequence length from UniProt REST API
 get_sequence_length_from_uniprot <- function(isoform_id) {
   url <- paste0("https://rest.uniprot.org/uniprotkb/", isoform_id, ".fasta")
-  fasta_data <- readLines(url)
-  seq <- paste(fasta_data[!startsWith(fasta_data, ">")], collapse = "")
-  return(nchar(seq))
+  response <- tryCatch(
+    {
+      readLines(url)
+    },
+    error = function(e) {
+      message(paste("Error fetching data for", isoform_id))
+      return(NULL)
+    }
+  )
+  if (!is.null(response)) {
+    seq <- paste(response[!startsWith(response, ">")], collapse = "")
+    return(nchar(seq))
+  } else {
+    return(NA)
+  }
 }
 
 # Read the FASTA file
@@ -44,18 +55,22 @@ fasta_sequences <- read_fasta_gz(fasta_file)
 # Initialize lists to store lengths for isoforms
 isoform_lengths <- list()
 
-# Process each isoform in the variants data
-for (i in 1:nrow(variants_data)) {
-  isoform_id <- variants_data$Isoform[i]
+# Process each isoform in the input data
+for (i in 1:nrow(input_data)) {
+  isoform_id <- input_data[i, 1]  # Assuming the first column contains the identifier
   length <- NA
   
   # Check if the isoform is in the FASTA file
   if (isoform_id %in% names(fasta_sequences)) {
     length <- nchar(fasta_sequences[[isoform_id]])
+    print(paste("Found in FASTA:", isoform_id, "Length:", length))  # Debug print statement
   } else {
-    # For isoforms without a hyphen, fetch from UniProt REST API
-    if (!grepl("-", isoform_id)) {
-      length <- get_sequence_length_from_uniprot(isoform_id)
+    # Fetch from UniProt REST API
+    length <- get_sequence_length_from_uniprot(isoform_id)
+    if (!is.na(length)) {
+      print(paste("Fetched from UniProt API:", isoform_id, "Length:", length))  # Debug print statement
+    } else {
+      print(paste("Not found in FASTA and not fetched from UniProt API:", isoform_id))  # Debug print statement
     }
   }
   
@@ -63,14 +78,11 @@ for (i in 1:nrow(variants_data)) {
   isoform_lengths[[isoform_id]] <- length
 }
 
-# Add the lengths to the variants data
-variants_data$Length <- sapply(variants_data$Isoform, function(id) isoform_lengths[[id]])
-
-# Filter out rows with NA values in the Length column
-filtered_variants_data <- na.omit(variants_data)
+# Add the lengths to the input data
+input_data$seq_len <- sapply(input_data[[1]], function(id) isoform_lengths[[id]])
 
 # Write the merged results to the final output file
-write.table(filtered_variants_data, file = final_output_file, sep = ",", row.names = FALSE, col.names = TRUE, quote = FALSE)
+write.table(input_data, file = final_output_file, sep = ",", row.names = FALSE, col.names = TRUE, quote = FALSE)
 
 # Print message indicating completion
-cat("Isoform lengths have been processed, merged, and saved to", final_output_file, "\n")
+cat("Isoform lengths have been processed and appended to", final_output_file, "\n")
