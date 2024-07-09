@@ -1,2 +1,4 @@
-# path on elja
-/hpchome/ubf2/homo_sapiens_variation_missense_ClinVar.txt
+# paths on elja
+The-Epigenetic-Machinery.csv = /hpchome/ubf2/The-Epigenetic-Machinery.csv
+homo_sapiens_variation_missense_ClinVar.txt = /hpchome/ubf2/homo_sapiens_variation_missense_ClinVar.txt
+uniprot_sprot_varsplic.fasta.gz = /hpchome/ubf2/uniprot_sprot_varsplic.fasta.gz
