@@ -1,7 +1,7 @@
 # Define file paths
 input_file <- "enrichment_filtered_with_seq_len.txt"
 output_file <- "enrichment_filtered_with_gene_total_variant_count.txt"
-fasta_file <- "uniprot_sprot_varsplic.fasta.gz"
+fasta_file <- "uniprot_sprot_varsplic.fasta"
 
 # Read the input file
 data <- read.csv(input_file, header = TRUE, stringsAsFactors = FALSE, sep = ",")
@@ -20,7 +20,7 @@ merged_data <- merge(data, gene_counts, by = "Gene")
 
 # Function to extract gene names from the FASTA file
 get_gene_name <- function(identifier, fasta) {
-  pattern <- paste0(">", identifier, "-")
+  pattern <- paste0(">", identifier, "\\|")
   for (line in fasta) {
     if (grepl(pattern, line)) {
       gene_name <- sub(".*GN=([A-Z0-9]+).*", "\\1", line)
@@ -31,7 +31,7 @@ get_gene_name <- function(identifier, fasta) {
 }
 
 # Read the FASTA file
-fasta_sequences <- readLines(gzfile(fasta_file))
+fasta_sequences <- readLines(fasta_file)
 
 # Add the Gene_name column to the merged data
 merged_data$Gene_name <- sapply(merged_data$Identifier, get_gene_name, fasta = fasta_sequences)
