@@ -1,6 +1,6 @@
 # Define file paths
-input_file <- "enrichment.txt"
-output_file <- "enrichment.txt"
+input_file <- "enrichment_filtered_with_seq_len.txt"
+output_file <- "enrichment_filtered_with_gene_total_variant_count.txt"
 
 # Read the input file
 data <- read.csv(input_file, header = TRUE, stringsAsFactors = FALSE, sep = ",")
