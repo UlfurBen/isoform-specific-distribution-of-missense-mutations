@@ -60,10 +60,14 @@ for (i in 1:nrow(input_data)) {
   isoform_id <- input_data[i, 1]  # Assuming the first column contains the identifier
   length <- NA
   
-  # Check if the isoform is in the FASTA file
+  # Check if the isoform is in the FASTA file and if the line contains '_HUMAN'
   if (isoform_id %in% names(fasta_sequences)) {
-    length <- nchar(fasta_sequences[[isoform_id]])
-    print(paste("Found in FASTA:", isoform_id, "Length:", length))  # Debug print statement
+    if (grepl("_HUMAN", fasta_sequences[[isoform_id]])) {
+      length <- nchar(fasta_sequences[[isoform_id]])
+      print(paste("Found in FASTA and contains _HUMAN:", isoform_id, "Length:", length))  # Debug print statement
+    } else {
+      print(paste("Found in FASTA but does not contain _HUMAN:", isoform_id))  # Debug print statement
+    }
   } else {
     # Fetch from UniProt REST API
     length <- get_sequence_length_from_uniprot(isoform_id)
