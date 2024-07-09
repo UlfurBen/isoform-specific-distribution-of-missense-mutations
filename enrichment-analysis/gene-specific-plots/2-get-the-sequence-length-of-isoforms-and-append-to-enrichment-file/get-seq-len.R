@@ -1,14 +1,14 @@
 # Define file paths
 input_file <- "enrichment.txt"
-fasta_file <- "uniprot_sprot_varsplic.fasta.gz"
+fasta_file <- "uniprot_sprot_varsplic.fasta"
 output_file <- "enrichment_filtered_with_seq_len.txt"
 
 # Read the input file
 input_data <- read.csv(input_file, header = TRUE, stringsAsFactors = FALSE)
 
-# Function to read gzipped FASTA file manually
-read_fasta_gz <- function(gz_file) {
-  lines <- readLines(gzfile(gz_file))
+# Function to read FASTA file
+read_fasta <- function(file) {
+  lines <- readLines(file)
   fasta_sequences <- list()
   seq_name <- NULL
   seq <- NULL
@@ -50,7 +50,7 @@ get_sequence_length_from_uniprot <- function(isoform_id) {
 }
 
 # Read the FASTA file
-fasta_sequences <- read_fasta_gz(fasta_file)
+fasta_sequences <- read_fasta(fasta_file)
 
 # Initialize lists to store lengths for isoforms
 isoform_lengths <- list()
