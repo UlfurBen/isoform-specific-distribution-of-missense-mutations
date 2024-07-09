@@ -1,6 +1,6 @@
 # Define the file paths as variables
 gene_csv_file <- "The-Epigenetic-Machinery.csv"
-fasta_file <- "uniprot_sprot_varsplic.fasta.gz"
+fasta_file <- "uniprot_sprot_varsplic.fasta"
 variation_file <- "homo_sapiens_variation_missense_ClinVar.txt"
 output_file <- "enrichment.txt"
 
@@ -48,7 +48,7 @@ count_variants <- function(identifier, exclude_hyphen = FALSE) {
 for (gene_name_human in temp_gene_names) {
   print(paste("Processing gene:", gene_name_human))  # Debug print statement
   # Extract gene uniprot identifiers from the FASTA file
-  system(paste0("gunzip -c ", fasta_file, " | grep '", gene_name_human, "' > temp.txt"))
+  system(paste0("grep '", gene_name_human, "' ", fasta_file, " > temp.txt"))
 
   # Process identifiers with hyphens
   system("awk -F '[|]' '{print $2}' temp.txt | grep '-' | sort -u > temp_identifiers_with_hyphen.txt")
