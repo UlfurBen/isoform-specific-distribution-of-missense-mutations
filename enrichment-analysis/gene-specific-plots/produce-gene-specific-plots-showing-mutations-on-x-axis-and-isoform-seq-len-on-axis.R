@@ -19,6 +19,9 @@ data$Gene <- sub("-.*", "", data$Identifier)
 # Calculate the fraction of Variation.count / Gene_Total_Count
 data$Fraction <- data$Variation.count / data$Gene_Total_Count
 
+# Filter out isoforms with Variation.count equal to 0
+data <- subset(data, Variation.count != 0)
+
 # Get unique genes
 unique_genes <- unique(data$Gene)
 
