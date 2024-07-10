@@ -28,3 +28,8 @@ I counted and labeled the variants which have an variant associated amino acid c
 I met with Kaan to discuss the project. I added and organised files on Github and made the workflow required to get the desired results more understandable.
 I see that the awk statement causes some errors in the enrichment calculations as the end file contains fewer lines (isoforms of genes) than there are genes I looked up (I also looked up isoforms but the canonical is always present, I checked).
 I have solved the enrichment analysis problem where the program would miss calculating some isoforms. Now I have a stacked bar plot that show benign, vus, likely benign, pathogenic and likely pathogenic in each gene and shows the bars in descending order dependent on the total variant counts.
+
+# week 7
+I had an idea to find the area length of the aggregation of the missense mutations within each but the length was much bigger than the isoform length itself...
+I learned to work with files in R instead of using grep, using fread tends to be quicker.
+I learn to organize code better on github and I make gene dependent isoform dot plots showing on y axis the isoform variant counts divided by the total gene variant counts and on x axis the isoform sequence length. I will also make stacked bar plot showing p, lp, vus, lb and b pathogenicity information.
