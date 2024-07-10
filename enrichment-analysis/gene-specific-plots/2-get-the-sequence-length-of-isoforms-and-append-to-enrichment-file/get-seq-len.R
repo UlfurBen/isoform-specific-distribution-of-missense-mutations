@@ -57,7 +57,7 @@ isoform_lengths <- list()
 
 # Process each isoform in the input data
 for (i in 1:nrow(input_data)) {
-  isoform_id <- input_data[i, 1]  # Assuming the first column contains the identifier
+  isoform_id <- input_data[i, 2]  # Assuming the second column contains the identifier
   length <- NA
   
   # Check if the isoform is in the FASTA file and if the line contains '_HUMAN'
