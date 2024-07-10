@@ -21,31 +21,44 @@ temp_gene_names <- readLines("temp_gene_names.txt")
 
 # Open the output file for writing and write the header line
 output_conn <- file(output_file, open = "wt")
-writeLines("Identifier,Variation count", output_conn)
+writeLines("Gene_Name,Identifier,Variation count,Benign,Likely benign,VUS,Likely pathogenic,Pathogenic", output_conn)
 
 # Function to safely write lines to the output file
 safe_write <- function(line) {
   writeLines(line, output_conn)
 }
 
-# Function to count occurrences of missense variants excluding somatic ones
+# Function to count occurrences of variants excluding somatic ones
 count_variants <- function(identifier, exclude_hyphen = FALSE) {
   exclude_hyphen_pattern <- if (exclude_hyphen) " | grep -v '-'" else ""
   command <- paste0(
     "grep -i -w '", identifier, "' ", variation_file,
     " | grep -i 'missense variant'",
     " | grep -vi 'somatic'",
-    exclude_hyphen_pattern,
-    " | wc -l"
+    exclude_hyphen_pattern
   )
-  print(paste("Running command:", command))  # Debug print statement
-  count <- as.numeric(system(command, intern = TRUE))
-  print(paste("Count for", identifier, ":", count))  # Debug print statement
-  return(count)
+  result <- system(command, intern = TRUE)
+
+  # Count specific variant categories
+  benign <- length(grep('Benign', result, ignore.case = TRUE))
+  likely_benign <- length(grep('Likely benign', result, ignore.case = TRUE))
+  vus <- length(grep('uncertain', result, ignore.case = TRUE))
+  likely_pathogenic <- length(grep('Likely pathogenic', result, ignore.case = TRUE))
+  pathogenic <- length(grep('Pathogenic', result, ignore.case = TRUE))
+  
+  # Exclude 'pathogenicity'
+  pathogenic <- pathogenic - length(grep('pathogenicity', result, ignore.case = TRUE))
+  
+  total_count <- length(result)
+  
+  return(list(total_count = total_count, benign = benign, likely_benign = likely_benign, vus = vus, likely_pathogenic = likely_pathogenic, pathogenic = pathogenic))
 }
 
 # Process each modified gene name
-for (gene_name_human in temp_gene_names) {
+for (i in seq_along(temp_gene_names)) {
+  gene_name_human <- temp_gene_names[i]
+  gene_name <- gene_names[i]
+  
   print(paste("Processing gene:", gene_name_human))  # Debug print statement
   # Extract gene uniprot identifiers from the FASTA file
   system(paste0("grep '", gene_name_human, "' ", fasta_file, " > temp.txt"))
@@ -60,13 +73,13 @@ for (gene_name_human in temp_gene_names) {
   print(paste("Canonical isoforms for", gene_name_human, ":", paste(canonical_identifiers, collapse = ", ")))  # Debug print statement
 
   for (identifier in canonical_identifiers) {
-    count_mutation <- count_variants(identifier, exclude_hyphen = TRUE)
-    safe_write(paste0(identifier, ",", count_mutation))
+    variant_counts <- count_variants(identifier, exclude_hyphen = TRUE)
+    safe_write(paste0(gene_name, ",", identifier, ",", variant_counts$total_count, ",", variant_counts$benign, ",", variant_counts$likely_benign, ",", variant_counts$vus, ",", variant_counts$likely_pathogenic, ",", variant_counts$pathogenic))
   }
 
   for (identifier in temp_identifiers_with_hyphen) {
-    count_mutation <- count_variants(identifier, exclude_hyphen = FALSE)
-    safe_write(paste0(identifier, ",", count_mutation))
+    variant_counts <- count_variants(identifier, exclude_hyphen = FALSE)
+    safe_write(paste0(gene_name, ",", identifier, ",", variant_counts$total_count, ",", variant_counts$benign, ",", variant_counts$likely_benign, ",", variant_counts$vus, ",", variant_counts$likely_pathogenic, ",", variant_counts$pathogenic))
   }
 
   # Clean up temporary files
