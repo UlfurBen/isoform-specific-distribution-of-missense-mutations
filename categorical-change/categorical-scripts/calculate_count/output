@@ -1,0 +1,16 @@
+Nonpolar->Nonpolar 349
+Nonpolar->Polar 459
+Nonpolar->Negatively_charged 123
+Nonpolar->Positively_charged 133
+Polar->Nonpolar 261
+Polar->Polar 189
+Polar->Negatively_charged 432
+Polar->Positively_charged 467
+Negatively_charged->Nonpolar 101
+Negatively_charged->Polar 92
+Negatively_charged->Negatively_charged 42
+Negatively_charged->Positively_charged 93
+Positively_charged->Nonpolar 394
+Positively_charged->Polar 143
+Positively_charged->Negatively_charged 35
+Positively_charged->Positively_charged 49
