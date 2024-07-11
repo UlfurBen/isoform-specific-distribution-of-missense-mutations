@@ -1,3 +1,21 @@
+# Prerequisite commands are on elja are:
+# ml use /hpcapps/lib-edda/modules/all/Core
+# ml use /hpcapps/lib-tools/modules/all
+# ml load R/4.1.2-foss-2021b
+# R
+# install.packages("BiocManager")
+# BiocManager::install("GenomicRanges")
+# BiocManager::install("rtracklayer")
+# install.packages("dplyr")
+# to verify installation run:
+# library(GenomicRanges)
+# library(rtracklayer)
+# library(dplyr)
+
+
+
+
+
 # Load required libraries
 library(GenomicRanges)
 library(rtracklayer)
