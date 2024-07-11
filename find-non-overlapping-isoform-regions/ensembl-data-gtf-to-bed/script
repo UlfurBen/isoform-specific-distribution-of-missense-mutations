@@ -1,84 +1,27 @@
-# Prerequisite commands are on elja are:
-# ml use /hpcapps/lib-edda/modules/all/Core
-# ml use /hpcapps/lib-tools/modules/all
-# ml load R/4.1.2-foss-2021b
-# R
-# install.packages("BiocManager")
-# BiocManager::install("GenomicRanges")
-# BiocManager::install("rtracklayer")
-# install.packages("dplyr")
-# to verify installation run:
-# library(GenomicRanges)
-# library(rtracklayer)
-# library(dplyr)
-
-
-
-
-
-# Load required libraries
-library(GenomicRanges)
-library(rtracklayer)
+# Load necessary library
 library(dplyr)
 
-# Define file paths
-gtf_file <- "path/to/Homo_sapiens.GRCh38.104.gtf.gz"
-variant_file <- "path/to/variant_file.csv"
-
 # Read the GTF file
-isoforms <- import(gtf_file)
+gtf_file <- "Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff.gtf"
+gtf_data <- read.table(gtf_file, sep="\t", header=FALSE, comment.char="#", quote="")
 
-# Filter for exons
-exons <- isoforms[isoforms$type == "exon"]
+# Assign column names, initializing the first column as "chr"
+colnames(gtf_data) <- c("chr", "source", "feature", "start", "end", "score", "strand", "frame", "attribute")
 
-# Group exons by isoform
-isoform_granges <- split(exons, exons$transcript_id)
+# Swap columns: move 4th and 5th column to 2nd and 3rd positions and vice versa
+bed_df <- gtf_data %>% select(chr, start, end, source, feature, score, strand, frame, attribute)
 
-# Find non-overlapping regions
-isoform_specific_regions <- lapply(isoform_granges, function(isoform) {
-  other_isoforms <- isoform_granges[names(isoform_granges) != names(isoform)]
-  other_exons <- unlist(other_isoforms)
-  specific_regions <- setdiff(isoform, other_exons)
-  return(specific_regions)
-})
+# Write to a BED file
+write.table(bed_df, file="output.bed", sep="\t", quote=FALSE, col.names=FALSE, row.names=FALSE)
 
-# Combine results into a single GRanges object
-isoform_specific_regions <- unlist(isoform_specific_regions)
+# Read the output BED file
+bed_df <- read.table("output.bed", sep="\t", header=FALSE)
 
-# Read the variant file
-variants <- read.csv(variant_file, header = TRUE, stringsAsFactors = FALSE)
+# Set column names
+colnames(bed_df) <- c("chr", "chromStart", "chromEnd", "name", "score", "strand", "frame", "attribute", "miscellaneous")
 
-# Convert variant coordinates to GRanges
-variant_gr <- GRanges(seqnames = variants$Chr,
-                      ranges = IRanges(start = variants$Start, end = variants$End),
-                      strand = variants$Strand,
-                      variant_id = variants$gnomAD,  # Assuming gnomAD column has the variant ID
-                      amino_acid_change = variants$Gene_Name_ExAC)  # Adjust based on actual column name
+# Display the first 10 rows to confirm changes
+print(head(bed_df, 10))
 
-# Find overlaps with isoform-specific regions
-overlaps <- findOverlaps(variant_gr, isoform_specific_regions)
-
-# Extract overlapping variants and add Isoform info
-overlapping_variants <- as.data.frame(variant_gr[queryHits(overlaps)])
-overlapping_variants$Isoform <- names(isoform_specific_regions)[subjectHits(overlaps)]
-
-# Select and rename the required columns
-overlapping_variants_final <- overlapping_variants %>%
-  select(variant_id, amino_acid_change, seqnames, start, end, Isoform) %>%
-  rename(
-    variant_id = variant_id,
-    amino_acid_change = amino_acid_change,
-    Chr = seqnames,
-    Start = start,
-    End = end,
-    Isoform = Isoform
-  )
-
-# Add Gene_Name from the original variants data
-overlapping_variants_final <- merge(overlapping_variants_final, variants[, c("Gene_Name", "gnomAD")], by.x = "variant_id", by.y = "gnomAD", all.x = TRUE)
-
-# Save the result to a new CSV file
-write.csv(overlapping_variants_final, "overlapping_variants_with_info.csv", row.names = FALSE)
-
-# Print completion message
-cat("Isoform-specific regions identified and overlapping variants saved to overlapping_variants_with_info.csv\n")
+# Write the modified data frame back to a new file
+write.table(bed_df, file="output_with_headers.bed", sep="\t", quote=FALSE, col.names=TRUE, row.names=FALSE)
