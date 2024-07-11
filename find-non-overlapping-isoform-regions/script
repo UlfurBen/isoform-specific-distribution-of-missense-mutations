@@ -31,23 +31,36 @@ isoform_specific_regions <- unlist(isoform_specific_regions)
 variants <- read.csv(variant_file, header = TRUE, stringsAsFactors = FALSE)
 
 # Convert variant coordinates to GRanges
-variant_gr <- GRanges(seqnames = "chrX", # change if other chromosomes are involved
-                      ranges = IRanges(start = as.numeric(gsub("NC_000023.11:g.", "", variants$NC_000023.11.g.)),
-                                       end = as.numeric(gsub("NC_000023.11:g.", "", variants$NC_000023.11.g.))),
-                      strand = "*")
+variant_gr <- GRanges(seqnames = variants$Chr,
+                      ranges = IRanges(start = variants$Start, end = variants$End),
+                      strand = variants$Strand,
+                      variant_id = variants$gnomAD,  # Assuming gnomAD column has the variant ID
+                      amino_acid_change = variants$Gene_Name_ExAC)  # Adjust based on actual column name
 
 # Find overlaps with isoform-specific regions
 overlaps <- findOverlaps(variant_gr, isoform_specific_regions)
 
-# Extract overlapping variants
-overlapping_variants <- variants[queryHits(overlaps), ]
+# Extract overlapping variants and add Isoform info
+overlapping_variants <- as.data.frame(variant_gr[queryHits(overlaps)])
 overlapping_variants$Isoform <- names(isoform_specific_regions)[subjectHits(overlaps)]
 
-# Print results
-print(overlapping_variants)
+# Select and rename the required columns
+overlapping_variants_final <- overlapping_variants %>%
+  select(variant_id, amino_acid_change, seqnames, start, end, Isoform) %>%
+  rename(
+    variant_id = variant_id,
+    amino_acid_change = amino_acid_change,
+    Chr = seqnames,
+    Start = start,
+    End = end,
+    Isoform = Isoform
+  )
 
-# Export overlapping variants to a new CSV file
-write.csv(overlapping_variants, "overlapping_variants.csv", row.names = FALSE)
+# Add Gene_Name from the original variants data
+overlapping_variants_final <- merge(overlapping_variants_final, variants[, c("Gene_Name", "gnomAD")], by.x = "variant_id", by.y = "gnomAD", all.x = TRUE)
+
+# Save the result to a new CSV file
+write.csv(overlapping_variants_final, "overlapping_variants_with_info.csv", row.names = FALSE)
 
 # Print completion message
-cat("Isoform-specific regions identified and overlapping variants saved to overlapping_variants.csv\n")
+cat("Isoform-specific regions identified and overlapping variants saved to overlapping_variants_with_info.csv\n")
