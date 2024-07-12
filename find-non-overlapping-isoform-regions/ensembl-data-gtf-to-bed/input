@@ -4,7 +4,3 @@
 # To get gene names for convenience I used /hpchome/ubf2/The-Epigenetic-Machinery.csv I have stored on elja but
 # this file can be downloaded as a csv file from https://www.epigeneticmachinery.org/ (button at the top)
 
-# The variant file I used can be downloaded by clicking on homo_sapiens_variation.txt.gz on the ClinVar ftp website https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/variants/
-# on elja I have the file stored as homo_sapiens_variation_missense_ClinVar.txt but I filtered it from the original file using
-# the command grep -i 'missense' homo_sapiens_variation.txt | grep -i 'ClinVar' | grep -vi 'somatic' > homo_sapiens_variation_missense_ClinVar_not_somatic.txt
-# the variants' file's path on elja is /hpchome/ubf2/homo_sapiens_variation_missense_ClinVar_not_somatic.txt
