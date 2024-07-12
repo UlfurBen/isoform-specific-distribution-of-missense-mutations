@@ -1,2 +1,2 @@
 # On elja the region bed file's name is: "Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff_isoform_specific_regions.bed"
-# On elja the variant file's name is: "homo_sapiens_variation_missense_ClinVar.bed"
+# On elja the variant file's name is: "homo_sapiens_variation_missense_ClinVar_filtered_relevancy.bed"
