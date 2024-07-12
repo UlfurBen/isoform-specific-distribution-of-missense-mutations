@@ -1,0 +1,37 @@
+# Load necessary libraries
+library(dplyr)
+library(tidyr)
+
+# Define the input and output file paths
+input_file <- "homo_sapiens_variation_missense_ClinVar.txt"
+output_file <- "homo_sapiens_variation_missense_ClinVar.bed"
+
+# Define the column names manually
+column_names <- c("GeneName", "AC", "VariantAAChange", "SourceDBID", "ConsequenceType", "ClinicalSignificance",
+                  "PhenotypeDisease", "PhenotypeDiseaseSource", "CytogeneticBand", "ChromosomeCoordinate", 
+                  "EnsemblGeneID", "EnsemblTranscriptID", "EnsemblTranslationID", "Evidence")
+
+# Read the input file without headers and assign the column names
+data <- read.delim(input_file, header = FALSE, sep = "\t", col.names = column_names)
+
+# Select and rename columns as per the specification
+output_data <- data %>%
+  select(GeneName = GeneName,
+         AC = AC,
+         VariantAAChange = VariantAAChange,
+         SourceDBID = SourceDBID,
+         ConsequenceType = ConsequenceType,
+         ClinicalSignificance = ClinicalSignificance,
+         PhenotypeDisease = PhenotypeDisease,
+         PhenotypeDiseaseSource = PhenotypeDiseaseSource,
+         CytogeneticBand = CytogeneticBand,
+         ChromosomeCoordinate = ChromosomeCoordinate,
+         EnsemblGeneID = EnsemblGeneID,
+         EnsemblTranscriptID = EnsemblTranscriptID,
+         EnsemblTranslationID = EnsemblTranslationID,
+         Evidence = Evidence)
+
+# Write the output to a BED file
+write.table(output_data, output_file, sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE)
+
+cat("BED file has been written to", output_file, "\n")
