@@ -1,13 +1,13 @@
 # Input
-input <- homo_sapiens_variation_missense_ClinVar_pathogenic_likely_pathogenic_only_aa_change.txt
+input <- 'homo_sapiens_variation_missense_ClinVar_pathogenic_likely_pathogenic_only_aa_change.txt'
 
 # Output
-output <- homo_sapiens_variation_missense_ClinVar_pathogenic_likely_pathogenic_categorical-count.txt
+output <- 'homo_sapiens_variation_missense_ClinVar_pathogenic_likely_pathogenic_categorical-count.txt'
 
 # Read the updated amino acid change with property change file
 aa_change_data <- readLines(input)
 
-# Initialize a list to hold the summed counts of property changes
+# Initialize a list to hold the counts of property changes
 property_change_totals <- list(
   "Nonpolar->Nonpolar" = 0,
   "Nonpolar->Polar" = 0,
@@ -29,11 +29,18 @@ property_change_totals <- list(
 
 # Sum the counts for each property change type
 for (line in aa_change_data) {
-  parts <- strsplit(line, " ")[[1]]
-  property_change <- parts[2]
-  count <- as.numeric(parts[3])
-  
-  property_change_totals[[property_change]] <- property_change_totals[[property_change]] + count
+  parts <- strsplit(line, "\\s+")[[1]]
+  if (length(parts) >= 3) {
+    property_change <- parts[3]
+    
+    if (!is.null(property_change_totals[[property_change]])) {
+      property_change_totals[[property_change]] <- property_change_totals[[property_change]] + 1
+    } else {
+      warning(paste("Invalid property change in line:", line))
+    }
+  } else {
+    warning(paste("Line does not have enough parts:", line))
+  }
 }
 
 # Prepare the lines for the new file
