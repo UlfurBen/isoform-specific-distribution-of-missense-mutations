@@ -2,7 +2,7 @@
 # Get input_file by running grep -i 'pathogenic' homo_sapiens_variation_missense_ClinVar.txt | grep -i 'likely pathogenic' | grep -vi 'uncertain' | grep -vi 'benign' | grep -vi 'likely benign' > homo_sapiens_variation_missense_ClinVar_pathogenic_likely_pathogenic_only.txt
 input_file <- "homo_sapiens_variation_missense_ClinVar_pathogenic_likely_pathogenic_only.txt"
 property_lookup_file <- "Amino_acid_change_with_property_change.txt"
-output_file <- "polarity.txt"
+output_file <- "homo_sapiens_variation_missense_ClinVar_pathogenic_likely_pathogenic_only_aa_change.txt"
 
 # Read the input files
 data <- read.table(pipe(paste('grep -i "Pathogenic" "', input_file, '" | grep -vi "likely benign" | grep -vi "uncertain" | grep -vi "benign" | grep -vi "likely pathogenic"', sep = "")), header = FALSE, sep = "\t", stringsAsFactors = FALSE, quote = "")
