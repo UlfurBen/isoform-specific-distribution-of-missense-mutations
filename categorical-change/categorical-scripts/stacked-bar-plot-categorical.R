@@ -50,8 +50,8 @@ process_data <- function(data, label) {
   return(df)
 }
 
-df1 <- process_data(dataset1, "Dataset 1")
-df2 <- process_data(dataset2, "Dataset 2")
+df1 <- process_data(dataset1, "EM genes")
+df2 <- process_data(dataset2, "all genes")
 
 # Combine the datasets
 combined_df <- bind_rows(df1, df2)
@@ -77,7 +77,9 @@ combined_df <- combined_df %>%
 # Create the stacked bar plot
 ggplot(combined_df, aes(x = Category, y = Percentage, fill = Dataset)) +
   geom_bar(stat = "identity", position = "stack") +
-  labs(title = "Percentage of Each Categorical Change", y = "Percentage", x = "Categorical Change") +
+  labs(title = "Percentage of Each Categorical Change of ClinVar Missense Variants", 
+       y = "Percentage", 
+       x = "Categorical Change") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_brewer(palette = "Paired")
