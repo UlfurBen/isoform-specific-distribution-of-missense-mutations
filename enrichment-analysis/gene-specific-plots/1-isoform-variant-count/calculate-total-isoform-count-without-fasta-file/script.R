@@ -49,7 +49,7 @@ for (gene_name in gene_names) {
   print(paste("Processing gene:", gene_name))  # Debug print statement
   
   # Extract identifiers related to the current gene name from the variation file
-  command <- paste0("grep -i -w '", gene_name, "' ", variation_file, " | awk -F '\t' '{print $2}' | sort -u > temp_identifiers.txt")
+  command <- paste0("grep -i -w '", gene_name, "' ", variation_file, " | awk -F '\t' '{print $13}' | sort -u > temp_identifiers.txt")
   system(command)
   
   # Read the identifiers from the temporary file
