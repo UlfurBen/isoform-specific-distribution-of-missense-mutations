@@ -1,3 +1,26 @@
+# Define the file paths as variables
+gene_csv_file <- "The-Epigenetic-Machinery.csv"
+variation_file <- "homo_sapiens_variation_missense_ClinVar.txt"
+output_file <- "enrichment.txt"
+
+# Load gene names from a CSV file
+gene_data <- read.csv(gene_csv_file, header = TRUE)
+
+# Process each gene name from the CSV file
+for (gene_data in gene_data) {
+  
+  # Extract identifiers related to the current gene from the variation file
+  command <- paste0("grep -i -w '", gene_data, "' ", variation_file, " | awk -F '\t' '{print $13}' | sort -u > temp_identifiers.txt")
+  system(command)
+  
+  # Read the identifiers from the temporary file
+  temp_identifiers <- readLines("temp_identifiers.txt")
+  print(paste("Identifiers for", gene_data, ":", paste(temp_identifiers, collapse = ", ")))  # Debug print statement
+  
+  # Extract canonical identifiers from non-canonical ones
+  canonical_identifiers <- unique(sub("-.*", "", temp_identifiers))
+  print(paste("Canonical isoforms for", gene_data, ":", paste(canonical_identifiers, collapse = ", ")))  # Debug print statement
+
 # Define file paths
 input_file <- "enrichment_filtered_with_gene_total_variant_count.txt"
 output_file <- "count_ranges_with_zero.txt"
