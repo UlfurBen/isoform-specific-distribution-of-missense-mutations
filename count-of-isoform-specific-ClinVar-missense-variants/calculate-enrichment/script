@@ -8,6 +8,9 @@ bed_data <- read.table(input_file, header = FALSE, sep = "\t", stringsAsFactors 
 # Calculate seq-length (chromEnd - chromStart)
 seq_length <- bed_data[, 3] - bed_data[, 2]
 
+# Set seq-length to 1 if it is 0
+seq_length[seq_length == 0] <- 1
+
 # Ensure the last column (variant count) is numeric
 bed_data[, ncol(bed_data)] <- as.numeric(bed_data[, ncol(bed_data)])
 
