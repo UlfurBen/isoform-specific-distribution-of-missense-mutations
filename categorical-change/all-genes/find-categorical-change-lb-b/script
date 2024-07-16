@@ -5,7 +5,7 @@ property_lookup_file <- "Amino_acid_change_with_property_change.txt"
 output_file <- "homo_sapiens_variation_missense_ClinVar_benign_likely_benign_only_all_genes_aa_change.txt"
 
 # Read the input files
-data <- read.table(pipe(paste('grep -i "Pathogenic" "', input_file, '" | grep -vi "likely benign" | grep -vi "uncertain" | grep -vi "benign" | grep -vi "likely pathogenic"', sep = "")), header = FALSE, sep = "\t", stringsAsFactors = FALSE, quote = "")
+data <- read.table(input_file, header = FALSE, sep = "\t", stringsAsFactors = FALSE, quote = "")
 properties <- read.table(property_lookup_file, header = FALSE, sep = " ", stringsAsFactors = FALSE, quote = "")
 
 # Rename columns for better understanding
