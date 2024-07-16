@@ -1,0 +1,18 @@
+# File's name on elja is homo_sapiens_variation_missense_ClinVar_pathogenic_likely_pathogenic_only_EM_genes_categorical-count.txt
+
+Nonpolar->Nonpolar 3654
+Nonpolar->Polar 2475
+Nonpolar->Negatively_charged 722
+Nonpolar->Positively_charged 1135
+Polar->Nonpolar 1637
+Polar->Polar 1043
+Polar->Negatively_charged 444
+Polar->Positively_charged 1038
+Negatively_charged->Nonpolar 295
+Negatively_charged->Polar 453
+Negatively_charged->Negatively_charged 71
+Negatively_charged->Positively_charged 716
+Positively_charged->Nonpolar 1696
+Positively_charged->Polar 1606
+Positively_charged->Negatively_charged 170
+Positively_charged->Positively_charged 917
