@@ -3,8 +3,8 @@ library(dplyr)
 library(tidyr)
 
 # Define the input and output file paths
-input_file <- "homo_sapiens_variation_missense_ClinVar.txt"
-output_file <- "homo_sapiens_variation_missense_ClinVar.bed"
+input_file <- "homo_sapiens_variation_missense_ClinVar_not_somatic.txt"
+output_file <- "homo_sapiens_variation_missense_ClinVar_not_somatic.txt"
 
 # Define the column names manually
 column_names <- c("GeneName", "AC", "VariantAAChange", "SourceDBID", "ConsequenceType", "ClinicalSignificance",
