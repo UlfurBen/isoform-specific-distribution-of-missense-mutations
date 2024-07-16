@@ -8,19 +8,35 @@ identifier_file <- "The-Epigenetic-Machinery.csv"
 output_file <- "homo_sapiens_variation_missense_ClinVar_pathogenic_likely_pathogenic_only_EM_genes_aa_change.txt"
 
 # Read the input files
-data <- read.table(input_file, header = FALSE, sep = "\t", stringsAsFactors = FALSE, quote = "")
-properties <- read.table(property_lookup_file, header = FALSE, sep = " ", stringsAsFactors = FALSE, quote = "")
 identifiers <- read.csv(identifier_file, header = TRUE, stringsAsFactors = FALSE)
 
+# Extract relevant gene names from the first column of the identifier file
+relevant_gene_names <- identifiers[, 1]
+
+# Ensure relevant_gene_names is atomic
+relevant_gene_names <- as.vector(relevant_gene_names)
+
+# Write relevant gene names to a temporary file
+temp_gene_file <- tempfile()
+writeLines(relevant_gene_names, temp_gene_file)
+
+# Use grep to filter the variant file
+filtered_variant_file <- tempfile()
+system(paste("grep -F -f", temp_gene_file, input_file, ">", filtered_variant_file))
+
+# Read the filtered variant file
+data <- read.table(filtered_variant_file, header = FALSE, sep = "\t", stringsAsFactors = FALSE, quote = "")
+
+# Clean up temporary files
+unlink(temp_gene_file)
+unlink(filtered_variant_file)
+
+# Read the property lookup file
+properties <- read.table(property_lookup_file, header = FALSE, sep = " ", stringsAsFactors = FALSE, quote = "")
+
 # Rename columns for better understanding
-colnames(data) <- c("Column1", "Isoform", "AminoAcidChange", "Column4", "Column5", "Column6", "Column7", "Column8", "Column9", "Column10", "Column11", "Column12", "Identifier", "Column14")
+colnames(data) <- c("Column1", "Isoform", "AminoAcidChange", "GeneName", "Column5", "Column6", "Column7", "Column8", "Column9", "Column10", "Column11", "Column12", "UniProt", "Column14")
 colnames(properties) <- c("AminoAcidChange", "PropertyChange")
-
-# Extract relevant identifiers from the 23rd column of the identifier file
-relevant_identifiers <- identifiers[, 23]
-
-# Filter the data for relevant identifiers in the 13th column (Identifier column)
-filtered_data <- data[data$Identifier %in% relevant_identifiers, ]
 
 # Function to remove numeric characters between amino acid names
 filter_amino_acids <- function(variant) {
@@ -28,10 +44,14 @@ filter_amino_acids <- function(variant) {
 }
 
 # Apply the function to the relevant column (assuming the third column contains the amino acid changes)
-filtered_data$AminoAcidChange <- sapply(filtered_data$AminoAcidChange, filter_amino_acids)
+data$AminoAcidChange <- sapply(data$AminoAcidChange, filter_amino_acids)
+
+# Ensure AminoAcidChange is a character vector in both dataframes
+data$AminoAcidChange <- as.character(data$AminoAcidChange)
+properties$AminoAcidChange <- as.character(properties$AminoAcidChange)
 
 # Merge the data with properties based on the amino acid change
-merged_data <- merge(filtered_data, properties, by = "AminoAcidChange")
+merged_data <- merge(data, properties, by = "AminoAcidChange")
 
 # Select only the Isoform, AminoAcidChange, and PropertyChange columns for output
 output_data <- merged_data[, c("Isoform", "AminoAcidChange", "PropertyChange")]
