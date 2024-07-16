@@ -3,7 +3,7 @@ library(dplyr)
 library(stringr)
 
 # Define the input and output file paths
-input_file <- "homo_sapiens_variation_missense_ClinVar.bed"
+input_file <- "homo_sapiens_variation_missense_ClinVar_not_somatic.bed"
 output_file <- "homo_sapiens_variation_missense_ClinVar_filtered_relevancy.bed"
 
 # Read the input file
