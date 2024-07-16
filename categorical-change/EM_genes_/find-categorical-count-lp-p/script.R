@@ -2,7 +2,7 @@
 input <- 'homo_sapiens_variation_missense_ClinVar_pathogenic_likely_pathogenic_only_EM_genes_aa_change.txt'
 
 # Output
-output <- 'homo_sapiens_variation_missense_ClinVar_pathogenic_likely_pathogenic_categorical-count.txt'
+output <- 'homo_sapiens_variation_missense_ClinVar_pathogenic_likely_pathogenic_only_EM_genes_categorical-count.txt'
 
 # Read the updated amino acid change with property change file
 aa_change_data <- readLines(input)
