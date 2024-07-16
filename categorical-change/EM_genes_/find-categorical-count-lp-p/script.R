@@ -1,5 +1,5 @@
 # Input
-input <- 'homo_sapiens_variation_missense_ClinVar_pathogenic_likely_pathogenic_only_aa_change.txt'
+input <- 'homo_sapiens_variation_missense_ClinVar_pathogenic_likely_pathogenic_only_EM_genes_aa_change.txt'
 
 # Output
 output <- 'homo_sapiens_variation_missense_ClinVar_pathogenic_likely_pathogenic_categorical-count.txt'
