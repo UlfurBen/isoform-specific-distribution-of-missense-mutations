@@ -1,1 +1,18 @@
 # On elja the file's name is homo_sapiens_variation_missense_ClinVar_benign_likely_benign_only_all_genes_categorical-count.txt
+
+Nonpolar->Nonpolar 24712
+Nonpolar->Polar 10221
+Nonpolar->Negatively_charged 1574
+Nonpolar->Positively_charged 2782
+Polar->Nonpolar 8483
+Polar->Polar 6451
+Polar->Negatively_charged 797
+Polar->Positively_charged 4447
+Negatively_charged->Nonpolar 1961
+Negatively_charged->Polar 2414
+Negatively_charged->Negatively_charged 2300
+Negatively_charged->Positively_charged 2242
+Positively_charged->Nonpolar 2688
+Positively_charged->Polar 9168
+Positively_charged->Negatively_charged 721
+Positively_charged->Positively_charged 5003
