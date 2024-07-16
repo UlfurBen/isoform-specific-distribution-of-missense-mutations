@@ -13,14 +13,20 @@ properties <- read.table(property_lookup_file, header = FALSE, sep = " ", string
 identifiers <- read.csv(identifier_file, header = TRUE, stringsAsFactors = FALSE)
 
 # Rename columns for better understanding
-colnames(data) <- c("Column1", "Isoform", "AminoAcidChange", "Column4", "Column5", "Column6", "Column7", "Column8", "Column9", "Column10", "Column11", "Column12", "Identifier", "Column14")
+colnames(data) <- c("Column1", "Isoform", "AminoAcidChange", "Column4", "Column5", "Column6", "Column7", "Column8", "Column9", "Column10", "Column11", "Column12", "UniProt", "Column14")
 colnames(properties) <- c("AminoAcidChange", "PropertyChange")
 
-# Extract relevant identifiers from the 23rd column of the identifier file
-relevant_identifiers <- identifiers[, 23]
+# Extract relevant identifiers from the UniProt column of the identifier file
+relevant_identifiers <- identifiers$UniProt
 
-# Filter the data for relevant identifiers in the 13th column (Identifier column)
-filtered_data <- data[data$Identifier %in% relevant_identifiers, ]
+# Ensure relevant_identifiers is atomic
+relevant_identifiers <- as.vector(relevant_identifiers)
+
+# Ensure data$UniProt is atomic
+data$UniProt <- as.vector(data$UniProt)
+
+# Filter the data for relevant identifiers in the 13th column (UniProt column)
+filtered_data <- data[data$UniProt %in% relevant_identifiers, ]
 
 # Function to remove numeric characters between amino acid names
 filter_amino_acids <- function(variant) {
@@ -29,6 +35,10 @@ filter_amino_acids <- function(variant) {
 
 # Apply the function to the relevant column (assuming the third column contains the amino acid changes)
 filtered_data$AminoAcidChange <- sapply(filtered_data$AminoAcidChange, filter_amino_acids)
+
+# Ensure AminoAcidChange is a character vector in both dataframes
+filtered_data$AminoAcidChange <- as.character(filtered_data$AminoAcidChange)
+properties$AminoAcidChange <- as.character(properties$AminoAcidChange)
 
 # Merge the data with properties based on the amino acid change
 merged_data <- merge(filtered_data, properties, by = "AminoAcidChange")
