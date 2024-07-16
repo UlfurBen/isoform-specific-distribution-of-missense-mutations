@@ -5,7 +5,7 @@ property_lookup_file <- "Amino_acid_change_with_property_change.txt"
 identifier_file <- "The-Epigenetic-Machinery.csv"
 
 # Output
-output_file <- "categorical-change-EM-genes.txt"
+output_file <- "homo_sapiens_variation_missense_ClinVar_pathogenic_likely_pathogenic_only_EM_genes_aa_change.txt"
 
 # Read the input files
 data <- read.table(input_file, header = FALSE, sep = "\t", stringsAsFactors = FALSE, quote = "")
@@ -16,10 +16,10 @@ identifiers <- read.csv(identifier_file, header = TRUE, stringsAsFactors = FALSE
 colnames(data) <- c("Column1", "Isoform", "AminoAcidChange", "Column4", "Column5", "Column6", "Column7", "Column8", "Column9", "Column10", "Column11", "Column12", "Identifier", "Column14")
 colnames(properties) <- c("AminoAcidChange", "PropertyChange")
 
-# Extract relevant identifiers from the identifier file
-relevant_identifiers <- identifiers$Identifier
+# Extract relevant identifiers from the 23rd column of the identifier file
+relevant_identifiers <- identifiers[, 23]
 
-# Filter the data for relevant identifiers in the 13th column
+# Filter the data for relevant identifiers in the 13th column (Identifier column)
 filtered_data <- data[data$Identifier %in% relevant_identifiers, ]
 
 # Function to remove numeric characters between amino acid names
