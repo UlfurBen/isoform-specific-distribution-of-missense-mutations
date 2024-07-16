@@ -5,6 +5,14 @@ output_file <- "Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff_isoform_specific_re
 # Read the input BED file
 bed_data <- read.table(input_file, header = FALSE, sep = "\t", stringsAsFactors = FALSE)
 
+# Ensure the last column (variant count) is numeric
+bed_data[, ncol(bed_data)] <- as.numeric(bed_data[, ncol(bed_data)])
+
+# Check for NA values after conversion
+if(any(is.na(bed_data[, ncol(bed_data)]))) {
+  stop("Error: The last column contains non-numeric values that cannot be converted.")
+}
+
 # Sort the data by the last column (variant count) in descending order
 sorted_bed_data <- bed_data[order(-bed_data[, ncol(bed_data)]), ]
 
