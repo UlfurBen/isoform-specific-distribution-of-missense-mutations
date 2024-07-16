@@ -16,7 +16,7 @@ ranges <- c("1-5", "6-10", "11-20", "21-30", "31-40", "41-50", "51-100", "101-15
 for (gene_name in gene_data[, 1]) {
   
   # Extract identifiers related to the current gene from the variation file
-  command <- paste0("grep -i -w '", gene_name, "' ", variation_file, " | awk -F '\t' '{print $13}' | sort -u > temp_identifiers.txt")
+  command <- paste0("grep -i -w '", gene_name, "' ", variation_file, " | awk -F '\t' '{print $23}' | sort -u > temp_identifiers.txt")
   system(command)
   
   # Read the identifiers from the temporary file
