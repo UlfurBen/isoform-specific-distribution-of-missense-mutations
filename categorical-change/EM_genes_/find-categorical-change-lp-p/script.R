@@ -13,7 +13,7 @@ properties <- read.table(property_lookup_file, header = FALSE, sep = " ", string
 identifiers <- read.csv(identifier_file, header = TRUE, stringsAsFactors = FALSE)
 
 # Rename columns for better understanding
-colnames(data) <- c("Column1", "Isoform", "AminoAcidChange", "Column4", "Column5", "Column6", "Column7", "Column8", "Column9", "Column10", "Column11", "Column12", "Identifier", Column14)
+colnames(data) <- c("Column1", "Isoform", "AminoAcidChange", "Column4", "Column5", "Column6", "Column7", "Column8", "Column9", "Column10", "Column11", "Column12", "Identifier", "Column14")
 colnames(properties) <- c("AminoAcidChange", "PropertyChange")
 
 # Extract relevant identifiers from the identifier file
