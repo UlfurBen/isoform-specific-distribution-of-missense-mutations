@@ -17,17 +17,8 @@ variants_data <- fread(input_file_variants, header = TRUE, sep = "\t")
 # Rename columns for merging
 setnames(variants_data, old = c("chr", "chromStart", "chromEnd"), new = c("chr", "start", "end"))
 
-# Create a key for fast joins
-setkey(variants_data, chr, start, end)
-
-# Function to count variants in each region
-count_variants <- function(chr, start, end) {
-  variants_in_region <- variants_data[chr == chr & start <= end & end >= start, .N]
-  return(variants_in_region)
-}
-
-# Apply the function to each row of the regions data
-regions_data[, variant_count := count_variants(chr, chromStart, chromEnd), by = .(chr, chromStart, chromEnd)]
+# Count the number of variants in each region
+regions_data[, variant_count := variants_data[.SD, on = .(chr, start <= chromEnd, end >= chromStart), .N], by = .(chr, chromStart, chromEnd)]
 
 # Write the output to a new BED file
 fwrite(regions_data, output_file, sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE)
