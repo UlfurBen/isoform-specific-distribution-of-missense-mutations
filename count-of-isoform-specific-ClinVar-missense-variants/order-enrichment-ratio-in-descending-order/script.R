@@ -16,7 +16,7 @@ print(colnames(data))
 data <- data[V2 != V3]
 
 # Order the rows in descending order based on the last column values
-data <- data[order(-data[[.N]])]
+data <- data[order(-V11)]
 
 # Write the output to a new file
 fwrite(data, output_file, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
