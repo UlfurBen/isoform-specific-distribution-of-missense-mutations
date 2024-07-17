@@ -40,14 +40,15 @@ Positively_charged->Positively_charged 1046
 # Function to parse the data into a named vector
 parse_data <- function(data) {
   lines <- strsplit(data, "\n")[[1]]
+  lines <- lines[lines != ""] # Remove empty lines
   data_list <- lapply(lines, function(line) {
     parts <- strsplit(line, " ")[[1]]
     value <- as.numeric(parts[length(parts)])
     name <- paste(parts[1:(length(parts) - 1)], collapse = " ")
-    return(c(name = value))
+    return(c(name, value))
   })
-  data_vector <- unlist(data_list)
-  names(data_vector) <- sapply(data_list, function(x) names(x))
+  data_vector <- as.numeric(sapply(data_list, function(x) x[2]))
+  names(data_vector) <- sapply(data_list, function(x) x[1])
   return(data_vector)
 }
 
@@ -91,8 +92,9 @@ results_df <- data.frame(
   nonEM_Count = sapply(results, function(x) x$table[1, 2]),
   EM_Other = sapply(results, function(x) x$table[2, 1]),
   nonEM_Other = sapply(results, function(x) x$table[2, 2]),
-  P_Value = sapply(results, function(x) x$p_value)
+  P_Value = sapply(results, function(x) format(x$p_value, digits = 6, scientific = FALSE))
 )
 
-# Print the results
+# Print the results without scientific notation and limit to 6 digits
+options(scipen = 999)  # Turn off scientific notation
 print(results_df)
