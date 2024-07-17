@@ -18,7 +18,7 @@ read_bed_file <- function(file) {
   # Filter out rows with NA values in start or end after coercion
   bed <- bed %>% filter(!is.na(start) & !is.na(end))
   
-  return(bed)
+  return(list(data = bed, headers = colnames(bed)))
 }
 
 # Function to check for overlaps and trim regions
@@ -57,8 +57,8 @@ trim_overlaps <- function(bed) {
   return(gr)
 }
 
-# Function to write the trimmed BED file
-write_bed_file <- function(gr, output_file) {
+# Function to write the trimmed BED file with headers
+write_bed_file <- function(gr, output_file, headers) {
   bed_out <- data.frame(seqnames = seqnames(gr),
                         start = start(gr),
                         end = end(gr),
@@ -68,14 +68,19 @@ write_bed_file <- function(gr, output_file) {
                         strand = strand(gr),
                         frame = mcols(gr)$frame,
                         attribute = mcols(gr)$attribute)
-  write.table(bed_out, file = output_file, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
+  # Write headers
+  write.table(headers, file = output_file, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
+  # Write data
+  write.table(bed_out, file = output_file, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE, append = TRUE)
 }
 
 # Read input BED file, limited to the first 1000 lines
-bed <- read_bed_file(input_file)
+bed_info <- read_bed_file(input_file)
+bed <- bed_info$data
+headers <- bed_info$headers
 
 # Trim overlapping regions
 gr_trimmed <- trim_overlaps(bed)
 
 # Write trimmed BED file
-write_bed_file(gr_trimmed, output_file)
+write_bed_file(gr_trimmed, output_file, headers)
