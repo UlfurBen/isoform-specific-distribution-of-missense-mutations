@@ -1,6 +1,6 @@
 # File's name on elja is enrichmen-2.txt
 
-Gene_Name,Identifier,Variation count,Benign,Likely benign,VUS,Likely pathogenic,Pathogenic
+Gene_Name,Identifier,Variation_count,Benign,Likely_benign,VUS,Likely_pathogenic,Pathogenic
 AIRE,O43918,222,32,30,178,28,33
 AIRE,O43918-2,0,0,0,0,0,0
 AIRE,O43918-3,0,0,0,0,0,0
