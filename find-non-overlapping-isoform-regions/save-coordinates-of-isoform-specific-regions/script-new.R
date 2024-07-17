@@ -6,9 +6,9 @@ output_file <- "Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff_isoform_specific_re
 library(dplyr)
 library(GenomicRanges)
 
-# Function to read and parse the BED file, limited to the first 1000 lines
+# Function to read and parse the BED file
 read_bed_file <- function(file) {
-  bed <- read.delim(file, header = FALSE, stringsAsFactors = FALSE, nrows = 1000)
+  bed <- read.delim(file, header = FALSE, stringsAsFactors = FALSE)
   colnames(bed) <- c("chr", "start", "end", "source", "feature", "score", "strand", "frame", "attribute")
   
   # Ensure start and end columns are numeric
@@ -69,12 +69,12 @@ write_bed_file <- function(gr, output_file, headers) {
                         frame = mcols(gr)$frame,
                         attribute = mcols(gr)$attribute)
   # Write headers
-  write.table(headers, file = output_file, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
+  write.table(t(headers), file = output_file, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
   # Write data
   write.table(bed_out, file = output_file, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE, append = TRUE)
 }
 
-# Read input BED file, limited to the first 1000 lines
+# Read input BED file
 bed_info <- read_bed_file(input_file)
 bed <- bed_info$data
 headers <- bed_info$headers
