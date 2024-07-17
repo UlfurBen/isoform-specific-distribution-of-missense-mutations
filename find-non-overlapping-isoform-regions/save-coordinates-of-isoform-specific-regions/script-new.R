@@ -69,7 +69,7 @@ write_bed_file <- function(gr, output_file, headers) {
                         frame = mcols(gr)$frame,
                         attribute = mcols(gr)$attribute)
   # Write headers
-  write.table(t(headers), file = output_file, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
+  cat(paste(headers, collapse = "\t"), "\n", file = output_file)
   # Write data
   write.table(bed_out, file = output_file, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE, append = TRUE)
 }
@@ -84,3 +84,5 @@ gr_trimmed <- trim_overlaps(bed)
 
 # Write trimmed BED file
 write_bed_file(gr_trimmed, output_file, headers)
+
+cat("Variant counts have been added and data have been written to", output_file, "\n")
