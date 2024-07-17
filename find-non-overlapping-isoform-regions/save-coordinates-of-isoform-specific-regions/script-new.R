@@ -9,7 +9,7 @@ library(GenomicRanges)
 # Function to read and parse the BED file
 read_bed_file <- function(file) {
   bed <- read.delim(file, header = FALSE, stringsAsFactors = FALSE)
-  colnames(bed) <- c("chr", "chromStart", "chromEnd", "source", "feature", "score", "strand", "frame", "attribute")
+  colnames(bed) <- c("chr", "start", "end", "source", "feature", "score", "strand", "frame", "attribute")
   
   # Ensure start and end columns are numeric
   bed$start <- suppressWarnings(as.numeric(bed$start))
