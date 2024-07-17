@@ -10,6 +10,11 @@ library(GenomicRanges)
 read_bed_file <- function(file) {
   bed <- read.delim(file, header = FALSE, stringsAsFactors = FALSE)
   colnames(bed) <- c("chr", "start", "end", "source", "feature", "score", "strand", "frame", "attribute")
+  
+  # Ensure start and end columns are numeric
+  bed$start <- as.numeric(bed$start)
+  bed$end <- as.numeric(bed$end)
+  
   return(bed)
 }
 
