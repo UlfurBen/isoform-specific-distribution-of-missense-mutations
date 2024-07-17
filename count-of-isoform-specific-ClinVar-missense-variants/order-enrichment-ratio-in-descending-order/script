@@ -1,1 +1,24 @@
+# Load necessary libraries
+library(data.table)
 
+# Define the input and output file paths
+input_file <- "Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff_isoform_specific_regions_with_variant_counts_enrichment_ratio.bed"
+output_file <- "Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff_isoform_specific_regions_with_variant_counts_enrichment_ratio_in_descending_order.bed"
+
+# Read the input file
+data <- fread(input_file, header = FALSE, sep = "\t")
+
+# Print the column names for debugging
+cat("Column names in the input file:\n")
+print(colnames(data))
+
+# Exclude rows where the second and third column values are the same
+data <- data[V2 != V3]
+
+# Order the rows in descending order based on the last column values
+data <- data[order(-data[[.N]])]
+
+# Write the output to a new file
+fwrite(data, output_file, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
+
+cat("Data has been ordered and written to", output_file, "\n")
