@@ -1,5 +1,5 @@
 # Define file paths
-input_file <- "Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff_isoform_specific_regions_with_variant_counts_in_descending_order.bed"
+input_file <- "Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff_isoform_specific_regions_with_variant_counts.bed"
 output_file <- "Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff_isoform_specific_regions_with_variant_counts_enrichment_ratio.bed"
 
 # Read the input BED file
