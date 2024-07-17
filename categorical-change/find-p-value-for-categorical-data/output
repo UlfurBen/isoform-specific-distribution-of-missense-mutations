@@ -1,0 +1,33 @@
+Nonpolar->Nonpolar                           25296  7.854219e-71
+Nonpolar->Polar                              28797  6.050903e-03
+Nonpolar->Negatively_charged                 31116  9.337035e-04
+Nonpolar->Positively_charged                 29779  1.321886e-27
+Polar->Nonpolar                              29958  1.803447e-01
+Polar->Polar                                 29973  5.173145e-09
+Polar->Negatively_charged                    32290 8.128642e-215
+Polar->Positively_charged                    30927  1.564615e-64
+Negatively_charged->Nonpolar                 31665  5.043940e-01
+Negatively_charged->Polar                    31746  4.544892e-01
+Negatively_charged->Negatively_charged       32434  4.519843e-02
+Negatively_charged->Positively_charged       31608  4.950595e-02
+Positively_charged->Nonpolar                 30932  3.553330e-39
+Positively_charged->Polar                    30318  1.617247e-12
+Positively_charged->Negatively_charged       32329  4.521952e-01
+Positively_charged->Positively_charged       31677  1.347417e-09
+
+Nonpolar->Nonpolar                                                                                                                                                                     0.0000000000000000000000000000000000000000000000000000000000000000000000785422
+Nonpolar->Polar                                                                                                                                                                                                                                             0.0060509
+Nonpolar->Negatively_charged                                                                                                                                                                                                                              0.000933703
+Nonpolar->Positively_charged                                                                                                                                                                                                       0.00000000000000000000000000132189
+Polar->Nonpolar                                                                                                                                                                                                                                              0.180345
+Polar->Polar                                                                                                                                                                                                                                         0.00000000517314
+Polar->Negatively_charged              0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000812864
+Polar->Positively_charged                                                                                                                                                                     0.000000000000000000000000000000000000000000000000000000000000000156462
+Negatively_charged->Nonpolar                                                                                                                                                                                                                                 0.504394
+Negatively_charged->Polar                                                                                                                                                                                                                                    0.454489
+Negatively_charged->Negatively_charged                                                                                                                                                                                                                      0.0451984
+Negatively_charged->Positively_charged                                                                                                                                                                                                                      0.0495059
+Positively_charged->Nonpolar                                                                                                                                                                                           0.00000000000000000000000000000000000000355333
+Positively_charged->Polar                                                                                                                                                                                                                         0.00000000000161725
+Positively_charged->Negatively_charged                                                                                                                                                                                                                       0.452195
+Positively_charged->Positively_charged                                                                                                                                                                                                               0.00000000134742
