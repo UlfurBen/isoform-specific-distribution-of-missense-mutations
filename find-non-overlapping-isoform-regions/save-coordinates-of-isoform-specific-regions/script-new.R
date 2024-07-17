@@ -6,14 +6,17 @@ output_file <- "Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff_isoform_specific_re
 library(dplyr)
 library(GenomicRanges)
 
-# Function to read and parse the BED file
+# Function to read and parse the BED file, limited to the first 1000 lines
 read_bed_file <- function(file) {
-  bed <- read.delim(file, header = FALSE, stringsAsFactors = FALSE)
+  bed <- read.delim(file, header = FALSE, stringsAsFactors = FALSE, nrows = 1000)
   colnames(bed) <- c("chr", "start", "end", "source", "feature", "score", "strand", "frame", "attribute")
   
   # Ensure start and end columns are numeric
-  bed$start <- as.numeric(bed$start)
-  bed$end <- as.numeric(bed$end)
+  bed$start <- suppressWarnings(as.numeric(bed$start))
+  bed$end <- suppressWarnings(as.numeric(bed$end))
+  
+  # Filter out rows with NA values in start or end after coercion
+  bed <- bed %>% filter(!is.na(start) & !is.na(end))
   
   return(bed)
 }
@@ -23,14 +26,14 @@ trim_overlaps <- function(bed) {
   gr <- GRanges(seqnames = bed$chr,
                 ranges = IRanges(start = bed$start, end = bed$end),
                 strand = bed$strand,
+                source = bed$source,
+                feature = bed$feature,
                 score = bed$score,
+                frame = bed$frame,
                 attribute = bed$attribute)
   
   # Find overlaps
   overlaps <- findOverlaps(gr, gr)
-  
-  # Initialize a list to store trimmed regions
-  trimmed_regions <- list()
   
   # Process each overlap
   for (i in seq_along(overlaps)) {
@@ -68,7 +71,7 @@ write_bed_file <- function(gr, output_file) {
   write.table(bed_out, file = output_file, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
 }
 
-# Read input BED file
+# Read input BED file, limited to the first 1000 lines
 bed <- read_bed_file(input_file)
 
 # Trim overlapping regions
