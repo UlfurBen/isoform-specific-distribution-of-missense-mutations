@@ -35,12 +35,15 @@ print(colnames(variants_data))
 setkey(variants_data, chr, start, end)
 
 # Function to count variants in each region
-count_variants <- function(chr, start, end) {
+count_variants <- function(region) {
+  chr <- region$chr
+  start <- region$start
+  end <- region$end
   return(variants_data[chr == chr & start <= end & end >= start, .N])
 }
 
 # Apply the function to each row of the regions data
-regions_data[, variant_count := count_variants(chr, start, end), by = .(chr, start, end)]
+regions_data[, variant_count := mapply(count_variants, .SD), by = .(chr, start, end), .SDcols = c("chr", "start", "end")]
 
 # Write the output to a new BED file with headers
 fwrite(regions_data, output_file, sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE)
