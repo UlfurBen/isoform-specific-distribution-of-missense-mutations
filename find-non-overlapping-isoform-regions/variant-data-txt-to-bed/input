@@ -2,3 +2,5 @@
 # on elja I have the file stored as homo_sapiens_variation_missense_ClinVar.txt but I filtered it from the original file using
 # the command grep -i 'missense' homo_sapiens_variation.txt | grep -i 'ClinVar' | grep -vi 'somatic' > homo_sapiens_variation_missense_ClinVar_not_somatic.txt
 # the variants' file's path on elja is /hpchome/ubf2/homo_sapiens_variation_missense_ClinVar_not_somatic.txt
+
+# This variant file is of the GRCh37 in Ensembl 65.
