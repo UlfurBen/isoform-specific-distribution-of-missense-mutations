@@ -1,6 +1,6 @@
 # Define file paths
-input_file <- "Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff_isoform_specific_regions_with_variant_counts.bed"
-output_file <- "Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff_isoform_specific_regions_with_variant_counts_enrichment_ratio.bed"
+input_file <- "Homo_sapiens.GRCh37.87_with_headers_isoform_specific_regions_with_variant_counts.bed"
+output_file <- "Homo_sapiens.GRCh37.87_with_headers_isoform_specific_regions_with_variant_counts_enrichment_ratio.bed"
 
 # Read the input BED file
 bed_data <- read.table(input_file, header = FALSE, sep = "\t", stringsAsFactors = FALSE)
