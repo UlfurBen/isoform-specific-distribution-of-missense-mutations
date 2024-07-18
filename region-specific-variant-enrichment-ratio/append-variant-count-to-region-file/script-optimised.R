@@ -17,33 +17,23 @@ variants_data <- fread(input_file_variants, header = TRUE, sep = "\t")
 # Print column names for debugging
 cat("Column names in regions_data:\n")
 print(colnames(regions_data))
-cat("\nColumn names in variants_data before renaming:\n")
+cat("\nColumn names in variants_data:\n")
 print(colnames(variants_data))
 
 # Convert 'chr' columns to character type to ensure consistency
 regions_data[, chr := as.character(chr)]
 variants_data[, chr := as.character(chr)]
 
-# Rename columns for merging in variants data
-setnames(variants_data, old = c("chromStart", "chromEnd"), new = c("start", "end"))
-
-# Print column names after renaming for debugging
-cat("\nColumn names in variants_data after renaming:\n")
-print(colnames(variants_data))
-
 # Create a key for fast joins
 setkey(variants_data, chr, start, end)
 
 # Function to count variants in each region
-count_variants <- function(region) {
-  chr <- region$chr
-  start <- region$start
-  end <- region$end
+count_variants <- function(chr, start, end) {
   return(variants_data[chr == chr & start <= end & end >= start, .N])
 }
 
 # Apply the function to each row of the regions data
-regions_data[, variant_count := mapply(count_variants, .SD), by = .(chr, start, end), .SDcols = c("chr", "start", "end")]
+regions_data[, variant_count := mapply(count_variants, chr, start, end)]
 
 # Write the output to a new BED file with headers
 fwrite(regions_data, output_file, sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE)
