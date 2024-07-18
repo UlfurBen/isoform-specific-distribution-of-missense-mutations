@@ -2,11 +2,11 @@
 library(dplyr)
 
 # Define output files
-output_bed_file <- "Homo_sapiens.GRCh37.65_CDS.bed"
-output_bed_file_with_headers <- "Homo_sapiens.GRCh37.65_CDS_with_headers.bed"
+output_bed_file <- "Homo_sapiens.GRCh37.87.bed"
+output_bed_file_with_headers <- "Homo_sapiens.GRCh37.87_with_headers.bed"
 
 # Read the GTF file
-gtf_file <- "Homo_sapiens.GRCh37.65.gtf"
+gtf_file <- "Homo_sapiens.GRCh37.87.gtf"
 gtf_data <- read.table(gtf_file, sep="\t", header=FALSE, comment.char="#", quote="")
 
 # Assign column names, initializing the first column as "chr"
