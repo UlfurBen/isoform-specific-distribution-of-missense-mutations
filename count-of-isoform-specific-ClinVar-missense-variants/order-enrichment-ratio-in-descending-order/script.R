@@ -2,8 +2,8 @@
 library(data.table)
 
 # Define the input and output file paths
-input_file <- "Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff_isoform_specific_regions_with_variant_counts_enrichment_ratio.bed"
-output_file <- "Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff_isoform_specific_regions_with_variant_counts_enrichment_ratio_in_descending_order.bed"
+input_file <- "Homo_sapiens.GRCh37.87_with_headers_isoform_specific_regions_with_variant_counts_enrichment_ratio.bed"
+output_file <- "Homo_sapiens.GRCh37.87_with_headers_isoform_specific_regions_with_variant_counts_enrichment_ratio_in_descending_order.bed"
 
 # Read the input file
 data <- fread(input_file, header = FALSE, sep = "\t")
