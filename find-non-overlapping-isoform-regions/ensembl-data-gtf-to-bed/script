@@ -2,7 +2,7 @@
 library(dplyr)
 
 # Read the GTF file
-gtf_file <- "Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff.gtf"
+gtf_file <- "Homo_sapiens.GRCh37.65.gtf"
 gtf_data <- read.table(gtf_file, sep="\t", header=FALSE, comment.char="#", quote="")
 
 # Assign column names, initializing the first column as "chr"
