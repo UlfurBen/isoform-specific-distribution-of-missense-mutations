@@ -1,6 +1,6 @@
 # Main script
-input_file <- "Homo_sapiens.GRCh37.65_with_headers.bed"
-output_file <- "Homo_sapiens.GRCh37.65_with_headers_isoform_specific_regions.bed"
+input_file <- "Homo_sapiens.GRCh37.87_with_headers.bed"
+output_file <- "Homo_sapiens.GRCh37.87_with_headers_isoform_specific_regions.bed"
 
 # Load necessary libraries
 library(dplyr)
