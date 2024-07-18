@@ -3,12 +3,12 @@ library(dplyr)
 library(data.table)
 
 # Set the library path
-.libPaths("/hpchome/ubf2/R/x86_64-pc-linux-gnu-library/4.1")
+# .libPaths("/hpchome/ubf2/R/x86_64-pc-linux-gnu-library/4.1")
 
 # Define the input and output file paths
-input_file_regions <- "Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff_isoform_specific_regions.bed"
+input_file_regions <- "Homo_sapiens.GRCh37.87_with_headers_isoform_specific_regions.bed"
 input_file_variants <- "homo_sapiens_variation_missense_ClinVar_filtered_relevancy.bed"
-output_file <- "Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff_isoform_specific_regions_with_variant_counts.bed"
+output_file <- "Homo_sapiens.GRCh37.87_with_headers_isoform_specific_regions_with_variant_counts.bed"
 
 # Read the input files
 regions_data <- fread(input_file_regions, header = TRUE, sep = "\t")
