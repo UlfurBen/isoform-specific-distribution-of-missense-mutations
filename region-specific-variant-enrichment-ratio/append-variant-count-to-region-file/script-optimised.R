@@ -25,15 +25,15 @@ regions_data[, chr := as.character(chr)]
 variants_data[, chr := as.character(chr)]
 
 # Create a key for fast joins
-setkey(variants_data, chr, start, end)
+setkey(variants_data, chr, chromStart, chromEnd)
 
 # Function to count variants in each region
-count_variants <- function(chr, start, end) {
-  return(variants_data[chr == chr & start <= end & end >= start, .N])
+count_variants <- function(chr, chromStart, chromEnd) {
+  return(variants_data[chr == chr & chromStart <= chromEnd & chromEnd >= chromStart, .N])
 }
 
 # Apply the function to each row of the regions data
-regions_data[, variant_count := mapply(count_variants, chr, start, end)]
+regions_data[, variant_count := mapply(count_variants, chr, chromStart, chromEnd)]
 
 # Write the output to a new BED file with headers
 fwrite(regions_data, output_file, sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE)
