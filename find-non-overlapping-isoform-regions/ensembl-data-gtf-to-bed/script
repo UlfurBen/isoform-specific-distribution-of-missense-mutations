@@ -1,9 +1,9 @@
 # Load necessary library
 library(dplyr)
 
-# Define output file
-output_bed_file <- "Homo_sapiens.GRCh37.65.bed"
-output_bed_file_with_headers <- "Homo_sapiens.GRCh37.65_with_headers.bed"
+# Define output files
+output_bed_file <- "Homo_sapiens.GRCh37.65_CDS.bed"
+output_bed_file_with_headers <- "Homo_sapiens.GRCh37.65_CDS_with_headers.bed"
 
 # Read the GTF file
 gtf_file <- "Homo_sapiens.GRCh37.65.gtf"
@@ -12,8 +12,11 @@ gtf_data <- read.table(gtf_file, sep="\t", header=FALSE, comment.char="#", quote
 # Assign column names, initializing the first column as "chr"
 colnames(gtf_data) <- c("chr", "source", "feature", "start", "end", "score", "strand", "frame", "attribute")
 
+# Filter the data to include only lines containing "CDS"
+cds_data <- gtf_data %>% filter(feature == "CDS")
+
 # Swap columns: move 4th and 5th column to 2nd and 3rd positions and vice versa
-bed_df <- gtf_data %>% select(chr, start, end, source, feature, score, strand, frame, attribute)
+bed_df <- cds_data %>% select(chr, start, end, source, feature, score, strand, frame, attribute)
 
 # Write to a BED file
 write.table(bed_df, file=output_bed_file, sep="\t", quote=FALSE, col.names=FALSE, row.names=FALSE)
