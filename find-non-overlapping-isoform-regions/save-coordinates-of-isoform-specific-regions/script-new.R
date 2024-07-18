@@ -21,7 +21,7 @@ read_bed_file <- function(file) {
   return(list(data = bed, headers = colnames(bed)))
 }
 
-# Function to trim overlapping regions
+# Function to check for overlaps and trim regions
 trim_overlaps <- function(bed) {
   gr <- GRanges(seqnames = bed$chr,
                 ranges = IRanges(start = bed$start, end = bed$end),
@@ -32,34 +32,34 @@ trim_overlaps <- function(bed) {
                 frame = bed$frame,
                 attribute = bed$attribute)
   
-  # Reduce overlapping ranges
-  reduced_gr <- reduce(gr, min.gapwidth = 0)
+  # Find overlaps
+  overlaps <- findOverlaps(gr)
   
-  # Trim the original GRanges based on the reduced ranges
-  trimmed_gr <- gr
-  
-  for (i in seq_along(reduced_gr)) {
-    overlaps <- findOverlaps(trimmed_gr, reduced_gr[i])
-    if (length(overlaps) > 1) {
-      overlap_hits <- subjectHits(overlaps)
-      start_trim <- start(reduced_gr[i])
-      end_trim <- end(reduced_gr[i])
+  # Process each overlap
+  for (i in seq_along(overlaps)) {
+    query <- queryHits(overlaps[i])
+    subject <- subjectHits(overlaps[i])
+    
+    if (query != subject) {
+      q_start <- start(gr[query])
+      q_end <- end(gr[query])
+      s_start <- start(gr[subject])
+      s_end <- end(gr[subject])
       
-      for (hit in overlap_hits) {
-        if (start(trimmed_gr[hit]) < start_trim) {
-          end(trimmed_gr[hit]) <- start_trim - 1
-        }
-        if (end(trimmed_gr[hit]) > end_trim) {
-          start(trimmed_gr[hit]) <- end_trim + 1
-        }
+      if (q_start < s_start && q_end > s_start) {
+        end(gr[query]) <- s_start - 1
+      }
+      
+      if (s_start < q_start && s_end > q_start) {
+        end(gr[subject]) <- q_start - 1
       }
     }
   }
   
   # Ensure no negative lengths
-  trimmed_gr <- trimmed_gr[start(trimmed_gr) <= end(trimmed_gr)]
+  gr <- gr[start(gr) <= end(gr)]
   
-  return(trimmed_gr)
+  return(gr)
 }
 
 # Function to write the trimmed BED file with headers
