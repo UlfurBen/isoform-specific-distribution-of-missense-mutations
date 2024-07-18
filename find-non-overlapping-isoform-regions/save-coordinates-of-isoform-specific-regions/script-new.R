@@ -65,14 +65,18 @@ trim_overlaps <- function(bed) {
 # Function to write the trimmed BED file with headers
 write_bed_file <- function(gr, output_file, headers) {
   bed_out <- data.frame(seqnames = seqnames(gr),
-                        start = start(gr),
-                        end = end(gr),
+                        chromStart = start(gr),
+                        chromEnd = end(gr),
                         source = mcols(gr)$source,
                         feature = mcols(gr)$feature,
                         score = mcols(gr)$score,
                         strand = strand(gr),
                         frame = mcols(gr)$frame,
                         attribute = mcols(gr)$attribute)
+  
+  # Modify headers
+  headers[2:3] <- c("chromStart", "chromEnd")
+  
   # Write headers
   cat(paste(headers, collapse = "\t"), "\n", file = output_file)
   # Write data
