@@ -1,6 +1,10 @@
 # Load necessary library
 library(dplyr)
 
+# Define output file
+output_bed_file <- "Homo_sapiens.GRCh37.65.bed"
+output_bed_file_with_headers <- "Homo_sapiens.GRCh37.65_with_headers.bed"
+
 # Read the GTF file
 gtf_file <- "Homo_sapiens.GRCh37.65.gtf"
 gtf_data <- read.table(gtf_file, sep="\t", header=FALSE, comment.char="#", quote="")
@@ -12,10 +16,10 @@ colnames(gtf_data) <- c("chr", "source", "feature", "start", "end", "score", "st
 bed_df <- gtf_data %>% select(chr, start, end, source, feature, score, strand, frame, attribute)
 
 # Write to a BED file
-write.table(bed_df, file="output.bed", sep="\t", quote=FALSE, col.names=FALSE, row.names=FALSE)
+write.table(bed_df, file=output_bed_file, sep="\t", quote=FALSE, col.names=FALSE, row.names=FALSE)
 
 # Read the output BED file
-bed_df <- read.table("output.bed", sep="\t", header=FALSE)
+bed_df <- read.table(output_bed_file, sep="\t", header=FALSE)
 
 # Set column names
 colnames(bed_df) <- c("chr", "chromStart", "chromEnd", "name", "score", "strand", "frame", "attribute", "miscellaneous")
@@ -24,4 +28,4 @@ colnames(bed_df) <- c("chr", "chromStart", "chromEnd", "name", "score", "strand"
 print(head(bed_df, 10))
 
 # Write the modified data frame back to a new file
-write.table(bed_df, file="output_with_headers.bed", sep="\t", quote=FALSE, col.names=TRUE, row.names=FALSE)
+write.table(bed_df, file=output_bed_file_with_headers, sep="\t", quote=FALSE, col.names=TRUE, row.names=FALSE)
