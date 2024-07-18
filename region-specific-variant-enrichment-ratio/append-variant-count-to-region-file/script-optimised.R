@@ -28,8 +28,9 @@ variants_data[, chr := as.character(chr)]
 setkey(variants_data, chr, chromStart, chromEnd)
 
 # Function to count variants in each region
-count_variants <- function(chr, chromStart, chromEnd) {
-  return(variants_data[chr == chr & chromStart <= chromEnd & chromEnd >= chromStart, .N])
+count_variants <- function(chr, start, end) {
+  variants_in_region <- variants_data[chr == chr & chromStart <= end & chromEnd >= start]
+  return(nrow(variants_in_region))
 }
 
 # Apply the function to each row of the regions data
