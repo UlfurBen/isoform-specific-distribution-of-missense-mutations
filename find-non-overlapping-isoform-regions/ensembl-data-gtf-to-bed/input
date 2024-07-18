@@ -1,6 +1,7 @@
-# Visit https://ftp.ensembl.org/pub/release-112/gtf/homo_sapiens/ and download Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff.gtf.gz	
-# On elja the file's path is /hpchome/ubf2/Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff.gtfz
+# Visit https://ftp.ensembl.org/pub/release-65/gtf/homo_sapiens/ and download Homo_sapiens.GRCh37.65.gtf.gz	
+# On elja the file's path is /hpchome/ubf2/Homo_sapiens.GRCh37.65.gtf.gz
+# Use gunzip Homo_sapiens.GRCh37.65.gtf.gz to get Homo_sapiens.GRCh37.65.gtf
 
 # To get gene names for convenience I used /hpchome/ubf2/The-Epigenetic-Machinery.csv I have stored on elja but
-# this file can be downloaded as a csv file from https://www.epigeneticmachinery.org/ (button at the top)
+# this file can be downloaded as a csv file from https://www.epigeneticmachinery.org/ (button at the top of the site)
 
