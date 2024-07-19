@@ -1,6 +1,11 @@
+# Set the library path
+.libPaths("/hpchome/ubf2/R/x86_64-pc-linux-gnu-library/4.1")
+
+
 # Main script
 input_file <- "Homo_sapiens.GRCh37.87_with_headers.bed"
 output_file <- "Homo_sapiens.GRCh37.87_with_headers_isoform_specific_regions.bed"
+
 
 # Load necessary libraries
 library(dplyr)
