@@ -6,10 +6,28 @@
 input_file <- "Homo_sapiens.GRCh37.87_with_headers.bed"
 output_file <- "Homo_sapiens.GRCh37.87_with_headers_isoform_specific_regions.bed"
 
+# Find the installation paths
+GenomicRanges_path <- find.package("GenomicRanges", quiet = TRUE)
+dplyr_path <- find.package("dplyr", quiet = TRUE)
 
-# Load necessary libraries
-library(dplyr)
-library(GenomicRanges)
+# Print the paths to verify
+print(GenomicRanges_path)
+print(dplyr_path)
+
+# Check if the paths are not empty and add them to the library paths
+if (GenomicRanges_path != "") {
+  .libPaths(c(dirname(GenomicRanges_path), .libPaths()))
+  library(GenomicRanges)
+} else {
+  message("GenomicRanges package is not installed.")
+}
+
+if (dplyr_path != "") {
+  .libPaths(c(dirname(dplyr_path), .libPaths()))
+  library(dplyr)
+} else {
+  message("dplyr package is not installed.")
+}
 
 # Function to read and parse the BED file
 read_bed_file <- function(file) {
