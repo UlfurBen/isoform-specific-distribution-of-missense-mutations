@@ -3,7 +3,7 @@ data.table_path <- "/hpchome/ubf2/R/x86_64-pc-linux-gnu-library/4.1/data.table"
 # Add this path to the library paths
 .libPaths(c(dirname(data.table_path), .libPaths()))
 
-# Read the BED file
+# Read the BED input file
 bed_file <- "Matched_Genes.bed"
 bed_data <- fread(bed_file, header = FALSE)
 
