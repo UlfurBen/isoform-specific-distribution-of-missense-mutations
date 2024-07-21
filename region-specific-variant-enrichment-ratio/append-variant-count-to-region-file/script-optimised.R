@@ -9,7 +9,7 @@ print(dplyr_path)
 
 # Add these paths to the library paths
 .libPaths(c(dirname(data.table_path), .libPaths()))
-.libPaths(c(dirname(data.table_path), .libPaths()))
+.libPaths(c(dirname(dplyr_path), .libPaths()))
 
 # Load necessary libraries
 library(dplyr)
