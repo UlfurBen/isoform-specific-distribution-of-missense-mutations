@@ -1,3 +1,16 @@
+# .libPaths(library_path)
+
+data.table_path <- "/hpchome/ubf2/R/x86_64-pc-linux-gnu-library/4.1/data.table"
+dplyr_path <- "/hpchome/ubf2/R/x86_64-pc-linux-gnu-library/4.1/dplyr"
+
+# Print the paths to verify
+print(data.table_path)
+print(dplyr_path)
+
+# Add these paths to the library paths
+.libPaths(c(dirname(data.table_path), .libPaths()))
+.libPaths(c(dirname(data.table_path), .libPaths()))
+
 # Load necessary libraries
 library(dplyr)
 library(data.table)
