@@ -1,3 +1,9 @@
+# Specify the data.table path on elja
+data.table_path <- "/hpchome/ubf2/R/x86_64-pc-linux-gnu-library/4.1/data.table"
+
+# Add data.table_path to the library path
+.libPaths(c(dirname(data.table_path), .libPaths()))
+
 # Load necessary libraries
 library(data.table)
 
