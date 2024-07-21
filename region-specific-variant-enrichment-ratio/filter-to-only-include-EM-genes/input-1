@@ -1,3 +1,5 @@
+# File's name on elja is The-Epigenetic-Machinery.csv
+
 Gene_Name,pLI,Coexprs,Epigenetic Function,Enzymatic Activity,Reader Activity,TF Activity,Is_MDEM,Is_Neuro_Assoc,Is_Cancer_Assoc,OMIM_All_Phenotypes,Gene_Name_Alternatives,Gene_Name_ExAC,Gene_Name_GTEx,Chr,Strand,Start,End,gnomAD,OMIM,GTEx,COSMIC,UniProt,Interpro
 AIRE,0,,Reader,,HMR,TF,MDEM,Not Neuro,Not Cancer,"Autoimmune polyendocrinopathy syndrome , type I, with or without reversible metaphyseal dysplasia, 240300 (3), Autosomal recessive, Autosomal dominant",AIRE;APECED,Gene_Name_ExAC,AIRE,chr21,+,44285837,44298219,ENSG00000160224,607358,AIRE,AIRE,O43918,O43918
 AKAP1,0.56,not coexp,Reader,,HMR,Not TF,Not MDEM,Not Neuro,Not Cancer,,AKAP1;AKAP149;PRKA1,AKAP1,AKAP1,chr17,+,57085191,57121349,ENSG00000121057,602449,AKAP1,AKAP1,Q92667,Q92667
