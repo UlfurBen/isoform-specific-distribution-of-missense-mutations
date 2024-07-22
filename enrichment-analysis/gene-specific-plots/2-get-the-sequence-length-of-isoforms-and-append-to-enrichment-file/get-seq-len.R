@@ -83,7 +83,7 @@ for (i in 1:nrow(input_data)) {
 }
 
 # Add the lengths to the input data
-input_data$seq_len <- sapply(input_data[[1]], function(id) isoform_lengths[[id]])
+input_data$seq_len <- sapply(input_data[[2]], function(id) isoform_lengths[[id]])
 
 # Write the merged results to the final output file
 write.table(input_data, file = output_file, sep = ",", row.names = FALSE, col.names = TRUE, quote = FALSE)
