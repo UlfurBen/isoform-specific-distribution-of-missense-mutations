@@ -1,7 +1,7 @@
 # Define file paths
 input_file <- "enrichment.txt"
 fasta_file <- "uniprot_sprot_varsplic.fasta"
-output_file <- "enrichment_filtered_with_seq_len.txt"
+output_file <- "enrichment_filtered_with_seq_len_more_than_before.txt"
 
 # Read the input file
 input_data <- read.csv(input_file, header = TRUE, stringsAsFactors = FALSE)
