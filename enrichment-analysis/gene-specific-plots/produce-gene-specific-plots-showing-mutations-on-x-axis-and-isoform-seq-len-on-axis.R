@@ -5,6 +5,7 @@ library(dplyr)
 library(tidyr)
 
 # Define file paths
+# Input file is the name on my local computer but on elja the file's name is enrichment_filtered_with_gene_total_variant_count.txt
 input_file <- "enrichment.txt"
 output_dir <- "gene-isoform-plots"
 
