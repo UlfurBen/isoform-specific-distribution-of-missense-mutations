@@ -1,3 +1,3 @@
 # The scripts to handle and change the variant txt file and the region gtf file are found in subdirectories inside the
 # folder named find-non-overlapping-isoform-regions
-# The current directory achieves the same end result using bedtools
+# The current directory achieves the same end result using bedtools instead
