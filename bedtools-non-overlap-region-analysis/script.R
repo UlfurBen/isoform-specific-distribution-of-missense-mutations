@@ -1,3 +1,6 @@
+# Set PATH to include the directory where bedtools is installed
+Sys.setenv(PATH = paste("/hpchome/ubf2/bedtools2/bin", Sys.getenv("PATH"), sep = ":"))
+
 data.table_path <- "/hpchome/ubf2/R/x86_64-pc-linux-gnu-library/4.1/data.table"
 stringr_path <- "/hpcapps/lib-mimir/software/R/4.1.2-foss-2021b/lib64/R/library/stringr"
 
@@ -12,6 +15,7 @@ library(stringr)    # For string operations
 region_file <- "Homo_sapiens.GRCh37.87_with_headers.bed"
 variant_file <- "homo_sapiens_variation_missense_ClinVar_filtered_relevancy.bed"
 output_file <- "bedtools_region_variant_enrichment.bed"
+genome_file <- "genome.txt"
 
 # Read the region and variant files
 regions <- fread(region_file, sep = "\t", header = TRUE)
@@ -21,9 +25,14 @@ variants <- fread(variant_file, sep = "\t", header = TRUE)
 write.table(regions, "regions.bed", sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
 write.table(variants, "variants.bed", sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
 
+# Generate genome file from regions
+genome <- regions[, .(chr, chromEnd)]
+genome <- genome[, .(max_end = max(chromEnd)), by = chr]
+write.table(genome, genome_file, sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
+
 # Use bedtools to merge overlapping regions and split into non-overlapping regions
 system("bedtools merge -i regions.bed > merged_regions.bed")
-system("bedtools complement -i merged_regions.bed -g <(cut -f1,2 regions.bed | sort | uniq) > non_overlapping_regions.bed")
+system(paste("bedtools complement -i merged_regions.bed -g", genome_file, "> non_overlapping_regions.bed"))
 
 # Read the non-overlapping regions back into R
 non_overlapping_regions <- fread("non_overlapping_regions.bed", sep = "\t", header = FALSE)
@@ -44,4 +53,4 @@ setnames(variant_counts, c("chr", "chromStart", "chromEnd", "variant_count"))
 write.table(variant_counts, output_file, sep = "\t", row.names = FALSE, col.names = TRUE, quote = FALSE)
 
 # Clean up temporary files
-file.remove("regions.bed", "variants.bed", "merged_regions.bed", "non_overlapping_regions.bed", "variant_counts.bed")
+file.remove("regions.bed", "variants.bed", "merged_regions.bed", "non_overlapping_regions.bed", "variant_counts.bed", genome_file)
