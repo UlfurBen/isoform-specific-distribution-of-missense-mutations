@@ -1,4 +1,4 @@
- data.table_path <- "/hpchome/ubf2/R/x86_64-pc-linux-gnu-library/4.1/data.table"
+data.table_path <- "/hpchome/ubf2/R/x86_64-pc-linux-gnu-library/4.1/data.table"
 stringr_path <- "/hpcapps/lib-mimir/software/R/4.1.2-foss-2021b/lib64/R/library/stringr"
 
 .libPaths(c(dirname(data.table_path), .libPaths()))
