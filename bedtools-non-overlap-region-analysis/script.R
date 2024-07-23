@@ -68,7 +68,13 @@ variant_counts <- fread("variant_counts.bed", sep = "\t", header = FALSE)
 # Rename columns for clarity
 setnames(variant_counts, c("chr", "chromStart", "chromEnd", "variant_count"))
 
-# Save the result to output file
+# Calculate the variant density
+variant_counts[, variant_density := variant_count / ifelse(chromEnd - chromStart == 0, 1, chromEnd - chromStart)]
+
+# Rank the rows in descending order based on variant density
+variant_counts <- variant_counts[order(-variant_density)]
+
+# Save the result to the output file
 write.table(variant_counts, output_file, sep = "\t", row.names = FALSE, col.names = TRUE, quote = FALSE)
 
 # Clean up temporary files
