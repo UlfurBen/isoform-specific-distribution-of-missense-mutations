@@ -1,6 +1,7 @@
 # Set PATH to include the directory where bedtools is installed
 Sys.setenv(PATH = paste("/hpchome/ubf2/bedtools2/bin", Sys.getenv("PATH"), sep = ":"))
 
+# Add library paths
 data.table_path <- "/hpchome/ubf2/R/x86_64-pc-linux-gnu-library/4.1/data.table"
 stringr_path <- "/hpcapps/lib-mimir/software/R/4.1.2-foss-2021b/lib64/R/library/stringr"
 
@@ -20,6 +21,13 @@ genome_file <- "genome.txt"
 # Read the region and variant files
 regions <- fread(region_file, sep = "\t", header = TRUE)
 variants <- fread(variant_file, sep = "\t", header = TRUE)
+
+# Ensure numeric columns are not in scientific notation
+options(scipen = 999)
+
+# Sort the regions and variants files
+regions <- regions[order(chr, chromStart)]
+variants <- variants[order(chr, chromStart)]
 
 # Save regions and variants to temporary files for bedtools usage
 write.table(regions, "regions.bed", sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
