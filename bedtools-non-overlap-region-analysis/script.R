@@ -29,7 +29,7 @@ options(scipen = 999)
 regions <- regions[order(chr, chromStart)]
 variants <- variants[order(chr, chromStart)]
 
-# Save regions and variants to temporary files for bedtools usage
+# Save sorted regions and variants to temporary files for bedtools usage
 write.table(regions, "regions.bed", sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
 write.table(variants, "variants.bed", sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
 
@@ -42,6 +42,13 @@ write.table(genome, genome_file, sep = "\t", row.names = FALSE, col.names = FALS
 system("bedtools merge -i regions.bed > merged_regions.bed")
 system(paste("bedtools complement -i merged_regions.bed -g", genome_file, "> non_overlapping_regions.bed"))
 
+# Check intermediate files
+cat("Merged regions:\n")
+system("cat merged_regions.bed | head")
+
+cat("\nNon-overlapping regions:\n")
+system("cat non_overlapping_regions.bed | head")
+
 # Read the non-overlapping regions back into R
 non_overlapping_regions <- fread("non_overlapping_regions.bed", sep = "\t", header = FALSE)
 
@@ -50,6 +57,10 @@ setnames(non_overlapping_regions, c("chr", "chromStart", "chromEnd"))
 
 # Use bedtools to count variants in non-overlapping regions
 system("bedtools intersect -a non_overlapping_regions.bed -b variants.bed -c > variant_counts.bed")
+
+# Check variant counts file
+cat("\nVariant counts:\n")
+system("cat variant_counts.bed | head")
 
 # Read the variant counts back into R
 variant_counts <- fread("variant_counts.bed", sep = "\t", header = FALSE)
