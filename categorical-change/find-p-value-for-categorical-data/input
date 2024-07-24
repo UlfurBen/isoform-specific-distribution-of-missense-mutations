@@ -1,4 +1,4 @@
-benign-epigenetic <- "
+benign_control_epigenetic <- "
 Nonpolar->Nonpolar 1411
 Nonpolar->Polar 756
 Nonpolar->Negatively_charged 67
@@ -17,7 +17,7 @@ Positively_charged->Negatively_charged 29
 Positively_charged->Positively_charged 213
 "
 
-benign-control <- "
+benign_control_non_epigenetic <- "
 Nonpolar->Nonpolar 24712
 Nonpolar->Polar 10221
 Nonpolar->Negatively_charged 1574
@@ -55,7 +55,7 @@ Positively_charged->Negatively_charged 35
 Positively_charged->Positively_charged 49
 "
 
-pathogenic-control <- "
+pathogenic_non_epigenetic <- "
 Nonpolar->Nonpolar 7427
 Nonpolar->Polar 3926
 Nonpolar->Negatively_charged 1607
