@@ -31,7 +31,7 @@ cds_data <- cds_data %>%
          miscellaneous = NA)  # Placeholder for miscellaneous
 
 # Rearrange columns for the BED file format
-bed_df <- cds_data %>% select(chr, start, end, name, score, strand, frame, attribute)
+bed_df <- cds_data %>% select(chr, start, end, name, score, strand, frame, attribute, miscellaneous)
 
 # Write to a BED file
 write.table(bed_df, file=output_bed_file, sep="\t", quote=FALSE, col.names=FALSE, row.names=FALSE)
@@ -40,7 +40,7 @@ write.table(bed_df, file=output_bed_file, sep="\t", quote=FALSE, col.names=FALSE
 bed_df <- read.table(output_bed_file, sep="\t", header=FALSE)
 
 # Set column names correctly
-colnames(bed_df) <- c("chr", "chromStart", "chromEnd", "name", "score", "strand", "frame", "attribute")
+colnames(bed_df) <- c("chr", "chromStart", "chromEnd", "name", "score", "strand", "frame", "attribute", "miscellaneous")
 
 # Display the first 10 rows to confirm changes
 print(head(bed_df, 10))
