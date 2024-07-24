@@ -1,5 +1,6 @@
 # Load necessary library
 library(dplyr)
+library(stringr)
 
 # Define output files
 output_bed_file <- "Homo_sapiens.GRCh37.87.bed"
@@ -15,8 +16,22 @@ colnames(gtf_data) <- c("chr", "source", "feature", "start", "end", "score", "st
 # Filter the data to include only lines containing "CDS"
 cds_data <- gtf_data %>% filter(feature == "CDS")
 
-# Swap columns: move 4th and 5th column to 2nd and 3rd positions and vice versa
-bed_df <- cds_data %>% select(chr, start, end, source, feature, score, strand, frame, attribute)
+# Extract additional information from the attribute column
+extract_attribute <- function(attribute, key) {
+  str_match(attribute, paste0(key, " \"([^\"]+)\""))[, 2]
+}
+
+cds_data <- cds_data %>%
+  mutate(gene_id = extract_attribute(attribute, "gene_id"),
+         gene_version = extract_attribute(attribute, "gene_version"),
+         gene_name = extract_attribute(attribute, "gene_name"),
+         gene_source = extract_attribute(attribute, "gene_source"),
+         gene_biotype = extract_attribute(attribute, "gene_biotype"),
+         name = gene_name,  # For simplicity, using gene_name as 'name'
+         miscellaneous = NA)  # Placeholder for miscellaneous
+
+# Rearrange columns for the BED file format
+bed_df <- cds_data %>% select(chr, start, end, name, score, strand, frame, attribute, miscellaneous, gene_id, gene_version, gene_name, gene_source, gene_biotype)
 
 # Write to a BED file
 write.table(bed_df, file=output_bed_file, sep="\t", quote=FALSE, col.names=FALSE, row.names=FALSE)
@@ -24,11 +39,11 @@ write.table(bed_df, file=output_bed_file, sep="\t", quote=FALSE, col.names=FALSE
 # Read the output BED file
 bed_df <- read.table(output_bed_file, sep="\t", header=FALSE)
 
-# Set column names
-colnames(bed_df) <- c("chr", "chromStart", "chromEnd", "name", "score", "strand", "frame", "attribute", "miscellaneous")
+# Set column names correctly
+colnames(bed_df) <- c("chr", "chromStart", "chromEnd", "name", "score", "strand", "frame", "attribute", "miscellaneous", "gene_id", "gene_version", "gene_name", "gene_source", "gene_biotype")
 
 # Display the first 10 rows to confirm changes
 print(head(bed_df, 10))
 
-# Write the modified data frame back to a new file
+# Write the modified data frame back to a new file with headers
 write.table(bed_df, file=output_bed_file_with_headers, sep="\t", quote=FALSE, col.names=TRUE, row.names=FALSE)
