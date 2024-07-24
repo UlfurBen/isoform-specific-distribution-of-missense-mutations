@@ -13,7 +13,7 @@ categories <- c("Nonpolar->Nonpolar", "Nonpolar->Polar", "Nonpolar->Negatively_c
 # Initialize an empty data frame to store results
 results <- data.frame(Categorical_Change = character(), Pathogenic_Epigenetic = numeric(), Benign_Control_Epigenetic = numeric(),
                       Pathogenic_Non_Epigenetic = numeric(), Benign_Control_Non_Epigenetic = numeric(), P_Value = numeric(), 
-                      stringsAsFactors = FALSE)
+                      Odds_Ratio = numeric(), stringsAsFactors = FALSE)
 
 # Loop through each category and perform Fisher's exact test
 for (i in 1:length(categories)) {
@@ -21,12 +21,14 @@ for (i in 1:length(categories)) {
                     pathogenic_non_epigenetic[i], benign_control_non_epigenetic[i]), nrow = 2)
   fisher_test <- fisher.test(table)
   p_value <- fisher_test$p.value
+  odds_ratio <- fisher_test$estimate
   results <- rbind(results, data.frame(Categorical_Change = categories[i],
                                        Pathogenic_Epigenetic = pathogenic_epigenetic[i],
                                        Benign_Control_Epigenetic = benign_control_epigenetic[i],
                                        Pathogenic_Non_Epigenetic = pathogenic_non_epigenetic[i],
                                        Benign_Control_Non_Epigenetic = benign_control_non_epigenetic[i],
-                                       P_Value = p_value))
+                                       P_Value = p_value,
+                                       Odds_Ratio = odds_ratio))
 }
 
 # Adjust for multiple comparisons using the Bonferroni method
