@@ -12,7 +12,7 @@ bed_data <- fread(input_file, skip = 1, header = FALSE)
 bed_data_subset <- bed_data[, .(V1, V2, V3)]
 
 # Filter out contigs and unplaced sequences
-standard_chromosomes <- c(as.character(1:22), "X", "Y", "MT")
+standard_chromosomes <- as.character(1:22)
 bed_data_filtered <- bed_data_subset[V1 %in% standard_chromosomes]
 
 # Write the modified data to a new file without headers
