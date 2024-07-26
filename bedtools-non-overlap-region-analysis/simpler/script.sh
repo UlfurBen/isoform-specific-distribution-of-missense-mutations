@@ -17,8 +17,4 @@ awk '{printf "%s\t%.0f\t%.0f\n", $1, $2, $3}' homo_sapiens_variation_missense_Cl
 bedtools intersect -a non_overlapping_regions.bed -b homo_sapiens_variation_missense_ClinVar_filtered_relevancy_no_headers_fixed_sorted.bed -c > intersected_counts.bed
 
 # Step 6: Calculate enrichment
-awk '{
-    length = $3 - $2;
-    enrichment = $4 / length;
-    print $0 "\t" length "\t" enrichment
-}' intersected_counts.bed > intersected_counts_with_enrichment.bed
+awk '{length = $3 - $2; enrichment = $4 / length; print $0 "\t" length "\t" enrichment}' intersected_counts.bed > intersected_counts_with_enrichment.bed
