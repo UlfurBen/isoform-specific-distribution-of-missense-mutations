@@ -18,7 +18,7 @@ results <- data.frame(Categorical_Change = character(), Pathogenic_Epigenetic = 
 # Loop through each category and perform Fisher's exact test
 for (i in 1:length(categories)) {
   table <- matrix(c(pathogenic_variants_in_EM_genes[i], benign_control_variants_in_EM_genes[i],
-                    pathogenic_variants_in_non_EM_genes[i], benign_control_variants_in_the__non_EM_genes[i]), nrow = 2)
+                    pathogenic_variants_in_non_EM_genes[i], benign_control_variants_in_non_EM_genes[i]), nrow = 2)
   fisher_test <- fisher.test(table)
   p_value <- fisher_test$p.value
   odds_ratio <- fisher_test$estimate
