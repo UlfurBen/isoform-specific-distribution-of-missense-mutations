@@ -1,4 +1,4 @@
-benign_control_variants_in_the_EM_genes <- "
+benign_control_variants_in_EM_genes <- "
 Nonpolar->Nonpolar 1411
 Nonpolar->Polar 756
 Nonpolar->Negatively_charged 67
