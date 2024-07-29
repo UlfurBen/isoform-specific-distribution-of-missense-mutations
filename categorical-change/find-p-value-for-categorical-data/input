@@ -1,4 +1,4 @@
-benign_control_epigenetic <- "
+benign_control_variants_in_the_EM_genes <- "
 Nonpolar->Nonpolar 1411
 Nonpolar->Polar 756
 Nonpolar->Negatively_charged 67
@@ -17,7 +17,7 @@ Positively_charged->Negatively_charged 29
 Positively_charged->Positively_charged 213
 "
 
-benign_control_non_epigenetic <- "
+benign_control_variants_in_the__non_EM_genes <- "
 Nonpolar->Nonpolar 24712
 Nonpolar->Polar 10221
 Nonpolar->Negatively_charged 1574
@@ -36,7 +36,7 @@ Positively_charged->Negatively_charged 721
 Positively_charged->Positively_charged 5003
 "
 
-pathogenic-epigenetic <- "
+pathogenic_variants_in_EM_genes <- "
 Nonpolar->Nonpolar 349
 Nonpolar->Polar 459
 Nonpolar->Negatively_charged 123
@@ -55,7 +55,7 @@ Positively_charged->Negatively_charged 35
 Positively_charged->Positively_charged 49
 "
 
-pathogenic_non_epigenetic <- "
+pathogenic_variants_in_non_EM_genes <- "
 Nonpolar->Nonpolar 7427
 Nonpolar->Polar 3926
 Nonpolar->Negatively_charged 1607
