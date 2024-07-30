@@ -1,5 +1,5 @@
 # Define file paths
-input_file <- "enrichment.txt"
+input_file <- "enrichment-aggr.txt"
 fasta_file <- "uniprot_sprot_varsplic.fasta"
 output_file <- "enrichment_filtered_with_seq_len_more_than_before.txt"
 
