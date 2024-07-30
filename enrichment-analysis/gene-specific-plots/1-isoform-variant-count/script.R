@@ -54,6 +54,18 @@ count_variants <- function(identifier, exclude_hyphen = FALSE) {
   return(list(total_count = total_count, benign = benign, likely_benign = likely_benign, vus = vus, likely_pathogenic = likely_pathogenic, pathogenic = pathogenic))
 }
 
+# Function to aggregate variant counts
+aggregate_variants <- function(counts_list) {
+  total_count <- sum(sapply(counts_list, function(x) x$total_count))
+  benign <- sum(sapply(counts_list, function(x) x$benign))
+  likely_benign <- sum(sapply(counts_list, function(x) x$likely_benign))
+  vus <- sum(sapply(counts_list, function(x) x$vus))
+  likely_pathogenic <- sum(sapply(counts_list, function(x) x$likely_pathogenic))
+  pathogenic <- sum(sapply(counts_list, function(x) x$pathogenic))
+  
+  return(list(total_count = total_count, benign = benign, likely_benign = likely_benign, vus = vus, likely_pathogenic = likely_pathogenic, pathogenic = pathogenic))
+}
+
 # Process each modified gene name
 for (i in seq_along(temp_gene_names)) {
   gene_name_human <- temp_gene_names[i]
@@ -72,14 +84,38 @@ for (i in seq_along(temp_gene_names)) {
   canonical_identifiers <- unique(sub("-.*", "", temp_identifiers_with_hyphen))
   print(paste("Canonical isoforms for", gene_name_human, ":", paste(canonical_identifiers, collapse = ", ")))  # Debug print statement
 
+  # Collect counts for canonical identifiers
+  canonical_counts <- list()
   for (identifier in canonical_identifiers) {
     variant_counts <- count_variants(identifier, exclude_hyphen = TRUE)
-    safe_write(paste0(gene_name, ",", identifier, ",", variant_counts$total_count, ",", variant_counts$benign, ",", variant_counts$likely_benign, ",", variant_counts$vus, ",", variant_counts$likely_pathogenic, ",", variant_counts$pathogenic))
+    canonical_counts[[identifier]] <- variant_counts
   }
-
+  
+  # Collect counts for non-canonical identifiers
+  non_canonical_counts <- list()
   for (identifier in temp_identifiers_with_hyphen) {
     variant_counts <- count_variants(identifier, exclude_hyphen = FALSE)
-    safe_write(paste0(gene_name, ",", identifier, ",", variant_counts$total_count, ",", variant_counts$benign, ",", variant_counts$likely_benign, ",", variant_counts$vus, ",", variant_counts$likely_pathogenic, ",", variant_counts$pathogenic))
+    non_canonical_counts[[identifier]] <- variant_counts
+  }
+
+  # Aggregate counts for canonical identifiers
+  for (identifier in canonical_identifiers) {
+    if (identifier %in% names(non_canonical_counts)) {
+      counts_list <- list(canonical_counts[[identifier]], non_canonical_counts[[identifier]])
+      aggregated_counts <- aggregate_variants(counts_list)
+      safe_write(paste0(gene_name, ",", identifier, ",", aggregated_counts$total_count, ",", aggregated_counts$benign, ",", aggregated_counts$likely_benign, ",", aggregated_counts$vus, ",", aggregated_counts$likely_pathogenic, ",", aggregated_counts$pathogenic))
+    } else {
+      counts <- canonical_counts[[identifier]]
+      safe_write(paste0(gene_name, ",", identifier, ",", counts$total_count, ",", counts$benign, ",", counts$likely_benign, ",", counts$vus, ",", counts$likely_pathogenic, ",", counts$pathogenic))
+    }
+  }
+
+  # Write counts for non-canonical identifiers not in canonical list
+  for (identifier in temp_identifiers_with_hyphen) {
+    if (!(identifier %in% canonical_identifiers)) {
+      counts <- non_canonical_counts[[identifier]]
+      safe_write(paste0(gene_name, ",", identifier, ",", counts$total_count, ",", counts$benign, ",", counts$likely_benign, ",", counts$vus, ",", counts$likely_pathogenic, ",", counts$pathogenic))
+    }
   }
 
   # Clean up temporary files
