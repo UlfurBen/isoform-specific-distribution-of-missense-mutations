@@ -7,6 +7,7 @@ library(tidyr)
 # Define file paths
 # Input file is the name on my local computer but on elja the file's name is enrichment_filtered_with_gene_total_variant_count.txt
 input_file <- "enrichment.txt"
+epigenetic_file <- "The-Epigenetic-Machinery.csv"
 output_dir <- "gene-isoform-plots"
 
 # Create the output directory if it does not exist
@@ -16,6 +17,7 @@ if (!dir.exists(output_dir)) {
 
 # Read the input file
 data <- read.csv(input_file, header = TRUE, stringsAsFactors = FALSE, sep = ",")
+epigenetic_data <- read.csv(epigenetic_file, header = TRUE, stringsAsFactors = FALSE, sep = ",")
 
 # Calculate the fraction of Variation.count / Gene_Total_Count
 data$Fraction <- data$Variation.count / data$Gene_Total_Count * 100
@@ -38,8 +40,10 @@ for (gene_name in unique_gene_names) {
   # gene_data <- gene_data[gene_data$seq_len != 0 & gene_data$Fraction != 0, ]
     
   # Determine which isoform is the main one (without hyphen)
-  gene_data$IsMainIsoform <- ifelse(grepl("^Q9", gene_data$Identifier) & !grepl("-", gene_data$Identifier), TRUE, FALSE)
-    
+  canonical_identifiers <- epigenetic_data$UniProt
+  gene_data$IsMainIsoform <- gene_data$Identifier %in% canonical_identifiers
+
+  
   # Order isoforms by seq_len
   gene_data <- gene_data[order(gene_data$seq_len), ]
     
