@@ -15,7 +15,7 @@ if (!dir.exists(output_dir)) {
   dir.create(output_dir)
 }
 
-# Read the input file
+# Read the input files
 data <- read.csv(input_file, header = TRUE, stringsAsFactors = FALSE, sep = ",")
 epigenetic_data <- read.csv(epigenetic_file, header = TRUE, stringsAsFactors = FALSE, sep = ",")
 
@@ -36,14 +36,13 @@ for (gene_name in unique_gene_names) {
     dir.create(gene_dir)
   }
     
-  # Filter out data points where either seq_len or Fraction is 0
-  # gene_data <- gene_data[gene_data$seq_len != 0 & gene_data$Fraction != 0, ]
-    
-  # Determine which isoform is the main one (without hyphen)
-  canonical_identifiers <- epigenetic_data$UniProt
-  gene_data$IsMainIsoform <- gene_data$Identifier %in% canonical_identifiers
-
+  # Subset epigenetic data for the current gene name
+  epigenetic_gene_data <- subset(epigenetic_data, Gene_Name == gene_name)
   
+  # Determine which isoform is the main one based on the UniProt column in epigenetic_gene_data
+  canonical_identifiers <- epigenetic_gene_data$UniProt
+  gene_data$IsMainIsoform <- gene_data$Identifier %in% canonical_identifiers
+    
   # Order isoforms by seq_len
   gene_data <- gene_data[order(gene_data$seq_len), ]
     
