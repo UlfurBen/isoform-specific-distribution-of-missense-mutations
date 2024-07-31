@@ -16,6 +16,24 @@ fwrite(bed_data_subset, output_file, sep = "\t", col.names = FALSE)
 
 cat("File has been processed and saved as", output_file, "\n")
 
+# Load the necessary library
+library(dplyr)
+
+# Read the BED file into a data frame
+# Replace 'your_file_path' with the actual path to your BED file
+bed_data <- read.delim('homo_sapiens_variation_missense_ClinVar_filtered_relevancy_no_headers.bed', header = FALSE)
+
+# Define the exclusion terms
+exclusion_terms <- c("variant of uncertain significance", "benign")
+
+# Filter the data to include only 'Pathogenic' in column 7 and exclude the specified terms
+filtered_data <- bed_data %>%
+  filter(tolower(V7) == "pathogenic" & !tolower(V7) %in% exclusion_terms)
+
+# Optionally, write the filtered data to a new file
+write.table(filtered_data, 'homo_sapiens_variation_missense_ClinVar_filtered_relevancy_no_headers_pathogenic.bed', sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
+
+
 
 
 
