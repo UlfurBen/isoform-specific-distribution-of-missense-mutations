@@ -35,10 +35,10 @@ for (gene_name in unique_gene_names) {
   }
     
   # Filter out data points where either seq_len or Fraction is 0
-  gene_data <- gene_data[gene_data$seq_len != 0 & gene_data$Fraction != 0, ]
+  # gene_data <- gene_data[gene_data$seq_len != 0 & gene_data$Fraction != 0, ]
     
   # Determine which isoform is the main one (without hyphen)
-  gene_data$IsMainIsoform <- ifelse(grepl("-", gene_data$Identifier), FALSE, TRUE)
+  gene_data$IsMainIsoform <- ifelse(grepl("^Q9", gene_data$Identifier) & !grepl("-", gene_data$Identifier), TRUE, FALSE)
     
   # Order isoforms by seq_len
   gene_data <- gene_data[order(gene_data$seq_len), ]
