@@ -48,7 +48,7 @@ cat("Filtering complete. The filtered file has been saved as 'filtered_Homo_sapi
 
 # filtered_Homo_sapiens.GRCh37.87.bed
 
-# homo_sapiens_variation_missense_ClinVar_filtered_relevancy_bedtools_non_scientific.bed
+# sorted_homo_sapiens_variation_missense_ClinVar_filtered_relevancy_no_headers_pathogenic.bed
 
 # Sort the region bed file
 sort -k1,1 -k2,2n filtered_Homo_sapiens.GRCh37.87.bed > sorted_Homo_sapiens.GRCh37.87_with_headers_isoform_specific_regions_bedtools_non_scientific.bed
@@ -137,9 +137,9 @@ bedtools subtract -a filtered_no_scientific_notation.bed -b partial_overlapping.
 # Find variants count in each region
 
 # shortened_regions.bed
-# homo_sapiens_variation_missense_ClinVar_filtered_relevancy_bedtools_non_scientific.bed
+# sorted_homo_sapiens_variation_missense_ClinVar_filtered_relevancy_no_headers_pathogenic.bed
 
-bedtools intersect -a shortened_regions.bed -b homo_sapiens_variation_missense_ClinVar_filtered_relevancy_bedtools_non_scientific.bed -c > intersected_variants.bed
+bedtools intersect -a shortened_regions.bed -b sorted_homo_sapiens_variation_missense_ClinVar_filtered_relevancy_no_headers_pathogenic.bed -c > intersected_variants.bed
 
 
 
@@ -165,6 +165,8 @@ sort -k7,7nr intersected_variants_with_enrichment.bed > intersected_variants_wit
 
 # Filter to only include enrichment ratio >0
 
+# Only pathogenic variants
+awk '$7 != 0' intersected_variants_with_enrichment_sorted.bed | sort -k7,7nr > intersected_variants_filtered_sorted_with_X_Y_MT_pathogenic_variant_count.bed
 # New command
 awk '$7 != 0' intersected_variants_with_enrichment_sorted.bed | sort -k7,7nr > intersected_variants_filtered_sorted_with_X_Y_MT.bed
 # Old command
