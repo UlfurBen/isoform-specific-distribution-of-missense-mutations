@@ -30,7 +30,7 @@ exclusion_terms <- c("variant of uncertain significance", "benign")
 filtered_data <- bed_data %>%
   filter(tolower(V7) == "pathogenic" & !tolower(V7) %in% exclusion_terms)
 
-# Optionally, write the filtered data to a new file
+# Write the filtered data to a new file
 write.table(filtered_data, 'homo_sapiens_variation_missense_ClinVar_filtered_relevancy_no_headers_pathogenic.bed', sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
 
 
