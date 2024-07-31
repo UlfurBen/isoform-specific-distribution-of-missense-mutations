@@ -1,1 +1,8 @@
-# File's name on elja is intersected_counts_with_enrichment.bed
+# File with X, Y and MT chr and only pathogenic variants
+intersected_variants_filtered_sorted_with_X_Y_MT_pathogenic_variant_count.bed
+
+# New file with X, Y and MT chr
+intersected_variants_filtered_sorted_with_X_Y_MT.bed
+
+# Old file without X, Y or MT chr
+intersected_variants_filtered_sorted.bed
