@@ -1,2 +1,2 @@
 1. ensembl: Homo_sapiens.GRCh37.87_without_headers.bed
-2. variants: homo_sapiens_variation_missense_ClinVar_filtered_relevancy_no_headers.bed
+2. variants: sorted_homo_sapiens_variation_missense_ClinVar_filtered_relevancy_no_headers_pathogenic.bed
