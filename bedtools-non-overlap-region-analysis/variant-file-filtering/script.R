@@ -9,7 +9,7 @@ output_file <- "homo_sapiens_variation_missense_ClinVar_filtered_relevancy_no_he
 bed_data <- fread(input_file, skip = 1, header = FALSE)
 
 # Select only some columns
-bed_data_subset <- bed_data[, .(V1, V2, V3, V5, V7, V9, V16)]
+bed_data_subset <- bed_data[, .(V1, V2, V3, V5, V7, V8, V9, V16)]
 
 # Write the modified data to a new file without headers
 fwrite(bed_data_subset, output_file, sep = "\t", col.names = FALSE)
