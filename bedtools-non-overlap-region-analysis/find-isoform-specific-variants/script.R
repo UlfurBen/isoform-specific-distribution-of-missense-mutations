@@ -33,12 +33,20 @@ process_bed_files <- function(input_folder, output_folder) {
     
     # Find unique variants in each BED file
     for (bed_file in bed_files) {
-      other_bed_files <- setdiff(bed_files, bed_file)
+      # List all BED files in other subfolders
+      other_bed_files <- list.files(subfolders, pattern = "\\.bed$", full.names = TRUE, recursive = TRUE)
+      other_bed_files <- setdiff(other_bed_files, bed_file) # Exclude the current bed file from the list
+      
       unique_variants_file <- file.path(output_subfolder, basename(bed_file))
       
       # Intersect with other BED files to find unique variants
-      intersect_command <- paste("bedtools intersect -v -a", bed_file, "-b", paste(other_bed_files, collapse = " "), ">", unique_variants_file)
-      system(intersect_command)
+      if (length(other_bed_files) > 0) {
+        intersect_command <- paste("bedtools intersect -v -a", bed_file, "-b", paste(other_bed_files, collapse = " "), ">", unique_variants_file)
+        system(intersect_command)
+      } else {
+        # If there are no other BED files, copy the original file to the output folder
+        file.copy(bed_file, unique_variants_file)
+      }
     }
   }
 }
