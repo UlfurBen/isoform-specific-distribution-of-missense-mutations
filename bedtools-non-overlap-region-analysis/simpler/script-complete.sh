@@ -167,6 +167,8 @@ sort -k7,7nr intersected_variants_with_enrichment.bed > intersected_variants_wit
 
 # Only pathogenic variants
 awk '$7 != 0' intersected_variants_with_enrichment_sorted.bed | sort -k7,7nr > intersected_variants_filtered_sorted_with_X_Y_MT_pathogenic_variant_count.bed
+column -t intersected_variants_filtered_sorted_with_X_Y_MT_pathogenic_variant_count.bed > formatted_variants.bed
+
 # New command
 awk '$7 != 0' intersected_variants_with_enrichment_sorted.bed | sort -k7,7nr > intersected_variants_filtered_sorted_with_X_Y_MT.bed
 # Old command
