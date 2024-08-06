@@ -2,7 +2,7 @@
 library(dplyr)
 
 # Read the BED file
-bed_data <- read.table("filtered_no_scientific_notation.bed", header = FALSE, stringsAsFactors = FALSE)
+bed_data <- read.table("homo_sapiens_variation_missense_ClinVar_filtered_relevancy_pathogenic.bed", header = FALSE, stringsAsFactors = FALSE, fill=TRUE)
 
 # Filter the data for 'crebbp' (case insensitive) in the fifth column
 filtered_data <- bed_data %>%
@@ -15,11 +15,11 @@ if (!dir.exists(main_folder)) {
 }
 
 # Get unique values from the fourth column
-unique_values <- unique(filtered_data$V4)
+unique_values <- unique(filtered_data$V16)
 
 # Save the filtered rows in the main folder
 for (value in unique_values) {
-  subset_data <- filtered_data %>% filter(V4 == value)
+  subset_data <- filtered_data %>% filter(V16 == value)
   write.table(subset_data, file = file.path(main_folder, paste0(value, ".bed")), sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
 }
 
