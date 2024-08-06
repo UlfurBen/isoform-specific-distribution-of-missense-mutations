@@ -20,7 +20,6 @@ cat("File has been processed and saved as", output_file, "\n")
 library(dplyr)
 
 # Read the BED file into a data frame
-# Replace 'your_file_path' with the actual path to your BED file
 bed_data <- read.delim('homo_sapiens_variation_missense_ClinVar_filtered_relevancy_no_headers.bed', header = FALSE)
 
 # Define the exclusion terms
