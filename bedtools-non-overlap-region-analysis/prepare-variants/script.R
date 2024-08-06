@@ -27,19 +27,6 @@ cat("Filtered file has been processed and saved as", output_file, "\n")
 # Extract specific columns: 1st, 2nd, 3rd, 4th, 5th, 10th, and 16th
 selected_columns <- filtered_data %>% select(V1, V2, V3, V4, V5, V10, V16)
 
-# Format the output to ensure columns are aligned
-formatted_data <- selected_columns %>%
-  mutate(across(everything(), as.character)) %>%
-  rowwise() %>%
-  mutate(
-    formatted_line = sprintf(
-      "%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-50s\t%-20s",
-      V1, V2, V3, V4, V5, V10, V16
-    )
-  ) %>%
-  ungroup() %>%
-  select(formatted_line)
-
 # Write the formatted data to the final output file
 write.table(formatted_data$formatted_line, final_output_file, quote = FALSE, row.names = FALSE, col.names = FALSE, sep = "\n")
 cat("Selected columns have been saved as", final_output_file, "\n")
