@@ -27,6 +27,6 @@ cat("Filtered file has been processed and saved as", output_file, "\n")
 # Extract specific columns: 1st, 2nd, 3rd, 4th, 5th, 10th, and 16th
 selected_columns <- filtered_data %>% select(V1, V2, V3, V4, V5, V10, V16)
 
-# Write the formatted data to the final output file
-write.table(formatted_data$formatted_line, final_output_file, quote = FALSE, row.names = FALSE, col.names = FALSE, sep = "\n")
+# Write the selected columns to the final output file
+write.table(selected_columns, final_output_file, quote = FALSE, row.names = FALSE, col.names = FALSE, sep = "\t")
 cat("Selected columns have been saved as", final_output_file, "\n")
