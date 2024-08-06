@@ -52,6 +52,9 @@ write.table(bed_df, file=output_bed_file_with_headers, sep="\t", quote=FALSE, co
 
 
 
+
+# Find non-overlapping regions
+
 input_file <- "Homo_sapiens.GRCh37.87_with_headers.bed"
 output_file <- "Homo_sapiens.GRCh37.87_with_headers_isoform_specific_regions.bed"
 
@@ -156,7 +159,6 @@ cat("Trimmed BED file has been written to", output_file, "\n")
 
 
 
-
 # Filter input bed file to include first 3 columns and two values in column 9
 
 # Load necessary library
@@ -202,13 +204,6 @@ cat("Filtering complete. The filtered file has been saved as 'filtered_Homo_sapi
 
 
 
-
-# Correct input files
-
-# filtered_Homo_sapiens.GRCh37.87.bed
-
-# sorted_homo_sapiens_variation_missense_ClinVar_filtered_relevancy_no_headers_pathogenic.bed
-
 # Sort the region bed file
 sort -k1,1 -k2,2n filtered_Homo_sapiens.GRCh37.87.bed > sorted_Homo_sapiens.GRCh37.87_with_headers_isoform_specific_regions_bedtools_non_scientific.bed
 
@@ -216,10 +211,11 @@ sort -k1,1 -k2,2n filtered_Homo_sapiens.GRCh37.87.bed > sorted_Homo_sapiens.GRCh
 
 
 
-input_file <- "sorted_Homo_sapiens.GRCh37.87_with_headers_isoform_specific_regions_bedtools_non_scientific.bed"
-output_file <- "filtered_sorted_bed_file.bed"
 
 # Remove all rows with first column value that isn't numeric and sort the file
+
+input_file <- "sorted_Homo_sapiens.GRCh37.87_with_headers_isoform_specific_regions_bedtools_non_scientific.bed"
+output_file <- "filtered_sorted_bed_file.bed"
 
 # Load necessary library
 library(dplyr)
