@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript
+
 # Load necessary libraries
 library(data.table)
 library(dplyr)
@@ -5,6 +7,7 @@ library(dplyr)
 # File paths
 input_file <- "homo_sapiens_variation_missense_ClinVar_filtered_relevancy.bed"
 output_file <- "homo_sapiens_variation_missense_ClinVar_filtered_relevancy_pathogenic.bed"
+final_output_file <- "homo_sapiens_variation_missense_ClinVar_filtered_relevancy_pathogenic_fresh.bed"
 
 # Read the BED file and skip the header row
 bed_data <- fread(input_file, skip = 1, header = FALSE)
@@ -19,5 +22,24 @@ filtered_data <- bed_data %>%
 
 # Write the filtered data to a new file
 fwrite(filtered_data, output_file, sep = "\t", col.names = FALSE)
+cat("Filtered file has been processed and saved as", output_file, "\n")
 
-cat("File has been processed and saved as", output_file, "\n")
+# Extract specific columns: 1st, 2nd, 3rd, 4th, 5th, 10th, and 16th
+selected_columns <- filtered_data %>% select(V1, V2, V3, V4, V5, V10, V16)
+
+# Format the output to ensure columns are aligned
+formatted_data <- selected_columns %>%
+  mutate(across(everything(), as.character)) %>%
+  rowwise() %>%
+  mutate(
+    formatted_line = sprintf(
+      "%-10s %-10s %-10s %-10s %-10s %-50s %-20s",
+      V1, V2, V3, V4, V5, V10, V16
+    )
+  ) %>%
+  ungroup() %>%
+  select(formatted_line)
+
+# Write the formatted data to the final output file
+write.table(formatted_data$formatted_line, final_output_file, quote = FALSE, row.names = FALSE, col.names = FALSE)
+cat("Selected columns have been saved as", final_output_file, "\n")
