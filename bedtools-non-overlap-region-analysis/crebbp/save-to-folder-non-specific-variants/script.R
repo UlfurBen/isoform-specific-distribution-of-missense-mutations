@@ -14,12 +14,13 @@ if (!dir.exists(main_folder)) {
   dir.create(main_folder)
 }
 
-# Get unique values from the fourth column
-unique_values <- unique(filtered_data$V16)
+# Find all unique values in the entire row that start with "ENST"
+unique_values <- unique(unlist(filtered_data %>% select(everything()) %>% as.vector()))
+unique_values <- unique_values[grepl("^ENST", unique_values)]
 
 # Save the filtered rows in the main folder
 for (value in unique_values) {
-  subset_data <- filtered_data %>% filter(V16 == value)
+  subset_data <- filtered_data %>% filter_all(any_vars(grepl(value, .)))
   write.table(subset_data, file = file.path(main_folder, paste0(value, ".bed")), sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
 }
 
