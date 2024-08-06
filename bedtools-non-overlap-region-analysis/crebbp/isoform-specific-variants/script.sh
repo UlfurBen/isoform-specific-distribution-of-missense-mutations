@@ -2,6 +2,7 @@
 
 # Define the folder containing the BED files
 BED_FOLDER="crebbp"
+EXPECTED_FIELDS=7
 
 # Change to the directory containing the BED files
 cd "$BED_FOLDER" || { echo "Directory not found: $BED_FOLDER"; exit 1; }
