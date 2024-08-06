@@ -21,7 +21,7 @@ unique_values <- unique_values[grepl("^ENST", unique_values)]
 # Save the filtered rows in the main folder
 for (value in unique_values) {
   subset_data <- filtered_data %>% filter_all(any_vars(grepl(value, .)))
-  write.table(subset_data, file = file.path(main_folder, paste0(value, ".bed")), sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
+  write.table(subset_data, file = file.path(main_folder, paste0(value, ".bed")), row.names = FALSE, col.names = FALSE, quote = FALSE)
 }
 
 # Print a completion message
