@@ -33,7 +33,7 @@ formatted_data <- selected_columns %>%
   rowwise() %>%
   mutate(
     formatted_line = sprintf(
-      "%-10s %-10s %-10s %-10s %-10s %-50s %-20s",
+      "%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-50s\t%-20s",
       V1, V2, V3, V4, V5, V10, V16
     )
   ) %>%
@@ -41,5 +41,5 @@ formatted_data <- selected_columns %>%
   select(formatted_line)
 
 # Write the formatted data to the final output file
-write.table(formatted_data$formatted_line, final_output_file, quote = FALSE, row.names = FALSE, col.names = FALSE)
+write.table(formatted_data$formatted_line, final_output_file, quote = FALSE, row.names = FALSE, col.names = FALSE, sep = "\n")
 cat("Selected columns have been saved as", final_output_file, "\n")
