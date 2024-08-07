@@ -48,11 +48,11 @@ cat("Filtering complete. The filtered file has been saved as 'filtered_Homo_sapi
 
 # filtered_Homo_sapiens.GRCh37.87.bed
 
-# sorted_homo_sapiens_variation_missense_ClinVar_filtered_relevancy_no_headers_pathogenic.bed
 
+# Sort the variant bed file
+e
 # Sort the region bed file
 sort -k1,1 -k2,2n filtered_Homo_sapiens.GRCh37.87.bed > sorted_Homo_sapiens.GRCh37.87_with_headers_isoform_specific_regions_bedtools_non_scientific.bed
-
 
 
 
@@ -137,9 +137,9 @@ bedtools subtract -a filtered_no_scientific_notation.bed -b partial_overlapping.
 # Find variants count in each region
 
 # shortened_regions.bed
-# sorted_homo_sapiens_variation_missense_ClinVar_filtered_relevancy_no_headers_pathogenic.bed
+# homo_sapiens_variation_missense_ClinVar_filtered_relevancy_pathogenic.bed
 
-bedtools intersect -a shortened_regions.bed -b sorted_homo_sapiens_variation_missense_ClinVar_filtered_relevancy_no_headers_pathogenic.bed -c > intersected_variants.bed
+bedtools intersect -a shortened_regions.bed -b homo_sapiens_variation_missense_ClinVar_filtered_relevancy_pathogenic.bed -c > intersected_variants.bed
 
 
 
