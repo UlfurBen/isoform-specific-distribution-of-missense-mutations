@@ -23,28 +23,10 @@ Fisher test result for Nonpolar_to_Nonpolar:
   0.7278022 0.9287168 
 
 Fisher test result for Nonpolar_to_Nonpolar:
- sample estimates: 
-
-Fisher test result for Nonpolar_to_Nonpolar:
  odds ratio  
 
 Fisher test result for Nonpolar_to_Nonpolar:
    0.822996  
-
-Fisher test result for Nonpolar_to_Nonpolar:
-  
-
-Fisher test result for Nonpolar_to_Polar:
-  
-
-Fisher test result for Nonpolar_to_Polar:
- 	Fisher's Exact Test for Count Data 
-
-Fisher test result for Nonpolar_to_Polar:
-  
-
-Fisher test result for Nonpolar_to_Polar:
- data:  Nonpolar_to_Polar 
 
 Fisher test result for Nonpolar_to_Polar:
  p-value = 4.461e-13 
@@ -59,28 +41,10 @@ Fisher test result for Nonpolar_to_Polar:
   1.396298 1.787876 
 
 Fisher test result for Nonpolar_to_Polar:
- sample estimates: 
-
-Fisher test result for Nonpolar_to_Polar:
  odds ratio  
 
 Fisher test result for Nonpolar_to_Polar:
    1.580593  
-
-Fisher test result for Nonpolar_to_Polar:
-  
-
-Fisher test result for Nonpolar_to_Negatively_charged:
-  
-
-Fisher test result for Nonpolar_to_Negatively_charged:
- 	Fisher's Exact Test for Count Data 
-
-Fisher test result for Nonpolar_to_Negatively_charged:
-  
-
-Fisher test result for Nonpolar_to_Negatively_charged:
- data:  Nonpolar_to_Negatively_charged 
 
 Fisher test result for Nonpolar_to_Negatively_charged:
  p-value = 0.0001326 
@@ -95,19 +59,10 @@ Fisher test result for Nonpolar_to_Negatively_charged:
   1.312944 2.479255 
 
 Fisher test result for Nonpolar_to_Negatively_charged:
- sample estimates: 
-
-Fisher test result for Nonpolar_to_Negatively_charged:
  odds ratio  
 
 Fisher test result for Nonpolar_to_Negatively_charged:
    1.797804  
-
-Fisher test result for Nonpolar_to_Negatively_charged:
-  
-
-Fisher test result for Nonpolar_to_Positively_charged:
-  
 
 Fisher test result for Nonpolar_to_Positively_charged:
  	Fisher's Exact Test for Count Data 
@@ -131,28 +86,10 @@ Fisher test result for Nonpolar_to_Positively_charged:
   0.5877914 0.9507179 
 
 Fisher test result for Nonpolar_to_Positively_charged:
- sample estimates: 
-
-Fisher test result for Nonpolar_to_Positively_charged:
  odds ratio  
 
 Fisher test result for Nonpolar_to_Positively_charged:
   0.7481432  
-
-Fisher test result for Nonpolar_to_Positively_charged:
-  
-
-Fisher test result for Polar_to_Nonpolar:
-  
-
-Fisher test result for Polar_to_Nonpolar:
- 	Fisher's Exact Test for Count Data 
-
-Fisher test result for Polar_to_Nonpolar:
-  
-
-Fisher test result for Polar_to_Nonpolar:
- data:  Polar_to_Nonpolar 
 
 Fisher test result for Polar_to_Nonpolar:
  p-value = 0.9107 
@@ -167,28 +104,10 @@ Fisher test result for Polar_to_Nonpolar:
   0.8688961 1.1707050 
 
 Fisher test result for Polar_to_Nonpolar:
- sample estimates: 
-
-Fisher test result for Polar_to_Nonpolar:
  odds ratio  
 
 Fisher test result for Polar_to_Nonpolar:
    1.009767  
-
-Fisher test result for Polar_to_Nonpolar:
-  
-
-Fisher test result for Polar_to_Polar:
-  
-
-Fisher test result for Polar_to_Polar:
- 	Fisher's Exact Test for Count Data 
-
-Fisher test result for Polar_to_Polar:
-  
-
-Fisher test result for Polar_to_Polar:
- data:  Polar_to_Polar 
 
 Fisher test result for Polar_to_Polar:
  p-value = 0.4298 
@@ -203,28 +122,10 @@ Fisher test result for Polar_to_Polar:
   0.7765261 1.1091091 
 
 Fisher test result for Polar_to_Polar:
- sample estimates: 
-
-Fisher test result for Polar_to_Polar:
  odds ratio  
 
 Fisher test result for Polar_to_Polar:
   0.9294832  
-
-Fisher test result for Polar_to_Polar:
-  
-
-Fisher test result for Polar_to_Negatively_charged:
-  
-
-Fisher test result for Polar_to_Negatively_charged:
- 	Fisher's Exact Test for Count Data 
-
-Fisher test result for Polar_to_Negatively_charged:
-  
-
-Fisher test result for Polar_to_Negatively_charged:
- data:  Polar_to_Negatively_charged 
 
 Fisher test result for Polar_to_Negatively_charged:
  p-value < 2.2e-16 
@@ -239,28 +140,10 @@ Fisher test result for Polar_to_Negatively_charged:
   12.64986 25.08220 
 
 Fisher test result for Polar_to_Negatively_charged:
- sample estimates: 
-
-Fisher test result for Polar_to_Negatively_charged:
  odds ratio  
 
 Fisher test result for Polar_to_Negatively_charged:
     17.6356  
-
-Fisher test result for Polar_to_Negatively_charged:
-  
-
-Fisher test result for Polar_to_Positively_charged:
-  
-
-Fisher test result for Polar_to_Positively_charged:
- 	Fisher's Exact Test for Count Data 
-
-Fisher test result for Polar_to_Positively_charged:
-  
-
-Fisher test result for Polar_to_Positively_charged:
- data:  Polar_to_Positively_charged 
 
 Fisher test result for Polar_to_Positively_charged:
  p-value < 2.2e-16 
@@ -275,28 +158,10 @@ Fisher test result for Polar_to_Positively_charged:
   3.323575 4.563824 
 
 Fisher test result for Polar_to_Positively_charged:
- sample estimates: 
-
-Fisher test result for Polar_to_Positively_charged:
  odds ratio  
 
 Fisher test result for Polar_to_Positively_charged:
     3.89243  
-
-Fisher test result for Polar_to_Positively_charged:
-  
-
-Fisher test result for Negatively_charged_to_Nonpolar:
-  
-
-Fisher test result for Negatively_charged_to_Nonpolar:
- 	Fisher's Exact Test for Count Data 
-
-Fisher test result for Negatively_charged_to_Nonpolar:
-  
-
-Fisher test result for Negatively_charged_to_Nonpolar:
- data:  Negatively_charged_to_Nonpolar 
 
 Fisher test result for Negatively_charged_to_Nonpolar:
  p-value = 1.088e-06 
@@ -311,28 +176,10 @@ Fisher test result for Negatively_charged_to_Nonpolar:
   1.549724 2.857494 
 
 Fisher test result for Negatively_charged_to_Nonpolar:
- sample estimates: 
-
-Fisher test result for Negatively_charged_to_Nonpolar:
  odds ratio  
 
 Fisher test result for Negatively_charged_to_Nonpolar:
    2.102925  
-
-Fisher test result for Negatively_charged_to_Nonpolar:
-  
-
-Fisher test result for Negatively_charged_to_Polar:
-  
-
-Fisher test result for Negatively_charged_to_Polar:
- 	Fisher's Exact Test for Count Data 
-
-Fisher test result for Negatively_charged_to_Polar:
-  
-
-Fisher test result for Negatively_charged_to_Polar:
- data:  Negatively_charged_to_Polar 
 
 Fisher test result for Negatively_charged_to_Polar:
  p-value = 0.03395 
@@ -347,28 +194,10 @@ Fisher test result for Negatively_charged_to_Polar:
   1.020407 1.764100 
 
 Fisher test result for Negatively_charged_to_Polar:
- sample estimates: 
-
-Fisher test result for Negatively_charged_to_Polar:
  odds ratio  
 
 Fisher test result for Negatively_charged_to_Polar:
    1.344975  
-
-Fisher test result for Negatively_charged_to_Polar:
-  
-
-Fisher test result for Negatively_charged_to_Negatively_charged:
-  
-
-Fisher test result for Negatively_charged_to_Negatively_charged:
- 	Fisher's Exact Test for Count Data 
-
-Fisher test result for Negatively_charged_to_Negatively_charged:
-  
-
-Fisher test result for Negatively_charged_to_Negatively_charged:
- data:  Negatively_charged_to_Negatively_charged 
 
 Fisher test result for Negatively_charged_to_Negatively_charged:
  p-value = 4.959e-06 
@@ -383,28 +212,10 @@ Fisher test result for Negatively_charged_to_Negatively_charged:
   1.707154 3.693101 
 
 Fisher test result for Negatively_charged_to_Negatively_charged:
- sample estimates: 
-
-Fisher test result for Negatively_charged_to_Negatively_charged:
  odds ratio  
 
 Fisher test result for Negatively_charged_to_Negatively_charged:
    2.531143  
-
-Fisher test result for Negatively_charged_to_Negatively_charged:
-  
-
-Fisher test result for Negatively_charged_to_Positively_charged:
-  
-
-Fisher test result for Negatively_charged_to_Positively_charged:
- 	Fisher's Exact Test for Count Data 
-
-Fisher test result for Negatively_charged_to_Positively_charged:
-  
-
-Fisher test result for Negatively_charged_to_Positively_charged:
- data:  Negatively_charged_to_Positively_charged 
 
 Fisher test result for Negatively_charged_to_Positively_charged:
  p-value = 0.1884 
@@ -419,28 +230,10 @@ Fisher test result for Negatively_charged_to_Positively_charged:
   0.6469903 1.0900665 
 
 Fisher test result for Negatively_charged_to_Positively_charged:
- sample estimates: 
-
-Fisher test result for Negatively_charged_to_Positively_charged:
  odds ratio  
 
 Fisher test result for Negatively_charged_to_Positively_charged:
   0.8423598  
-
-Fisher test result for Negatively_charged_to_Positively_charged:
-  
-
-Fisher test result for Positively_charged_to_Nonpolar:
-  
-
-Fisher test result for Positively_charged_to_Nonpolar:
- 	Fisher's Exact Test for Count Data 
-
-Fisher test result for Positively_charged_to_Nonpolar:
-  
-
-Fisher test result for Positively_charged_to_Nonpolar:
- data:  Positively_charged_to_Nonpolar 
 
 Fisher test result for Positively_charged_to_Nonpolar:
  p-value < 2.2e-16 
@@ -453,9 +246,6 @@ Fisher test result for Positively_charged_to_Nonpolar:
 
 Fisher test result for Positively_charged_to_Nonpolar:
   2.426161 3.503809 
-
-Fisher test result for Positively_charged_to_Nonpolar:
- sample estimates: 
 
 Fisher test result for Positively_charged_to_Nonpolar:
  odds ratio  
@@ -491,25 +281,11 @@ Fisher test result for Positively_charged_to_Polar:
   0.8245454 1.2161333 
 
 Fisher test result for Positively_charged_to_Polar:
- sample estimates: 
-
-Fisher test result for Positively_charged_to_Polar:
  odds ratio  
 
 Fisher test result for Positively_charged_to_Polar:
    1.003912  
 
-Fisher test result for Positively_charged_to_Polar:
-  
-
-Fisher test result for Positively_charged_to_Negatively_charged:
-  
-
-Fisher test result for Positively_charged_to_Negatively_charged:
- 	Fisher's Exact Test for Count Data 
-
-Fisher test result for Positively_charged_to_Negatively_charged:
-  
 
 Fisher test result for Positively_charged_to_Negatively_charged:
  data:  Positively_charged_to_Negatively_charged 
@@ -527,29 +303,12 @@ Fisher test result for Positively_charged_to_Negatively_charged:
   1.288915 3.804765 
 
 Fisher test result for Positively_charged_to_Negatively_charged:
- sample estimates: 
-
-Fisher test result for Positively_charged_to_Negatively_charged:
  odds ratio  
 
 Fisher test result for Positively_charged_to_Negatively_charged:
    2.207009  
 
-Fisher test result for Positively_charged_to_Negatively_charged:
   
-
-Fisher test result for Positively_charged_to_Positively_charged:
-  
-
-Fisher test result for Positively_charged_to_Positively_charged:
- 	Fisher's Exact Test for Count Data 
-
-Fisher test result for Positively_charged_to_Positively_charged:
-  
-
-Fisher test result for Positively_charged_to_Positively_charged:
- data:  Positively_charged_to_Positively_charged 
-
 Fisher test result for Positively_charged_to_Positively_charged:
  p-value = 0.5597 
 
@@ -561,9 +320,6 @@ Fisher test result for Positively_charged_to_Positively_charged:
 
 Fisher test result for Positively_charged_to_Positively_charged:
   0.7838165 1.5191459 
-
-Fisher test result for Positively_charged_to_Positively_charged:
- sample estimates: 
 
 Fisher test result for Positively_charged_to_Positively_charged:
  odds ratio  
