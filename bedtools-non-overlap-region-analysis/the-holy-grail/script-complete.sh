@@ -138,9 +138,9 @@ bedtools subtract -a filtered_no_scientific_notation.bed -b partial_overlapping.
 # Find variants count in each region
 
 # shortened_regions.bed
-# homo_sapiens_variation_missense_ClinVar_filtered_relevancy_pathogenic.bed
+# sorted_hosmo_sapiens_variation_missense_ClinVar_filtered_relevancy_no_headers_pathogenic.bed
 
-bedtools intersect -a shortened_regions.bed -b homo_sapiens_variation_missense_ClinVar_filtered_relevancy_pathogenic.bed -c > intersected_variants.bed
+bedtools intersect -a shortened_regions.bed -b sorted_hosmo_sapiens_variation_missense_ClinVar_filtered_relevancy_no_headers_pathogenic.bed -c > intersected_variants.bed
 
 
 
@@ -165,6 +165,10 @@ sort -k7,7nr intersected_variants_with_enrichment.bed > intersected_variants_wit
 
 
 # Filter to only include enrichment ratio >0
+
+# Likely pathogenic and pathogenic variants
+
+
 
 # Only pathogenic variants
 awk '$7 != 0' intersected_variants_with_enrichment_sorted.bed | sort -k7,7nr > intersected_variants_filtered_sorted_with_X_Y_MT_pathogenic_variant_count.bed
