@@ -1,8 +1,12 @@
+# Run the following command line command first
+# column -t homo_sapiens_variation_missense_ClinVar_filtered_relevancy_pathogenic.bed > homo_sapiens_variation_missense_ClinVar_filtered_relevancy_pathogenic_formatted.bed
+
+
 # Load necessary libraries
 library(dplyr)
 
 # Read the BED file
-bed_data <- read.table("homo_sapiens_variation_missense_ClinVar_filtered_relevancy_pathogenic_fresh.bed", header = FALSE, stringsAsFactors = FALSE, fill=TRUE)
+bed_data <- read.table("homo_sapiens_variation_missense_ClinVar_filtered_relevancy_pathogenic_formatted.bed", header = FALSE, stringsAsFactors = FALSE, fill=TRUE)
 
 # Filter the data for 'crebbp' (case insensitive) in the fifth column
 filtered_data <- bed_data %>%
