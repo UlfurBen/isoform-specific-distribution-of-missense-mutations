@@ -13,7 +13,7 @@ final_output_file <- "homo_sapiens_variation_missense_ClinVar_filtered_relevancy
 bed_data <- fread(input_file, skip = 1, header = FALSE)
 
 # Define the exclusion terms
-exclusion_terms <- c("benign", "variant of uncertain significance")
+exclusion_terms <- c("benign", "variant of uncertain significance", "conflicting")
 
 # Filter the data to include only rows where 'Pathogenic' appears in column 10 (V10), case insensitive,
 # and exclude rows with conflicting terms in the same column
