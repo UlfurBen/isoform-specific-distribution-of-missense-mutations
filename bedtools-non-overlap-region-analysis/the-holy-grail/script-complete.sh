@@ -151,7 +151,9 @@ bedtools intersect -a shortened_regions.bed -b sorted_hosmo_sapiens_variation_mi
 
 sort -k6,6nr intersected_variants.bed > intersected_variants_sorted.bed
 
+# Format
 
+column -t intersected_variants_sorted.bed > intersected_variants_sorted_formatted_lp_and_p.bed
 
 
 
@@ -160,13 +162,24 @@ sort -k6,6nr intersected_variants.bed > intersected_variants_sorted.bed
 awk '{diff = $3 - $2; enrichment_ratio = (diff == 0) ? 0 : $6 / diff; print $0, enrichment_ratio}' intersected_variants_sorted.bed > intersected_variants_with_enrichment.bed
 
 
-sort -k7,7nr intersected_variants_with_enrichment.bed > intersected_variants_with_enrichment_sorted.bed
+sort -k7,7nr intersected_variants_with_enrichment.bed > intersected_variants_with_enrichment_sorted_lp_p.bed
 
 
 
 # Filter to only include enrichment ratio >0
 
 # Likely pathogenic and pathogenic variants
+awk '$7 != 0' intersected_variants_with_enrichment_sorted_lp_p.bed | sort -k7,7nr > intersected_variants_filtered_sorted_with_X_Y_MT_pathogenic_and_likely_pathogenic_variant_count.bed
+column -t intersected_variants_filtered_sorted_with_X_Y_MT_pathogenic_and_likely_pathogenic_variant_count.bed > formatted_variants_likely_p_p.bed
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------
+
+
 
 
 
