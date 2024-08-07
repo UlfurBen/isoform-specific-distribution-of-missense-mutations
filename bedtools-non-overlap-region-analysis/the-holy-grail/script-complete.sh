@@ -50,7 +50,8 @@ cat("Filtering complete. The filtered file has been saved as 'filtered_Homo_sapi
 
 
 # Sort the variant bed file
-e
+sort -k1,1 -k2,2n homo_sapiens_variation_missense_ClinVar_filtered_relevancy_pathogenic.bed > sorted_hosmo_sapiens_variation_missense_ClinVar_filtered_relevancy_no_headers_pathogenic.bed
+
 # Sort the region bed file
 sort -k1,1 -k2,2n filtered_Homo_sapiens.GRCh37.87.bed > sorted_Homo_sapiens.GRCh37.87_with_headers_isoform_specific_regions_bedtools_non_scientific.bed
 
