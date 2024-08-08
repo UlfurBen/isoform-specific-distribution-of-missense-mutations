@@ -1,3 +1,4 @@
+chr chr-start   chr-end   transcript-id    gene-name  mut-count enrichment-ratio
 9   35065343   35065378   ENST00000417448  VCP            60   1.71429
 9   21970975   21971004   ENST00000579122  CDKN2A         38   1.31034
 7   44149806   44149862   ENST00000223357  AEBP1          60   1.07143
