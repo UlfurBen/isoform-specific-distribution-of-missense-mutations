@@ -1,17 +1,19 @@
 #!/bin/bash
 
 # Define the folder containing the BED files
-BED_FOLDER="crebbp"
-EXPECTED_FIELDS=26
+# BED_FOLDER="crebbp"
+# EXPECTED_FIELDS=26
 
 # Change to the directory containing the BED files
-cd "$BED_FOLDER" || { echo "Directory not found: $BED_FOLDER"; exit 1; }
+# cd "$BED_FOLDER" || { echo "Directory not found: $BED_FOLDER"; exit 1; }
 
 # Get a list of all .bed files in the directory
+
+cd crebbp
 BED_FILES=(*.bed)
 
 # Step 1: Clean the BED files to ensure proper tab separation
-echo "Cleaning BED files..."
+# echo "Cleaning BED files..."
 for file in "${BED_FILES[@]}"; do
     # Replace any sequence of spaces and tabs with a single tab
     awk '{$1=$1}1' OFS='\t' "$file" > "${file}.tmp" && mv "${file}.tmp" "$file"
