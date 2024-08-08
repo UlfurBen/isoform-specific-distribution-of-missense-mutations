@@ -22,5 +22,5 @@ write.table(filtered_data, "variants_filtered.bed",
 # Print a message indicating the script has finished
 cat("Filtering complete. The filtered file has been saved as 'variants_filtered.bed'.\n")
 
-# Sort the variant bed file
-sort -k1,1 -k2,2n variants_filtered.bed > variants_filtered_sorted.bed
+# Sort the variant bed file on command line
+# sort -k1,1 -k2,2n variants_filtered.bed > variants_filtered_sorted.bed
