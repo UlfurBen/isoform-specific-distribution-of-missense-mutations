@@ -18,10 +18,10 @@ if (!dir.exists(main_folder)) {
 unique_values <- unique(unlist(filtered_data %>% select(everything()) %>% as.vector()))
 unique_values <- unique_values[grepl("^ENST", unique_values)]
 
-# Save the filtered rows in the main folder
+# Save the filtered rows in the main folder, ensuring tab-separated output
 for (value in unique_values) {
   subset_data <- filtered_data %>% filter_all(any_vars(grepl(value, .)))
-  write.table(subset_data, file = file.path(main_folder, paste0(value, ".bed")), row.names = FALSE, col.names = FALSE, quote = FALSE)
+  write.table(subset_data, file = file.path(main_folder, paste0(value, ".bed")), sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
 }
 
 # Print a completion message
