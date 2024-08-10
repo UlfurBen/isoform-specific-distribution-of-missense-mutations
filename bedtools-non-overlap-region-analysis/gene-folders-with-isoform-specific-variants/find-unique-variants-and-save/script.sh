@@ -14,16 +14,30 @@ while IFS=, read -r GENE_NAME ENST_ID; do
     if [ -d "$GENE_FOLDER" ]; then
         cd "$GENE_FOLDER" || exit
         
-        # Delete the .bed file that matches the ENST ID
-        BED_FILE="${ENST_ID}.bed"
-        if [ -f "$BED_FILE" ]; then
-            echo "Deleting $BED_FILE in $GENE_FOLDER"
-            rm "$BED_FILE"
-        fi
-        
-        # Get a list of remaining .bed files
+        # Get a list of .bed files
         BED_FILES=(*.bed)
         
+        # Check and remove trailing tabs in all .bed files
+        for BED_FILE in "${BED_FILES[@]}"; do
+            if [ -f "$BED_FILE" ]; then
+                # Remove trailing tabs from each line in the BED file
+                sed -i 's/\t$//' "$BED_FILE"
+            fi
+        done
+        
+        # Check if there are more than one .bed files in the folder
+        if [ "${#BED_FILES[@]}" -gt 1 ]; then
+            # Delete the .bed file that matches the ENST ID
+            BED_FILE="${ENST_ID}.bed"
+            if [ -f "$BED_FILE" ]; then
+                echo "Deleting $BED_FILE in $GENE_FOLDER"
+                rm "$BED_FILE"
+            fi
+            
+            # Update the list of remaining .bed files
+            BED_FILES=(*.bed)
+        fi
+
         # Check if there are two or more .bed files remaining
         if [ "${#BED_FILES[@]}" -ge 2 ]; then
             # Create a directory to store the unique output files
