@@ -3,7 +3,7 @@ library(stringr)
 
 # Define the path to the genes folder and the Homo_sapiens.GRCh37.87.bed file
 genes_folder <- "~/genes"
-homo_sapiens_file <- "Homo_sapiens.GRCh37.87.bed"
+homo_sapiens_file <- "filtered_no_scientific_notation.bed"
 
 # Get the list of subfolders in the genes folder
 subfolders <- list.dirs(genes_folder, recursive = FALSE)
