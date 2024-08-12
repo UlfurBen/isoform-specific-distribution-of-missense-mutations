@@ -2,10 +2,10 @@
 library(dplyr)
 
 # Read the BED file
-bed_data <- read.table("variants_benign_pathogenic_non_vus_non_conflicting.bed", header = FALSE, stringsAsFactors = FALSE, fill=TRUE)
+bed_data <- read.table("variants_benign_pathogenic_non_vus_non_conflicting.bed", header = FALSE, stringsAsFactors = FALSE, fill = TRUE)
 
 # Read the gene names from the CSV file
-gene_names <- read.csv("gene_names.csv", header = FALSE, stringsAsFactors = FALSE)[, 1]
+gene_names <- read.csv("60_EM_gene_names.csv", header = FALSE, stringsAsFactors = FALSE)[, 1]
 
 # Create the superfolder "genes"
 superfolder <- "genes"
@@ -25,15 +25,11 @@ for (gene in gene_names) {
     dir.create(gene_folder)
   }
   
-  # Find all unique values in the entire row that start with "ENST"
-  unique_values <- unique(unlist(filtered_data %>% select(everything()) %>% as.vector()))
-  unique_values <- unique_values[grepl("^ENST", unique_values)]
+  # Define the output file path for the filtered data
+  output_file <- file.path(gene_folder, paste0(gene, "_filtered.bed"))
   
-  # Save the filtered rows in the gene's folder, ensuring tab-separated output
-  for (value in unique_values) {
-    subset_data <- filtered_data %>% filter_all(any_vars(grepl(value, .)))
-    write.table(subset_data, file = file.path(gene_folder, paste0(value, ".bed")), sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
-  }
+  # Write the filtered data to a file
+  write.table(filtered_data, file = output_file, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
   
   # Print a message for each gene
   cat("Processing complete for gene:", gene, "\n")
