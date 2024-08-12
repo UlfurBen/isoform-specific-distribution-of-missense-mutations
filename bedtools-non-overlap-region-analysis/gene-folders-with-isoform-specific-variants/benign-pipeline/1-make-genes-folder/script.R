@@ -1,3 +1,5 @@
+# After running this script make sure to delete the x folder within ~/benign-genes
+
 # Load necessary libraries
 library(dplyr)
 
