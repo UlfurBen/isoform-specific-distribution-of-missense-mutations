@@ -1,3 +1,5 @@
+# After running this script run column -t ~/final-results/results.bed > ~/final-results/format_results.bed
+
 # Set the file paths
 input_file <- "~/results/filtered_results.bed"
 output_dir <- "~/final-results"
