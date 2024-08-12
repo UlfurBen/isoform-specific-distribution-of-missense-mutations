@@ -2,7 +2,7 @@
 library(dplyr)
 
 # Read the BED file
-bed_data <- read.table("homo_sapiens_variation_missense_ClinVar_filtered_relevancy_no_headers.bed", header = FALSE, sep = "\t", stringsAsFactors = FALSE)
+bed_data <- read.table("homo_sapiens_variation_missense_ClinVar_filtered_relevancy_pathogenic.bed", header = FALSE, sep = "\t", stringsAsFactors = FALSE)
 
 # Filter rows where the 4th column contains 'crebbp' (case insensitive)
 filtered_data <- bed_data %>%
