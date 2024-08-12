@@ -2,7 +2,7 @@
 library(dplyr)
 
 # Read the BED file
-bed_data <- read.table("variants_filtered_sorted.bed", header = FALSE, stringsAsFactors = FALSE, fill=TRUE)
+bed_data <- read.table("homo_sapiens_variation_missense_ClinVar_filtered_relevancy_pathogenic.bed", header = FALSE, stringsAsFactors = FALSE, fill=TRUE)
 
 # Read the gene names from the CSV file
 gene_names <- read.csv("gene_names.csv", header = FALSE, stringsAsFactors = FALSE)[, 1]
