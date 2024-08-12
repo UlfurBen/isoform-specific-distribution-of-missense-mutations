@@ -1,3 +1,5 @@
+# After running the script run: column -t ~/final-results/appended-results.bed > ~/final-results/appended-formatted-results.bed
+
 # Load necessary library
 library(dplyr)
 
