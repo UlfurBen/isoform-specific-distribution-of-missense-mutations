@@ -1,3 +1,5 @@
+# After running this script run column -t ~/final-results/benign_results.bed > ~/final-results/benign_format_results.bed
+
 # Set the file paths
 input_file <- "~/results/benign_filtered_results.bed"
 output_dir <- "~/final-results"
