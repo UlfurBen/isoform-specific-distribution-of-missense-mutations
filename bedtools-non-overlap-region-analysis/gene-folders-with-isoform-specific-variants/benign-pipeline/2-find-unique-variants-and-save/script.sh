@@ -3,7 +3,7 @@
 # Define the path to the gene names with ENST values CSV file
 CSV_FILE=~/gene_names_with_enst.csv
 
-# Define the path to the "genes" folder
+# Define the path to the "benign-genes" folder
 GENES_FOLDER="benign-genes"
 
 # Read the CSV file line by line
