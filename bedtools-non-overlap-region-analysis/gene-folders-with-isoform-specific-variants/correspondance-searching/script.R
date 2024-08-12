@@ -5,17 +5,13 @@ library(dplyr)
 format_results_path <- "~/final-results/format_results.bed"
 benign_format_results_path <- "~/final-results/benign_format_results.bed"
 
-# Read the files
+# Read the files without headers
 format_results <- read.table(format_results_path, header = FALSE, sep = "\t")
 benign_format_results <- read.table(benign_format_results_path, header = FALSE, sep = "\t")
 
-# Rename columns for clarity
-colnames(format_results) <- paste0("V", 1:ncol(format_results))
-colnames(benign_format_results) <- paste0("V", 1:ncol(benign_format_results))
-
 # Perform the join based on the first 3 columns
 merged_results <- left_join(format_results, benign_format_results[, c(1:3, 6)], 
-                            by = c("V1", "V2", "V3"))
+                            by = c("V1" = "V1", "V2" = "V2", "V3" = "V3"))
 
 # Write the result to a new file called appended-results.bed
 output_path <- "~/final-results/appended-results.bed"
