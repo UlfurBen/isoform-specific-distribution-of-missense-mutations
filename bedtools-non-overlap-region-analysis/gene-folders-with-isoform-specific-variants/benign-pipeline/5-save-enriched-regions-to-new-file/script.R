@@ -1,6 +1,6 @@
 # Set the paths for the directories and output file
 genes_dir <- "~/benign-genes"
-results_dir <- "~/benign-results"
+results_dir <- "~/results"
 output_file <- file.path(results_dir, "benign_filtered_results.bed")
 
 # Create the results directory if it doesn't exist
