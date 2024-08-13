@@ -117,7 +117,15 @@ Positively_charged_to_Positively_charged <- data.frame(
 # Perform Fisher's exact test and write the results to the file
 write_fisher_test_result <- function(table, description) {
   result <- fisher.test(table)
-  write(paste(description, ":\n", capture.output(result), "\n"), file = output_file, append = TRUE)
+  p_value <- format(result$p.value, digits = 5)  # Format p-value with 5 significant digits
+  result_string <- paste(
+    description, ":\n",
+    "p-value = ", p_value, "\n",
+    "Odds ratio = ", format(result$estimate, digits = 5), "\n",
+    "95% CI = [", format(result$conf.int[1], digits = 5), ", ", format(result$conf.int[2], digits = 5), "]\n",
+    sep = ""
+  )
+  write(result_string, file = output_file, append = TRUE)
 }
 
 # Clear the file before writing new results
@@ -125,22 +133,22 @@ cat("", file = output_file)
 
 # List of tables and their descriptions
 tables <- list(
-  list(table = Nonpolar_to_Nonpolar, description = "Fisher test result for Nonpolar_to_Nonpolar"),
-  list(table = Nonpolar_to_Polar, description = "Fisher test result for Nonpolar_to_Polar"),
-  list(table = Nonpolar_to_Negatively_charged, description = "Fisher test result for Nonpolar_to_Negatively_charged"),
-  list(table = Nonpolar_to_Positively_charged, description = "Fisher test result for Nonpolar_to_Positively_charged"),
-  list(table = Polar_to_Nonpolar, description = "Fisher test result for Polar_to_Nonpolar"),
-  list(table = Polar_to_Polar, description = "Fisher test result for Polar_to_Polar"),
-  list(table = Polar_to_Negatively_charged, description = "Fisher test result for Polar_to_Negatively_charged"),
-  list(table = Polar_to_Positively_charged, description = "Fisher test result for Polar_to_Positively_charged"),
-  list(table = Negatively_charged_to_Nonpolar, description = "Fisher test result for Negatively_charged_to_Nonpolar"),
-  list(table = Negatively_charged_to_Polar, description = "Fisher test result for Negatively_charged_to_Polar"),
-  list(table = Negatively_charged_to_Negatively_charged, description = "Fisher test result for Negatively_charged_to_Negatively_charged"),
-  list(table = Negatively_charged_to_Positively_charged, description = "Fisher test result for Negatively_charged_to_Positively_charged"),
-  list(table = Positively_charged_to_Nonpolar, description = "Fisher test result for Positively_charged_to_Nonpolar"),
-  list(table = Positively_charged_to_Polar, description = "Fisher test result for Positively_charged_to_Polar"),
-  list(table = Positively_charged_to_Negatively_charged, description = "Fisher test result for Positively_charged_to_Negatively_charged"),
-  list(table = Positively_charged_to_Positively_charged, description = "Fisher test result for Positively_charged_to_Positively_charged")
+  list(table = Nonpolar_to_Nonpolar, description = "Nonpolar_to_Nonpolar"),
+  list(table = Nonpolar_to_Polar, description = "Nonpolar_to_Polar"),
+  list(table = Nonpolar_to_Negatively_charged, description = "Nonpolar_to_Negatively_charged"),
+  list(table = Nonpolar_to_Positively_charged, description = "Nonpolar_to_Positively_charged"),
+  list(table = Polar_to_Nonpolar, description = "Polar_to_Nonpolar"),
+  list(table = Polar_to_Polar, description = "Polar_to_Polar"),
+  list(table = Polar_to_Negatively_charged, description = "Polar_to_Negatively_charged"),
+  list(table = Polar_to_Positively_charged, description = "Polar_to_Positively_charged"),
+  list(table = Negatively_charged_to_Nonpolar, description = "Negatively_charged_to_Nonpolar"),
+  list(table = Negatively_charged_to_Polar, description = "Negatively_charged_to_Polar"),
+  list(table = Negatively_charged_to_Negatively_charged, description = "Negatively_charged_to_Negatively_charged"),
+  list(table = Negatively_charged_to_Positively_charged, description = "Negatively_charged_to_Positively_charged"),
+  list(table = Positively_charged_to_Nonpolar, description = "Positively_charged_to_Nonpolar"),
+  list(table = Positively_charged_to_Polar, description = "Positively_charged_to_Polar"),
+  list(table = Positively_charged_to_Negatively_charged, description = "Positively_charged_to_Negatively_charged"),
+  list(table = Positively_charged_to_Positively_charged, description = "Positively_charged_to_Positively_charged")
 )
 
 # Perform tests and write results
