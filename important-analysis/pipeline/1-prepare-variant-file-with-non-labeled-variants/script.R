@@ -14,10 +14,9 @@ bed_data <- fread(input_file, skip = 1, header = FALSE)
 # Define the exclusion terms
 exclusion_terms <- c("variant of uncertain significance", "conflicting")
 
-# Filter the data to include only rows where 'Benign' or 'Pathogenic' appears in column 10 (V10), case insensitive,
-# and exclude rows with conflicting terms in the same column
-filtered_data <- bed_data %>% 
-         !grepl(paste(exclusion_terms, collapse = "|"), V10, ignore.case = TRUE))
+# Exclude rows with conflicting terms in the same column
+filtered_data <- bed_data %>%
+  filter(!grepl(paste(exclusion_terms, collapse = "|"), V10, ignore.case = TRUE))
 
 # Write the filtered data to a new file
 fwrite(filtered_data, output_file, sep = "\t", col.names = FALSE)
