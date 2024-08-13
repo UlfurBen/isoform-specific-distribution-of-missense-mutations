@@ -31,24 +31,20 @@ for (subfolder in subfolders) {
       # Read the file into a data frame
       variant_data <- read.table(count_file, header = FALSE, sep = "\t", stringsAsFactors = FALSE)
       
-      # Filter rows where either the 6th or 7th column is non-zero
-      enriched_rows <- variant_data[variant_data$V6 != 0 | variant_data$V7 != 0, ]
-      
-      # Append the enriched rows to the all_enriched_regions data frame
-      all_enriched_regions <- rbind(all_enriched_regions, enriched_rows)
+      # Append all rows to the all_enriched_regions data frame
+      all_enriched_regions <- rbind(all_enriched_regions, variant_data)
     }
   } else {
     cat("Region variant count folder not found in", subfolder, "\n")
   }
 }
 
-# Write all enriched regions to the enriched_regions.bed file if there are any enriched rows
-if (nrow(all_enriched_regions) > 0) {
-  write.table(all_enriched_regions, enriched_regions_file, sep = "\t", col.names = FALSE, row.names = FALSE, quote = FALSE)
-  cat("Saved all enriched regions to", enriched_regions_file, "\n")
-} else {
-  cat("No enriched regions found across all genes.\n")
-}
+# Sort the data frame by the 6th column in descending order
+all_enriched_regions <- all_enriched_regions[order(-all_enriched_regions$V6), ]
+
+# Write all regions to the enriched_regions.bed file
+write.table(all_enriched_regions, enriched_regions_file, sep = "\t", col.names = FALSE, row.names = FALSE, quote = FALSE)
+cat("Saved all regions, sorted by the 6th column, to", enriched_regions_file, "\n")
 
 # Print a final completion message
 cat("Enriched regions have been saved to the main ~/genes directory.\n")
