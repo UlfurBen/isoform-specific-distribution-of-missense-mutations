@@ -1,332 +1,79 @@
-Fisher test result for Nonpolar_to_Nonpolar:
-  
-
-Fisher test result for Nonpolar_to_Nonpolar:
- 	Fisher's Exact Test for Count Data 
-
-Fisher test result for Nonpolar_to_Nonpolar:
-  
-
-Fisher test result for Nonpolar_to_Nonpolar:
- data:  Nonpolar_to_Nonpolar 
-
-Fisher test result for Nonpolar_to_Nonpolar:
- p-value = 0.001354 
-
-Fisher test result for Nonpolar_to_Nonpolar:
- alternative hypothesis: true odds ratio is not equal to 1 
-
-Fisher test result for Nonpolar_to_Nonpolar:
- 95 percent confidence interval: 
-
-Fisher test result for Nonpolar_to_Nonpolar:
-  0.7278022 0.9287168 
-
-Fisher test result for Nonpolar_to_Nonpolar:
- odds ratio  
-
-Fisher test result for Nonpolar_to_Nonpolar:
-   0.822996  
-
-Fisher test result for Nonpolar_to_Polar:
- p-value = 4.461e-13 
-
-Fisher test result for Nonpolar_to_Polar:
- alternative hypothesis: true odds ratio is not equal to 1 
-
-Fisher test result for Nonpolar_to_Polar:
- 95 percent confidence interval: 
-
-Fisher test result for Nonpolar_to_Polar:
-  1.396298 1.787876 
-
-Fisher test result for Nonpolar_to_Polar:
- odds ratio  
-
-Fisher test result for Nonpolar_to_Polar:
-   1.580593  
-
-Fisher test result for Nonpolar_to_Negatively_charged:
- p-value = 0.0001326 
-
-Fisher test result for Nonpolar_to_Negatively_charged:
- alternative hypothesis: true odds ratio is not equal to 1 
-
-Fisher test result for Nonpolar_to_Negatively_charged:
- 95 percent confidence interval: 
-
-Fisher test result for Nonpolar_to_Negatively_charged:
-  1.312944 2.479255 
-
-Fisher test result for Nonpolar_to_Negatively_charged:
- odds ratio  
-
-Fisher test result for Nonpolar_to_Negatively_charged:
-   1.797804  
-
-Fisher test result for Nonpolar_to_Positively_charged:
- 	Fisher's Exact Test for Count Data 
-
-Fisher test result for Nonpolar_to_Positively_charged:
-  
-
-Fisher test result for Nonpolar_to_Positively_charged:
- data:  Nonpolar_to_Positively_charged 
-
-Fisher test result for Nonpolar_to_Positively_charged:
- p-value = 0.01526 
-
-Fisher test result for Nonpolar_to_Positively_charged:
- alternative hypothesis: true odds ratio is not equal to 1 
-
-Fisher test result for Nonpolar_to_Positively_charged:
- 95 percent confidence interval: 
-
-Fisher test result for Nonpolar_to_Positively_charged:
-  0.5877914 0.9507179 
-
-Fisher test result for Nonpolar_to_Positively_charged:
- odds ratio  
-
-Fisher test result for Nonpolar_to_Positively_charged:
-  0.7481432  
-
-Fisher test result for Polar_to_Nonpolar:
- p-value = 0.9107 
-
-Fisher test result for Polar_to_Nonpolar:
- alternative hypothesis: true odds ratio is not equal to 1 
-
-Fisher test result for Polar_to_Nonpolar:
- 95 percent confidence interval: 
-
-Fisher test result for Polar_to_Nonpolar:
-  0.8688961 1.1707050 
-
-Fisher test result for Polar_to_Nonpolar:
- odds ratio  
-
-Fisher test result for Polar_to_Nonpolar:
-   1.009767  
-
-Fisher test result for Polar_to_Polar:
- p-value = 0.4298 
-
-Fisher test result for Polar_to_Polar:
- alternative hypothesis: true odds ratio is not equal to 1 
-
-Fisher test result for Polar_to_Polar:
- 95 percent confidence interval: 
-
-Fisher test result for Polar_to_Polar:
-  0.7765261 1.1091091 
-
-Fisher test result for Polar_to_Polar:
- odds ratio  
-
-Fisher test result for Polar_to_Polar:
-  0.9294832  
-
-Fisher test result for Polar_to_Negatively_charged:
- p-value < 2.2e-16 
-
-Fisher test result for Polar_to_Negatively_charged:
- alternative hypothesis: true odds ratio is not equal to 1 
-
-Fisher test result for Polar_to_Negatively_charged:
- 95 percent confidence interval: 
-
-Fisher test result for Polar_to_Negatively_charged:
-  12.64986 25.08220 
-
-Fisher test result for Polar_to_Negatively_charged:
- odds ratio  
-
-Fisher test result for Polar_to_Negatively_charged:
-    17.6356  
-
-Fisher test result for Polar_to_Positively_charged:
- p-value < 2.2e-16 
-
-Fisher test result for Polar_to_Positively_charged:
- alternative hypothesis: true odds ratio is not equal to 1 
-
-Fisher test result for Polar_to_Positively_charged:
- 95 percent confidence interval: 
-
-Fisher test result for Polar_to_Positively_charged:
-  3.323575 4.563824 
-
-Fisher test result for Polar_to_Positively_charged:
- odds ratio  
-
-Fisher test result for Polar_to_Positively_charged:
-    3.89243  
-
-Fisher test result for Negatively_charged_to_Nonpolar:
- p-value = 1.088e-06 
-
-Fisher test result for Negatively_charged_to_Nonpolar:
- alternative hypothesis: true odds ratio is not equal to 1 
-
-Fisher test result for Negatively_charged_to_Nonpolar:
- 95 percent confidence interval: 
-
-Fisher test result for Negatively_charged_to_Nonpolar:
-  1.549724 2.857494 
-
-Fisher test result for Negatively_charged_to_Nonpolar:
- odds ratio  
-
-Fisher test result for Negatively_charged_to_Nonpolar:
-   2.102925  
-
-Fisher test result for Negatively_charged_to_Polar:
- p-value = 0.03395 
-
-Fisher test result for Negatively_charged_to_Polar:
- alternative hypothesis: true odds ratio is not equal to 1 
-
-Fisher test result for Negatively_charged_to_Polar:
- 95 percent confidence interval: 
-
-Fisher test result for Negatively_charged_to_Polar:
-  1.020407 1.764100 
-
-Fisher test result for Negatively_charged_to_Polar:
- odds ratio  
-
-Fisher test result for Negatively_charged_to_Polar:
-   1.344975  
-
-Fisher test result for Negatively_charged_to_Negatively_charged:
- p-value = 4.959e-06 
-
-Fisher test result for Negatively_charged_to_Negatively_charged:
- alternative hypothesis: true odds ratio is not equal to 1 
-
-Fisher test result for Negatively_charged_to_Negatively_charged:
- 95 percent confidence interval: 
-
-Fisher test result for Negatively_charged_to_Negatively_charged:
-  1.707154 3.693101 
-
-Fisher test result for Negatively_charged_to_Negatively_charged:
- odds ratio  
-
-Fisher test result for Negatively_charged_to_Negatively_charged:
-   2.531143  
-
-Fisher test result for Negatively_charged_to_Positively_charged:
- p-value = 0.1884 
-
-Fisher test result for Negatively_charged_to_Positively_charged:
- alternative hypothesis: true odds ratio is not equal to 1 
-
-Fisher test result for Negatively_charged_to_Positively_charged:
- 95 percent confidence interval: 
-
-Fisher test result for Negatively_charged_to_Positively_charged:
-  0.6469903 1.0900665 
-
-Fisher test result for Negatively_charged_to_Positively_charged:
- odds ratio  
-
-Fisher test result for Negatively_charged_to_Positively_charged:
-  0.8423598  
-
-Fisher test result for Positively_charged_to_Nonpolar:
- p-value < 2.2e-16 
-
-Fisher test result for Positively_charged_to_Nonpolar:
- alternative hypothesis: true odds ratio is not equal to 1 
-
-Fisher test result for Positively_charged_to_Nonpolar:
- 95 percent confidence interval: 
-
-Fisher test result for Positively_charged_to_Nonpolar:
-  2.426161 3.503809 
-
-Fisher test result for Positively_charged_to_Nonpolar:
- odds ratio  
-
-Fisher test result for Positively_charged_to_Nonpolar:
-   2.912332  
-
-Fisher test result for Positively_charged_to_Nonpolar:
-  
-
-Fisher test result for Positively_charged_to_Polar:
-  
-
-Fisher test result for Positively_charged_to_Polar:
- 	Fisher's Exact Test for Count Data 
-
-Fisher test result for Positively_charged_to_Polar:
-  
-
-Fisher test result for Positively_charged_to_Polar:
- data:  Positively_charged_to_Polar 
-
-Fisher test result for Positively_charged_to_Polar:
- p-value = 0.9614 
-
-Fisher test result for Positively_charged_to_Polar:
- alternative hypothesis: true odds ratio is not equal to 1 
-
-Fisher test result for Positively_charged_to_Polar:
- 95 percent confidence interval: 
-
-Fisher test result for Positively_charged_to_Polar:
-  0.8245454 1.2161333 
-
-Fisher test result for Positively_charged_to_Polar:
- odds ratio  
-
-Fisher test result for Positively_charged_to_Polar:
-   1.003912  
-
-
-Fisher test result for Positively_charged_to_Negatively_charged:
- data:  Positively_charged_to_Negatively_charged 
-
-Fisher test result for Positively_charged_to_Negatively_charged:
- p-value = 0.002982 
-
-Fisher test result for Positively_charged_to_Negatively_charged:
- alternative hypothesis: true odds ratio is not equal to 1 
-
-Fisher test result for Positively_charged_to_Negatively_charged:
- 95 percent confidence interval: 
-
-Fisher test result for Positively_charged_to_Negatively_charged:
-  1.288915 3.804765 
-
-Fisher test result for Positively_charged_to_Negatively_charged:
- odds ratio  
-
-Fisher test result for Positively_charged_to_Negatively_charged:
-   2.207009  
-
-  
-Fisher test result for Positively_charged_to_Positively_charged:
- p-value = 0.5597 
-
-Fisher test result for Positively_charged_to_Positively_charged:
- alternative hypothesis: true odds ratio is not equal to 1 
-
-Fisher test result for Positively_charged_to_Positively_charged:
- 95 percent confidence interval: 
-
-Fisher test result for Positively_charged_to_Positively_charged:
-  0.7838165 1.5191459 
-
-Fisher test result for Positively_charged_to_Positively_charged:
- odds ratio  
-
-Fisher test result for Positively_charged_to_Positively_charged:
-   1.100315  
-
-Fisher test result for Positively_charged_to_Positively_charged:
-  
-
+Nonpolar_to_Nonpolar:
+p-value = 0.0013543
+Odds ratio = 0.823
+95% CI = [0.7278, 0.92872]
+
+Nonpolar_to_Polar:
+p-value = 4.461e-13
+Odds ratio = 1.5806
+95% CI = [1.3963, 1.7879]
+
+Nonpolar_to_Negatively_charged:
+p-value = 0.00013263
+Odds ratio = 1.7978
+95% CI = [1.3129, 2.4793]
+
+Nonpolar_to_Positively_charged:
+p-value = 0.015263
+Odds ratio = 0.74814
+95% CI = [0.58779, 0.95072]
+
+Polar_to_Nonpolar:
+p-value = 0.91067
+Odds ratio = 1.0098
+95% CI = [0.8689, 1.1707]
+
+Polar_to_Polar:
+p-value = 0.42981
+Odds ratio = 0.92948
+95% CI = [0.77653, 1.1091]
+
+Polar_to_Negatively_charged:
+p-value = 3.6648e-104
+Odds ratio = 17.636
+95% CI = [12.65, 25.082]
+
+Polar_to_Positively_charged:
+p-value = 1.3284e-67
+Odds ratio = 3.8924
+95% CI = [3.3236, 4.5638]
+
+Negatively_charged_to_Nonpolar:
+p-value = 1.0877e-06
+Odds ratio = 2.1029
+95% CI = [1.5497, 2.8575]
+
+Negatively_charged_to_Polar:
+p-value = 0.033955
+Odds ratio = 1.345
+95% CI = [1.0204, 1.7641]
+
+Negatively_charged_to_Negatively_charged:
+p-value = 4.9589e-06
+Odds ratio = 2.5311
+95% CI = [1.7072, 3.6931]
+
+Negatively_charged_to_Positively_charged:
+p-value = 0.18838
+Odds ratio = 0.84236
+95% CI = [0.64699, 1.0901]
+
+Positively_charged_to_Nonpolar:
+p-value = 4.0946e-33
+Odds ratio = 2.9123
+95% CI = [2.4262, 3.5038]
+
+Positively_charged_to_Polar:
+p-value = 0.9614
+Odds ratio = 1.0039
+95% CI = [0.82455, 1.2161]
+
+Positively_charged_to_Negatively_charged:
+p-value = 0.0029817
+Odds ratio = 2.207
+95% CI = [1.2889, 3.8048]
+
+Positively_charged_to_Positively_charged:
+p-value = 0.55968
+Odds ratio = 1.1003
+95% CI = [0.78382, 1.5191]
