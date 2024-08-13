@@ -66,17 +66,17 @@ for (subfolder in subfolders) {
         # Print a message indicating completion for this intersection
         cat("Intersected", basename(bed_file), "with canonical.bed. Output saved to", intersect_file, "\n")
         
-        # Grep case-insensitive 'benign' in the intersected data
+        # Grep case-insensitive 'benign' excluding lines with 'pathogenic' in the intersected data
         benign_output <- file.path(benign_folder, paste0(basename(bed_file), "_benign.bed"))
-        grep_benign_command <- paste("grep -i 'benign' ", intersect_file, ">", benign_output)
+        grep_benign_command <- paste("grep -i 'benign' ", intersect_file, " | grep -vi 'pathogenic' >", benign_output)
         system(grep_benign_command)
-        cat("Grep 'benign' in", intersect_file, ". Output saved to", benign_output, "\n")
+        cat("Grep 'benign' (excluding 'pathogenic') in", intersect_file, ". Output saved to", benign_output, "\n")
         
-        # Grep case-insensitive 'pathogenic' in the intersected data
+        # Grep case-insensitive 'pathogenic' excluding lines with 'benign' in the intersected data
         pathogenic_output <- file.path(pathogenic_folder, paste0(basename(bed_file), "_pathogenic.bed"))
-        grep_pathogenic_command <- paste("grep -i 'pathogenic' ", intersect_file, ">", pathogenic_output)
+        grep_pathogenic_command <- paste("grep -i 'pathogenic' ", intersect_file, " | grep -vi 'benign' >", pathogenic_output)
         system(grep_pathogenic_command)
-        cat("Grep 'pathogenic' in", intersect_file, ". Output saved to", pathogenic_output, "\n")
+        cat("Grep 'pathogenic' (excluding 'benign') in", intersect_file, ". Output saved to", pathogenic_output, "\n")
       }
     } else {
       cat("Canonical file not found for gene:", gene_name, "\n")
