@@ -2,7 +2,7 @@
 library(dplyr)
 
 # Read the BED file
-bed_data <- read.table("variants_benign_pathogenic_non_vus_non_conflicting.bed", header = FALSE, stringsAsFactors = FALSE, fill = TRUE)
+bed_data <- read.table("variants_benign_pathogenic_non_vus_non_conflicting_including_non_annotation.bed", header = FALSE, stringsAsFactors = FALSE, fill = TRUE)
 
 # Read the gene names from the CSV file (assuming it contains a header)
 gene_names <- read.csv("important_genes_with_enst.csv", header = TRUE, stringsAsFactors = FALSE)[, 1]
