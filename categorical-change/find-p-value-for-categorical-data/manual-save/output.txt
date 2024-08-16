@@ -1,79 +1,95 @@
 Nonpolar_to_Nonpolar:
-p-value = 0.0013543
+Original p-value = 0.0013543
+Bonferroni corrected p-value = 0.02167
 Odds ratio = 0.823
 95% CI = [0.7278, 0.92872]
 
 Nonpolar_to_Polar:
-p-value = 4.461e-13
+Original p-value = 4.461e-13
+Bonferroni corrected p-value = 7.1376e-12
 Odds ratio = 1.5806
 95% CI = [1.3963, 1.7879]
 
 Nonpolar_to_Negatively_charged:
-p-value = 0.00013263
+Original p-value = 0.00013263
+Bonferroni corrected p-value = 0.0021221
 Odds ratio = 1.7978
 95% CI = [1.3129, 2.4793]
 
 Nonpolar_to_Positively_charged:
-p-value = 0.015263
+Original p-value = 0.015263
+Bonferroni corrected p-value = 0.2442
 Odds ratio = 0.74814
 95% CI = [0.58779, 0.95072]
 
 Polar_to_Nonpolar:
-p-value = 0.91067
+Original p-value = 0.91067
+Bonferroni corrected p-value = 1
 Odds ratio = 1.0098
 95% CI = [0.8689, 1.1707]
 
 Polar_to_Polar:
-p-value = 0.42981
+Original p-value = 0.42981
+Bonferroni corrected p-value = 1
 Odds ratio = 0.92948
 95% CI = [0.77653, 1.1091]
 
 Polar_to_Negatively_charged:
-p-value = 3.6648e-104
+Original p-value = 3.6648e-104
+Bonferroni corrected p-value = 5.8637e-103
 Odds ratio = 17.636
 95% CI = [12.65, 25.082]
 
 Polar_to_Positively_charged:
-p-value = 1.3284e-67
+Original p-value = 1.3284e-67
+Bonferroni corrected p-value = 2.1255e-66
 Odds ratio = 3.8924
 95% CI = [3.3236, 4.5638]
 
 Negatively_charged_to_Nonpolar:
-p-value = 1.0877e-06
+Original p-value = 1.0877e-06
+Bonferroni corrected p-value = 1.7403e-05
 Odds ratio = 2.1029
 95% CI = [1.5497, 2.8575]
 
 Negatively_charged_to_Polar:
-p-value = 0.033955
+Original p-value = 0.033955
+Bonferroni corrected p-value = 0.54328
 Odds ratio = 1.345
 95% CI = [1.0204, 1.7641]
 
 Negatively_charged_to_Negatively_charged:
-p-value = 4.9589e-06
+Original p-value = 4.9589e-06
+Bonferroni corrected p-value = 7.9343e-05
 Odds ratio = 2.5311
 95% CI = [1.7072, 3.6931]
 
 Negatively_charged_to_Positively_charged:
-p-value = 0.18838
+Original p-value = 0.18838
+Bonferroni corrected p-value = 1
 Odds ratio = 0.84236
 95% CI = [0.64699, 1.0901]
 
 Positively_charged_to_Nonpolar:
-p-value = 4.0946e-33
+Original p-value = 4.0946e-33
+Bonferroni corrected p-value = 6.5513e-32
 Odds ratio = 2.9123
 95% CI = [2.4262, 3.5038]
 
 Positively_charged_to_Polar:
-p-value = 0.9614
+Original p-value = 0.9614
+Bonferroni corrected p-value = 1
 Odds ratio = 1.0039
 95% CI = [0.82455, 1.2161]
 
 Positively_charged_to_Negatively_charged:
-p-value = 0.0029817
+Original p-value = 0.0029817
+Bonferroni corrected p-value = 0.047707
 Odds ratio = 2.207
 95% CI = [1.2889, 3.8048]
 
 Positively_charged_to_Positively_charged:
-p-value = 0.55968
+Original p-value = 0.55968
+Bonferroni corrected p-value = 1
 Odds ratio = 1.1003
 95% CI = [0.78382, 1.5191]
