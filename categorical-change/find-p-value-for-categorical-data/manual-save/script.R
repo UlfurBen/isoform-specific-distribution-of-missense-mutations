@@ -114,13 +114,15 @@ Positively_charged_to_Positively_charged <- data.frame(
   stringsAsFactors = FALSE
 )
 
-# Perform Fisher's exact test and write the results to the file
-write_fisher_test_result <- function(table, description) {
+# Perform Fisher's exact test and write the results to the file with Bonferroni correction
+write_fisher_test_result <- function(table, description, num_comparisons) {
   result <- fisher.test(table)
-  p_value <- format(result$p.value, digits = 5)  # Format p-value with 5 significant digits
+  p_value <- result$p.value
+  bonferroni_p_value <- min(p_value * num_comparisons, 1)  # Apply Bonferroni correction and cap at 1
   result_string <- paste(
     description, ":\n",
-    "p-value = ", p_value, "\n",
+    "Original p-value = ", format(p_value, digits = 5), "\n",
+    "Bonferroni corrected p-value = ", format(bonferroni_p_value, digits = 5), "\n",
     "Odds ratio = ", format(result$estimate, digits = 5), "\n",
     "95% CI = [", format(result$conf.int[1], digits = 5), ", ", format(result$conf.int[2], digits = 5), "]\n",
     sep = ""
@@ -151,9 +153,12 @@ tables <- list(
   list(table = Positively_charged_to_Positively_charged, description = "Positively_charged_to_Positively_charged")
 )
 
-# Perform tests and write results
+# Count the number of comparisons
+num_comparisons <- length(tables)
+
+# Perform tests and write results with Bonferroni correction
 for (item in tables) {
-  write_fisher_test_result(item$table, item$description)
+  write_fisher_test_result(item$table, item$description, num_comparisons)
 }
 
 # Inform user that the results have been written
