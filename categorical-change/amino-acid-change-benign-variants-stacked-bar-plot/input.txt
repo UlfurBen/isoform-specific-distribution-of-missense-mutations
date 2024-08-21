@@ -1,0 +1,3 @@
+# On elja the files' names are
+homo_sapiens_variation_missense_ClinVar_benign_likely_benign_only_EM_genes_aa_change_count.txt
+homo_sapiens_variation_missense_ClinVar_benign_likely_benign_only_all_genes_aa_change_count.txt
