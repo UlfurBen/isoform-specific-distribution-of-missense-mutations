@@ -2,6 +2,7 @@
 library(ggplot2)
 library(dplyr)
 library(tidyr)
+library(plotly)
 
 # Function to read and process data from a file
 process_file_data <- function(file_path, label) {
@@ -46,12 +47,18 @@ combined_df <- combined_df %>%
 combined_df <- combined_df %>%
   mutate(Category = factor(Category, levels = total_percentage_df$Category[order(-total_percentage_df$TotalPercentage)]))
 
-# Create the stacked bar plot
-ggplot(combined_df, aes(x = Category, y = Percentage, fill = Dataset)) +
+# Create the stacked bar plot with ggplot2
+p <- ggplot(combined_df, aes(x = Category, y = Percentage, fill = Dataset, text = paste("Count:", Count, "<br>Percentage:", round(Percentage, 2), "%"))) +
   geom_bar(stat = "identity", position = "stack") +
-  labs(title = "Percentage of Each Categorical Change of ClinVar Missense Variants", 
+  labs(title = "Percentage of Each Categorical Change of ClinVar Missense Variants (Pathogenic/Likely Pathogenic)", 
        y = "Percentage", 
        x = "Categorical Change") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_brewer(palette = "Paired")
+
+# Convert ggplot to an interactive plotly plot
+interactive_plot <- ggplotly(p, tooltip = "text")
+
+# Show the interactive plot
+interactive_plot
