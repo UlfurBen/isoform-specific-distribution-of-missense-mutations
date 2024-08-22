@@ -51,7 +51,7 @@ combined_df <- combined_df %>%
 p <- ggplot(combined_df, aes(x = Category, y = Percentage, fill = Dataset, 
                              text = paste("Category:", Category, "<br>Count:", Count, "<br>Percentage:", round(Percentage, 2), "%"))) +
   geom_bar(stat = "identity", position = "stack") +
-  labs(title = "Percentage of Each Categorical Change of ClinVar Missense Variants (Pathogenic/Likely Pathogenic)", 
+  labs(title = "Percentage of Each Categorical Change of ClinVar Missense Variants (Benign/Likely Benign)", 
        y = "Percentage", 
        x = "Categorical Change") +
   theme_minimal() +
