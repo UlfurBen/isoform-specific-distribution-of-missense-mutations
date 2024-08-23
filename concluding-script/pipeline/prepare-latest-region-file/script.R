@@ -5,11 +5,11 @@ library(dplyr)
 library(stringr)
 
 # Define output files
-output_bed_file <- "Homo_sapiens.GRCh38.112.bed"
-output_bed_file_with_headers <- "Homo_sapiens.GRCh38.112_with_headers.bed"
+output_bed_file <- "Homo_sapiens.GRCh37.65.gtf"
+output_bed_file_with_headers <- "Homo_sapiens.GRCh37.65_with_headers.bed"
 
 # Read the GTF file
-gtf_file <- "Homo_sapiens.GRCh38.112.bed"
+gtf_file <- "Homo_sapiens.GRCh37.65.bed"
 gtf_data <- read.table(gtf_file, sep="\t", header=FALSE, comment.char="#", quote="")
 
 # Assign column names
@@ -91,8 +91,8 @@ write_bed_file <- function(gr, output_file) {
 }
 
 # Process the BED file
-input_file <- "Homo_sapiens.GRCh38.112_with_headers.bed"
-output_file <- "Homo_sapiens.GRCh38.112_with_headers_isoform_specific_regions.bed"
+input_file <- "Homo_sapiens.GRCh37.65_with_headers.bed"
+output_file <- "Homo_sapiens.GRCh37.65_with_headers_isoform_specific_regions.bed"
 
 bed <- read_bed_file(input_file)
 gr_trimmed <- trim_overlaps(bed)
@@ -108,7 +108,7 @@ library(dplyr)
 library(stringr)
 
 # Define the file path
-file_path <- "Homo_sapiens.GRCh38.112_with_headers_isoform_specific_regions.bed"
+file_path <- "Homo_sapiens.GRCh37.65_with_headers_isoform_specific_regions.bed"
 
 # Read the BED file into a data frame
 bed_data <- read.table(file_path, header=TRUE, stringsAsFactors=FALSE, fill=TRUE, sep="\t")
@@ -131,7 +131,7 @@ filtered_data <- bed_data %>%
   filter(!is.na(ENST) & !is.na(gene_name))
 
 # Write to a new BED file
-write.table(filtered_data, "filtered_Homo_sapiens.GRCh38.112.bed", sep="\t", row.names=FALSE, col.names=FALSE, quote=FALSE)
+write.table(filtered_data, "filtered_Homo_sapiens.GRCh37.65.bed", sep="\t", row.names=FALSE, col.names=FALSE, quote=FALSE)
 
 print("Filtering complete.")
 
@@ -139,7 +139,7 @@ print("Filtering complete.")
 Step 4: Sort and Filter BED File
                             
 # Sort the BED file
-sort -k1,1 -k2,2n filtered_Homo_sapiens.GRCh38.112.bed > sorted_Homo_sapiens.GRCh38.112_with_headers_isoform_specific_regions_bedtools_non_scientific.bed
+sort -k1,1 -k2,2n filtered_Homo_sapiens.GRCh37.65.bed > sorted_Homo_sapiens.GRCh37.65_with_headers_isoform_specific_regions_bedtools_non_scientific.bed
 
 Step 5: Remove Non-numeric and Sort Again
 
@@ -152,7 +152,7 @@ is_strictly_numeric_or_chr <- function(x) {
 }
 
 # Read and filter the BED file
-input_file <- "sorted_Homo_sapiens.GRCh38.112_with_headers_isoform_specific_regions_bedtools_non_scientific.bed"
+input_file <- "sorted_Homo_sapiens.GRCh37.65_with_headers_isoform_specific_regions_bedtools_non_scientific.bed"
 output_file <- "filtered_sorted_bed_file.bed"
 
 bed_data <- read.table(input_file, header = FALSE, stringsAsFactors = FALSE)
