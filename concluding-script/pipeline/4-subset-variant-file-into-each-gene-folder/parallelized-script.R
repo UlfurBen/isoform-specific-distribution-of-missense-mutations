@@ -31,8 +31,13 @@ process_gene <- function(gene) {
 }
 
 # Set up the cluster for parallel processing
-num_cores <- 30  # Use all available cores except one
+num_cores <- 30  # Use the specified number of cores
 cl <- makeCluster(num_cores)
+
+# Load necessary libraries on each worker node
+clusterEvalQ(cl, {
+  library(dplyr)
+})
 
 # Export necessary variables and functions to the cluster
 clusterExport(cl, varlist = c("variants_data", "superfolder", "process_gene"))
