@@ -68,8 +68,13 @@ process_subfolder <- function(subfolder) {
 num_cores <- detectCores() - 1  # Use all available cores except one
 cl <- makeCluster(num_cores)
 
+# Load necessary libraries on each worker node
+clusterEvalQ(cl, {
+  library(data.table)
+})
+
 # Export necessary variables and functions to the cluster
-clusterExport(cl, varlist = c("process_folder", "process_subfolder"))
+clusterExport(cl, varlist = c("process_folder", "process_subfolder", "system"))
 
 # Apply the function in parallel to each subfolder
 parLapply(cl, subfolders, process_subfolder)
