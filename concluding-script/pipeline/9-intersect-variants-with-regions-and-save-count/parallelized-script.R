@@ -78,7 +78,7 @@ process_subfolder <- function(subfolder) {
 }
 
 # Set up the cluster for parallel processing
-num_cores <- detectCores() - 1  # Use all available cores except one
+num_cores <- 30
 cl <- makeCluster(num_cores)
 
 # Load necessary libraries on each worker node
