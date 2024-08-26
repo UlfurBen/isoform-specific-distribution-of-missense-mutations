@@ -47,9 +47,13 @@ process_subfolder <- function(subfolder) {
 num_cores <- detectCores() - 1  # Use all available cores except one
 cl <- makeCluster(num_cores)
 
+# Load necessary libraries on each worker node
+clusterEvalQ(cl, {
+  library(stringr)
+})
+
 # Export necessary variables and functions to the cluster
 clusterExport(cl, varlist = c("process_subfolder", "genes_folder"))
-clusterEvalQ(cl, library(stringr))  # Load the stringr library on each worker
 
 # Apply the function in parallel to each subfolder and combine the results
 enriched_regions_list <- parLapply(cl, subfolders, process_subfolder)
