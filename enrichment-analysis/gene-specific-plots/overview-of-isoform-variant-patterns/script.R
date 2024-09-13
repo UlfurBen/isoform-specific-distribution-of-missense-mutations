@@ -26,5 +26,5 @@ plot_data <- data.frame(
 # Plot the data
 ggplot(plot_data, aes(x = Isoform_Category, y = Percentage, fill = Isoform_Category)) +
   geom_bar(stat = "identity") +
-  labs(title = "Missense Variation Distribution Across Isoforms", x = "Isoform Category", y = "Percentage of Variations (%)") +
+  labs(title = "Missense Variant Distribution Across Isoforms", x = "Isoform Category", y = "Percentage of Variants (%)") +
   theme_minimal()
