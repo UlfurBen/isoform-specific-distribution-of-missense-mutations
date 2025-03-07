@@ -1,0 +1,4 @@
+# Go to url https://ftp.ensembl.org/pub/current_gtf/homo_sapiens/ and download link Homo_sapiens.GRCh37.65.gtf.gz
+# and gunzip
+
+Homo_sapiens.GRCh37.65.gtf

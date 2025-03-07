@@ -1,0 +1,30 @@
+# Define file paths
+input_file <- "Homo_sapiens.GRCh37.87_with_headers_isoform_specific_regions_with_variant_counts.bed"
+output_file <- "Homo_sapiens.GRCh37.87_with_headers_isoform_specific_regions_with_variant_counts_enrichment_ratio.bed"
+
+# Read the input BED file
+bed_data <- read.table(input_file, header = TRUE, sep = "\t", stringsAsFactors = FALSE)
+
+# Calculate seq-length (chromEnd - chromStart)
+seq_length <- ((bed_data[, 3] - bed_data[, 2]) + 1)
+
+# Set seq-length to 1 if it is 0
+# seq_length[seq_length == 0] <- 1
+
+# Ensure the last column (variant count) is numeric
+bed_data[, ncol(bed_data)] <- as.numeric(bed_data[, ncol(bed_data)])
+
+# Calculate enrichment ratio (variant_count / seq-length)
+enrichment_ratio <- bed_data[, ncol(bed_data)] / seq_length
+
+# Add enrichment ratio as a new column
+bed_data <- cbind(bed_data, enrichment_ratio)
+
+# Sort the data by the enrichment ratio in descending order
+sorted_bed_data <- bed_data[order(-bed_data[, ncol(bed_data)]), ]
+
+# Write the sorted data to the output file
+write.table(sorted_bed_data, file = output_file, sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
+
+# Print a message indicating completion
+cat("The rows have been sorted by enrichment ratio in descending order and saved to", output_file, "\n")

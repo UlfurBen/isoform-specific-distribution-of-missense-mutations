@@ -1,0 +1,26 @@
+# Load necessary libraries
+library(dplyr)
+library(stringr)
+
+# Define the input and output file paths
+input_file <- "homo_sapiens_variation_missense_ClinVar_not_somatic.bed"
+output_file <- "homo_sapiens_variation_missense_ClinVar_filtered_relevancy.bed"
+
+# Read the input file
+data <- read.delim(input_file, header = TRUE, sep = "\t")
+
+# Create new columns chr, chromStart, chromEnd, and aachange
+data <- data %>%
+  mutate(
+    chr = str_extract(ChromosomeCoordinate, "(?<=NC_)(0*)([1-9][0-9]*)") %>% str_extract("[1-9][0-9]*"),
+    chromStart = as.numeric(str_extract(ChromosomeCoordinate, "(?<=:g\\.)([0-9]+)")),
+    chromEnd = chromStart,
+    aachange = str_extract(ChromosomeCoordinate, "(?<=[0-9])[A-Z]>[A-Z]")
+  ) %>%
+  # Reorder columns: place chr, chromStart, chromEnd, aachange in front of all original columns
+  select(chr, chromStart, chromEnd, aachange, everything())
+
+# Write the output to a new BED file
+write.table(data, output_file, sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE)
+
+cat("Filtered and modified data have been written to", output_file, "\n")

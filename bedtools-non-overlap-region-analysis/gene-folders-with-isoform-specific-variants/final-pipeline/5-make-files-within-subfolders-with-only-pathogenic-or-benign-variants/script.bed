@@ -1,0 +1,41 @@
+# Set the superfolder path
+superfolder <- "~/genes"
+
+# Get a list of all subfolders within the superfolder
+subfolders <- list.dirs(superfolder, full.names = TRUE, recursive = FALSE)
+
+# Loop over each subfolder
+for (subfolder in subfolders) {
+  # Get the folder name
+  folder_name <- basename(subfolder)
+  
+  # Construct the path to the variants file
+  variants_file <- file.path(subfolder, paste0("variants_", folder_name, ".bed"))
+  
+  # Check if the variants file exists
+  if (file.exists(variants_file)) {
+    
+    # Read the variants file
+    variants_data <- readLines(variants_file)
+    
+    # Grep for benign (case insensitive) and exclude lines with pathogenic
+    benign_data <- grep("benign", variants_data, ignore.case = TRUE, value = TRUE)
+    benign_data <- grep("pathogenic", benign_data, ignore.case = TRUE, value = TRUE, invert = TRUE)
+    benign_file <- file.path(subfolder, paste0("benign_", folder_name, ".bed"))
+    writeLines(benign_data, benign_file)
+    
+    # Grep for pathogenic (case insensitive) and exclude lines with benign
+    pathogenic_data <- grep("pathogenic", variants_data, ignore.case = TRUE, value = TRUE)
+    pathogenic_data <- grep("benign", pathogenic_data, ignore.case = TRUE, value = TRUE, invert = TRUE)
+    pathogenic_file <- file.path(subfolder, paste0("pathogenic_", folder_name, ".bed"))
+    writeLines(pathogenic_data, pathogenic_file)
+    
+    # Print a message indicating completion for this folder
+    cat("Processed subfolder:", folder_name, "\n")
+  } else {
+    cat("No variants file found in subfolder:", folder_name, "\n")
+  }
+}
+
+# Print a final completion message
+cat("All processing complete. Benign and pathogenic files have been created.\n")

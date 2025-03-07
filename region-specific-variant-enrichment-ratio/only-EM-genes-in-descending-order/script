@@ -1,0 +1,20 @@
+data.table_path <- "/hpchome/ubf2/R/x86_64-pc-linux-gnu-library/4.1/data.table"
+
+# Add this path to the library paths
+.libPaths(c(dirname(data.table_path), .libPaths()))
+
+# Load necessary library
+library(data.table)
+
+# Read the BED input file
+bed_file <- "Matched_Genes.bed"
+bed_data <- fread(bed_file, header = FALSE)
+
+# Reorder rows in descending order based on the last column
+sorted_bed_data <- bed_data[order(-bed_data[[ncol(bed_data)]]), ]
+
+# Write the reordered data to a new file
+output_file <- "Matched_Genes_in_descending_order.bed"
+fwrite(sorted_bed_data, file = output_file, sep = "\t", col.names = FALSE)
+
+cat("Reordered file has been written to:", output_file, "\n")

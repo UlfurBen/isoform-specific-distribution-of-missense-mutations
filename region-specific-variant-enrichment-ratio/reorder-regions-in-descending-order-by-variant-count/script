@@ -1,0 +1,31 @@
+# Define file paths
+input_file <- "Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff_isoform_specific_regions_with_variant_counts.bed"
+output_file <- "Homo_sapiens.GRCh38.112.chr_patch_hapl_scaff_isoform_specific_regions_with_variant_counts_in_descending_order.bed"
+
+# Read the input BED file
+bed_data <- read.table(input_file, header = FALSE, sep = "\t", stringsAsFactors = FALSE)
+
+# Check if the last column contains only numeric values
+last_column <- bed_data[, ncol(bed_data)]
+non_numeric_rows <- which(is.na(as.numeric(last_column)))
+
+# Print the non-numeric rows if any
+if (length(non_numeric_rows) > 0) {
+  cat("Warning: The following rows contain non-numeric values in the last column and will be removed:\n")
+  print(bed_data[non_numeric_rows, ])
+  
+  # Remove the non-numeric rows
+  bed_data <- bed_data[-non_numeric_rows, ]
+}
+
+# Convert the last column to numeric
+bed_data[, ncol(bed_data)] <- as.numeric(bed_data[, ncol(bed_data)])
+
+# Sort the data by the last column (variant count) in descending order
+sorted_bed_data <- bed_data[order(-bed_data[, ncol(bed_data)]), ]
+
+# Write the sorted data to the output file
+write.table(sorted_bed_data, file = output_file, sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
+
+# Print a message indicating completion
+cat("The rows have been sorted by variant count in descending order and saved to", output_file, "\n")

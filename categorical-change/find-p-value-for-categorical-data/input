@@ -1,0 +1,83 @@
+benign_control_variants_in_EM_genes <- "
+Nonpolar->Nonpolar 1411
+Nonpolar->Polar 756
+Nonpolar->Negatively_charged 67
+Nonpolar->Positively_charged 168
+Polar->Nonpolar 793
+Polar->Polar 477
+Polar->Negatively_charged 45
+Polar->Positively_charged 297
+Negatively_charged->Nonpolar 89
+Negatively_charged->Polar 169
+Negatively_charged->Negatively_charged 132
+Negatively_charged->Positively_charged 222
+Positively_charged->Nonpolar 203
+Positively_charged->Polar 543
+Positively_charged->Negatively_charged 29
+Positively_charged->Positively_charged 213
+"
+
+benign_control_variants_in_non_EM_genes <- "
+Nonpolar->Nonpolar 24712
+Nonpolar->Polar 10221
+Nonpolar->Negatively_charged 1574
+Nonpolar->Positively_charged 2782
+Polar->Nonpolar 8483
+Polar->Polar 6451
+Polar->Negatively_charged 797
+Polar->Positively_charged 4447
+Negatively_charged->Nonpolar 1961
+Negatively_charged->Polar 2414
+Negatively_charged->Negatively_charged 2300
+Negatively_charged->Positively_charged 2242
+Positively_charged->Nonpolar 2688
+Positively_charged->Polar 9168
+Positively_charged->Negatively_charged 721
+Positively_charged->Positively_charged 5003
+"
+
+pathogenic_variants_in_EM_genes <- "
+Nonpolar->Nonpolar 349
+Nonpolar->Polar 459
+Nonpolar->Negatively_charged 123
+Nonpolar->Positively_charged 133
+Polar->Nonpolar 261
+Polar->Polar 189
+Polar->Negatively_charged 432
+Polar->Positively_charged 467
+Negatively_charged->Nonpolar 101
+Negatively_charged->Polar 92
+Negatively_charged->Negatively_charged 42
+Negatively_charged->Positively_charged 93
+Positively_charged->Nonpolar 394
+Positively_charged->Polar 143
+Positively_charged->Negatively_charged 35
+Positively_charged->Positively_charged 49
+"
+
+pathogenic_variants_in_non_EM_genes <- "
+Nonpolar->Nonpolar 7427
+Nonpolar->Polar 3926
+Nonpolar->Negatively_charged 1607
+Nonpolar->Positively_charged 2944
+Polar->Nonpolar 2765
+Polar->Polar 2750
+Polar->Negatively_charged 433
+Polar->Positively_charged 1796
+Negatively_charged->Nonpolar 1058
+Negatively_charged->Polar 977
+Negatively_charged->Negatively_charged 289
+Negatively_charged->Positively_charged 1115
+Positively_charged->Nonpolar 1791
+Positively_charged->Polar 2405
+Positively_charged->Negatively_charged 394
+Positively_charged->Positively_charged 1046
+"
+
+# Example contingency table for Fisher test
+contingency_table <- data.frame(
+  "EM genes" = c(432, 45),
+  "non-EM genes" = c(433, 797),
+  row.names = c("pathogenic variants in Categorical-changes-of-interest", "control variants in Categorical-changes-of-interest"),
+  stringsAsFactors = FALSE
+  )

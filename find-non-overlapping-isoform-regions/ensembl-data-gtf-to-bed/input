@@ -1,0 +1,4 @@
+# Download https://ftp.ensembl.org/pub/grch37/release-98/gtf/homo_sapiens/Homo_sapiens.GRCh37.87.gtf.gz 
+# On elja the file's path is /hpchome/ubf2/Homo_sapiens.GRCh37.87.gtf.gz
+# Use gunzip Homo_sapiens.GRCh37.87.gtf.gz to get Homo_sapiens.GRCh37.87.gtf
+

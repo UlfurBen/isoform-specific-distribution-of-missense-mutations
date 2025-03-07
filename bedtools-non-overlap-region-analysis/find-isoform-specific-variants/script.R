@@ -1,0 +1,62 @@
+# Load necessary library
+library(dplyr)
+
+# Define the function to sort and intersect BED files
+process_bed_files <- function(input_folder, output_folder) {
+  # Create the output folder if it doesn't exist
+  if (!dir.exists(output_folder)) {
+    dir.create(output_folder)
+  }
+
+  # List all subfolders in the input folder
+  subfolders <- list.dirs(input_folder, recursive = FALSE)
+  
+  # Process each subfolder
+  for (subfolder in subfolders) {
+    # Get the ENST value (subfolder name)
+    enst_value <- basename(subfolder)
+    
+    # Create corresponding subfolder in the output folder
+    output_subfolder <- file.path(output_folder, enst_value)
+    if (!dir.exists(output_subfolder)) {
+      dir.create(output_subfolder)
+    }
+    
+    # List all BED files in the current subfolder
+    bed_files <- list.files(subfolder, pattern = "\\.bed$", full.names = TRUE)
+    
+    # Sort each BED file using bedtools
+    for (bed_file in bed_files) {
+      sorted_bed_file <- bed_file
+      system(paste("bedtools sort -i", bed_file, ">", sorted_bed_file))
+    }
+    
+    # Find unique variants in each BED file
+    for (bed_file in bed_files) {
+      # List all BED files in other subfolders
+      other_bed_files <- list.files(subfolders, pattern = "\\.bed$", full.names = TRUE, recursive = TRUE)
+      other_bed_files <- setdiff(other_bed_files, bed_file) # Exclude the current bed file from the list
+      
+      unique_variants_file <- file.path(output_subfolder, basename(bed_file))
+      
+      # Intersect with other BED files to find unique variants
+      if (length(other_bed_files) > 0) {
+        intersect_command <- paste("bedtools intersect -v -a", bed_file, "-b", paste(other_bed_files, collapse = " "), ">", unique_variants_file)
+        system(intersect_command)
+      } else {
+        # If there are no other BED files, copy the original file to the output folder
+        file.copy(bed_file, unique_variants_file)
+      }
+    }
+  }
+}
+
+# Define the input and output folders
+input_folder <- "crebbp"
+output_folder <- "crebbp-isoform-specific"
+
+# Process the BED files
+process_bed_files(input_folder, output_folder)
+
+# Output message to confirm completion
+cat("Processing complete. Unique variants saved in", output_folder, "\n")
