@@ -1,10 +1,10 @@
-# Load gene names from a CSV file
+# Load gene names from a CSV file sourced from the https://www.epigeneticmachinery.org/ website
 gene_data <- read.csv("The-Epigenetic-Machinery.csv", header = TRUE)
 
-# Output file
+# Create the output file
 output_file <- "calculate_missense_variant_enrichment_within_isoforms.txt"
 
-# Assuming the gene names are in a column named 'Gene_Name'
+# Assuming the gene names are in a column named `Gene_Name`
 gene_names <- gene_data$Gene_Name
 
 # Append '_HUMAN' to each gene name
@@ -13,7 +13,7 @@ gene_names_human <- paste0(gene_names, "_HUMAN")
 # Write the modified gene names to a temporary file
 writeLines(gene_names_human, "temp_gene_names.txt")
 
-# Read the modified gene names from the temporary file
+# See which gene names we're working with
 temp_gene_names <- readLines("temp_gene_names.txt")
 
 # Process each modified gene name
@@ -37,7 +37,7 @@ for (gene_name_human in temp_gene_names) {
   system("awk -F '|' '{print $2}' temp.txt | sort -u > temp_identifiers_2.txt")
   temp_identifiers_2 <- readLines("temp_identifiers_2.txt")
   
-  # Loop over each identifier to count mutations, specifically taking only the second to last isoform, i.e. isoforms with a hyphen
+  # Loop over each identifier to count mutations, specifically taking only the second to last isoform, i.e. isoforms with a hyphen as they are the not canonical isoforms
   for (identifier in temp_identifiers_2) {
     count_mutation <- as.numeric(system(paste0("grep -w '", identifier, "' homo_sapiens_variation_missense_ClinVar_Reference_SNP.txt | grep 'missense variant' | wc -l"), intern = TRUE))
     if (count_mutation > 0) {
