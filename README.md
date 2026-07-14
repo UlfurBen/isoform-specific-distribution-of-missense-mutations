@@ -5,4 +5,4 @@ The motivation for this project was to find specific exons that belong to no mor
 
 // To do list for refining this repo:
 - Remove redundant files and include only working files that have a purpose in this project
-- Try to merge the 2 distinct repositories of `isoform specific distribution of missense mutations` and `Epigenetic-isoform-usage-in-neurodevelopment` 
+- Try to merge the 2 distinct repositories stored under UlfurBen `isoform specific distribution of missense mutations` and `Epigenetic-isoform-usage-in-neurodevelopment` 
