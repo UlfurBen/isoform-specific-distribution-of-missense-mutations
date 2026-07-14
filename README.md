@@ -8,3 +8,4 @@ The project-steps.md file contains a journal providing an overview of my progres
 // To do list for refining this repo:
 - Remove redundant files and include only working files that have a purpose in this project
 - Try to merge the 2 distinct repositories stored under UlfurBen `isoform specific distribution of missense mutations` and `Epigenetic-isoform-usage-in-neurodevelopment` 
+- Consider adjusting the code to use the GRCh38 instead of GRCh37 so as to include more exon information
