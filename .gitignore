@@ -1,0 +1,34 @@
+# Data files (large, not committed)
+*.gz
+*.txt
+*.bed
+*.fasta
+*.fa
+*.csv
+!The-Epigenetic-Machinery.csv
+
+# Results
+results/
+*.tsv
+*.out
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# System
+.DS_Store
+*.swp
+*~
+.vscode/
+
+# Old folders (cleanup)
+bedtools-non-overlap-region-analysis/
+find-non-overlapping-isoform-regions/
+categorical-change/
+concluding-script/
+count-ranges-EM-genes/
+enrichment-analysis/
+region-specific-variant-enrichment-ratio/
