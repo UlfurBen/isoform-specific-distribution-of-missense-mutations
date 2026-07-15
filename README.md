@@ -5,6 +5,8 @@ The motivation for this project was to find specific exons that belong to no mor
 
 The project-steps.md file contains a journal providing an overview of my progress in this project. 
 
+We call exons that only belong to one isoform a "Unique Exon" to differentiate them from normal Exons which can be shared between multiple isoforms.
+
 // To do list for refining this repo:
 - Remove redundant files and include only working files that have a purpose in this project
 - Try to merge the 2 distinct repositories stored under UlfurBen `isoform specific distribution of missense mutations` and `Epigenetic-isoform-usage-in-neurodevelopment` 
